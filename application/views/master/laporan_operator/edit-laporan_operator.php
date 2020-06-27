@@ -1,22 +1,20 @@
+<!-- Content Wrapper. Contains page content -->
 
+<div class="content-wrapper">
 
-  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Header (Page header) -->
 
-  <div class="content-wrapper">
+  <section class="content-header">
 
-    <!-- Content Header (Page header) -->
+    <h1>
 
-    <section class="content-header">
+      Laporan Operator
 
-      <h1>
+      <small>Edit</small>
 
-        Laporan Operator
+    </h1>
 
-        <small>Edit</small>
-
-      </h1>
-
-      <ol class="breadcrumb">
+    <ol class="breadcrumb">
 
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 
@@ -26,17 +24,17 @@
 
       <li class="active">Edit</li>
 
-      </ol>
+    </ol>
 
-    </section>
+  </section>
 
-    <!-- Main content -->
+  <!-- Main content -->
 
-    <section class="content">
+  <section class="content">
 
     <form method="POST" action="<?= base_url('master/Laporan_operator/update') ?>" id="upload-create" enctype="multipart/form-data">
 
-    <input type="hidden" name="id" value="<?= $laporan_operator['id'] ?>">
+      <input type="hidden" name="id" value="<?= $laporan_operator['id'] ?>">
 
 
 
@@ -54,7 +52,7 @@
 
               <h5 class="box-title">
 
-                  Edit Laporan Operator
+                Edit Laporan Operator
 
               </h5>
 
@@ -62,99 +60,141 @@
 
             <div class="box-body">
 
-                <div class="show_error"></div><div class="form-group">
+              <div class="show_error"></div>
+              <div class="form-group">
+                <label for="form-tanggal">Tanggal</label>
+                <input type="text" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]" value="<?= $laporan_operator['tanggal'] ?>">
+              </div>
+              <!-- <div class="form-group">
+                <label for="form-value_json">Value Json</label>
+                <input type="text" class="form-control" id="form-value_json" placeholder="Masukan Value Json" name="dt[value_json]" value="<?= $laporan_operator['value_json'] ?>">
+              </div> -->
+              <div class="form-group">
+                <div class="form-group col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>No</th>
+                        <th>Uraian</th>
+                        <th width="120">Kesesuaian </th>
+                        <th>Keterangan</th>
+                        <th colspan="3">Dasar Hukum</th>
+                      </tr>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Pasal</th>
+                        <th>Ayat</th>
+                        <th>Butir</th>
+                      </tr>
+                      <?php
+                      $master_list_operator = $this->mymodel->selectWithQuery("SELECT * FROM master_list_operator");
+                      ?>
+                      <?php
+                      $no = 0;
+                      foreach ($master_list_operator as $dp) {
+                        $no++;
+                      ?>
+                        <tr>
+                          <td><?= $no ?></td>
+                          <td>
+                            <input type="hidden" name="id_dp[]" value="<?= $dp['id'] ?>">
+                            <?= $dp['nama'] ?>
+                          </td>
 
-                      <label for="form-tanggal">Tanggal</label>
+                          <td>
+                            <!-- <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle" > -->
+                            <input type="radio" name="hasil[]" value="ya">
+                            <label for="Tidak">Ya</label><br>
+                            <input type="radio" name="hasil[]" value="tidak">
+                            <label for="Tidak">Tidak</label><br>
+                            <input type="radio" name="hasil[]" value="tidak_ada">
+                            <label for="Tidak">Tidak Ada</label>
+                          </td>
+                          <td><textarea name="keterangan[]" id="" rows="1" class="form-control"></textarea></td>
+                          <td>
+                            <?= $dp['pasal'] ?>
+                          </td>
+                          <td>
+                            <?= $dp['ayat'] ?>
+                          </td>
+                          <td>
+                            <?= $dp['butir'] ?>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="form-keterangan_tolak">Keterangan Tolak</label>
+                <input type="text" class="form-control" id="form-keterangan_tolak" placeholder="Masukan Keterangan Tolak" name="dt[keterangan_tolak]" value="<?= $laporan_operator['keterangan_tolak'] ?>">
+              </div>
+              <div class="form-group">
+                <label for="form-validasi">Validasi</label>
+                <input type="text" class="form-control" id="form-validasi" placeholder="Masukan Validasi" name="dt[validasi]" value="<?= $laporan_operator['validasi'] ?>">
+              </div>
+              <div class="form-group">
+                <label for="form-id_se">Id Se</label>
+                <input type="text" class="form-control" id="form-id_se" placeholder="Masukan Id Se" name="dt[id_se]" value="<?= $laporan_operator['id_se'] ?>">
+              </div>
+              <div class="form-group">
+                <label for="form-id_spv">Id Spv</label>
+                <input type="text" class="form-control" id="form-id_spv" placeholder="Masukan Id Spv" name="dt[id_spv]" value="<?= $laporan_operator['id_spv'] ?>">
+              </div>
+              <div class="form-group">
+                <label for="form-id_inspektor">Id Inspektor</label>
+                <input type="text" class="form-control" id="form-id_inspektor" placeholder="Masukan Id Inspektor" name="dt[id_inspektor]" value="<?= $laporan_operator['id_inspektor'] ?>">
+              </div>
+              <div class="form-group">
+                <label for="form-id_gudang">Id Gudang</label>
+                <input type="text" class="form-control" id="form-id_gudang" placeholder="Masukan Id Gudang" name="dt[id_gudang]" value="<?= $laporan_operator['id_gudang'] ?>">
+              </div><?php
+                    if ($file['dir'] != "") {
+                      $types = explode("/", $file['mime']);
+                      if ($types[0] == "image") {
+                    ?>
+                  <img src="<?= base_url($file['dir']) ?>" style="width: 200px" class="img img-thumbnail">
 
-                      <input type="text" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]" value="<?= $laporan_operator['tanggal'] ?>">
+                  <br>
 
-                  </div><div class="form-group">
+                <?php } else { ?>
 
-                      <label for="form-value_json">Value Json</label>
 
-                      <input type="text" class="form-control" id="form-value_json" placeholder="Masukan Value Json" name="dt[value_json]" value="<?= $laporan_operator['value_json'] ?>">
 
-                  </div><div class="form-group">
+                  <i class="fa fa-file fa-5x text-danger"></i>
 
-                      <label for="form-keterangan_tolak">Keterangan Tolak</label>
+                  <br>
 
-                      <input type="text" class="form-control" id="form-keterangan_tolak" placeholder="Masukan Keterangan Tolak" name="dt[keterangan_tolak]" value="<?= $laporan_operator['keterangan_tolak'] ?>">
+                  <a href="<?= base_url($file['dir']) ?>" target="_blank"><i class="fa fa-download"></i> <?= $file['name'] ?></a>
 
-                  </div><div class="form-group">
-
-                      <label for="form-validasi">Validasi</label>
-
-                      <input type="text" class="form-control" id="form-validasi" placeholder="Masukan Validasi" name="dt[validasi]" value="<?= $laporan_operator['validasi'] ?>">
-
-                  </div><div class="form-group">
-
-                      <label for="form-id_se">Id Se</label>
-
-                      <input type="text" class="form-control" id="form-id_se" placeholder="Masukan Id Se" name="dt[id_se]" value="<?= $laporan_operator['id_se'] ?>">
-
-                  </div><div class="form-group">
-
-                      <label for="form-id_spv">Id Spv</label>
-
-                      <input type="text" class="form-control" id="form-id_spv" placeholder="Masukan Id Spv" name="dt[id_spv]" value="<?= $laporan_operator['id_spv'] ?>">
-
-                  </div><div class="form-group">
-
-                      <label for="form-id_inspektor">Id Inspektor</label>
-
-                      <input type="text" class="form-control" id="form-id_inspektor" placeholder="Masukan Id Inspektor" name="dt[id_inspektor]" value="<?= $laporan_operator['id_inspektor'] ?>">
-
-                  </div><div class="form-group">
-
-                      <label for="form-id_gudang">Id Gudang</label>
-
-                      <input type="text" class="form-control" id="form-id_gudang" placeholder="Masukan Id Gudang" name="dt[id_gudang]" value="<?= $laporan_operator['id_gudang'] ?>">
-
-                  </div><?php
-
-                  if($file['dir']!=""){
-
-                  $types = explode("/", $file['mime']);
-
-                  if($types[0]=="image"){
-
-                  ?>
-
-                    <img src="<?= base_url($file['dir']) ?>" style="width: 200px" class="img img-thumbnail">
-
-                    <br>
-
-                  <?php }else{ ?>
-
-                    
-
-                    <i class="fa fa-file fa-5x text-danger"></i>
-
-                    <br>
-
-                    <a href="<?= base_url($file['dir']) ?>" target="_blank"><i class="fa fa-download"></i> <?= $file['name'] ?></a>
-
-                    <br>
+                  <br>
 
                   <br>
 
                 <?php } ?>
 
-                <?php } ?><div class="form-group">
+              <?php } ?><div class="form-group">
 
-                      <label for="form-file">File</label>
+                <label for="form-file">File</label>
 
-                      <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file">
+                <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file">
 
-                  </div></div>
+              </div>
+            </div>
 
             <div class="box-footer">
 
-                <button type="submit" class="btn btn-primary btn-send" ><i class="fa fa-save"></i> Save</button>
+              <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
 
-                <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
+              <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
 
-             
+
 
             </div>
 
@@ -176,100 +216,98 @@
 
       <!-- /.row -->
 
-      </form>
+    </form>
 
 
 
-    </section>
+  </section>
 
-    <!-- /.content -->
+  <!-- /.content -->
 
-  </div>
+</div>
 
-  <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 
-  <script type="text/javascript">
+<script type="text/javascript">
+  $("#upload-create").submit(function() {
 
-      $("#upload-create").submit(function(){
+    var form = $(this);
 
-            var form = $(this);
+    var mydata = new FormData(this);
 
-            var mydata = new FormData(this);
+    $.ajax({
 
-            $.ajax({
+      type: "POST",
 
-                type: "POST",
+      url: form.attr("action"),
 
-                url: form.attr("action"),
+      data: mydata,
 
-                data: mydata,
+      cache: false,
 
-                cache: false,
+      contentType: false,
 
-                contentType: false,
+      processData: false,
 
-                processData: false,
+      beforeSend: function() {
 
-                beforeSend : function(){
+        $(".btn-send").addClass("disabled").html("<i class='la la-spinner la-spin'></i>  Processing...").attr('disabled', true);
 
-                    $(".btn-send").addClass("disabled").html("<i class='la la-spinner la-spin'></i>  Processing...").attr('disabled',true);
+        form.find(".show_error").slideUp().html("");
 
-                    form.find(".show_error").slideUp().html("");
+      },
 
-                },
+      success: function(response, textStatus, xhr) {
 
-                success: function(response, textStatus, xhr) {
+        // alert(mydata);
 
-                    // alert(mydata);
+        var str = response;
 
-                   var str = response;
+        if (str.indexOf("success") != -1) {
 
-                    if (str.indexOf("success") != -1){
+          form.find(".show_error").hide().html(response).slideDown("fast");
 
-                        form.find(".show_error").hide().html(response).slideDown("fast");
+          setTimeout(function() {
 
-                        setTimeout(function(){ 
+            window.location.href = "<?= base_url('master/Laporan_operator') ?>";
 
-                           window.location.href = "<?= base_url('master/Laporan_operator') ?>";
+          }, 1000);
 
-                        }, 1000);
-
-                        $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled',false);
-
+          $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled', false);
 
 
 
 
-                    }else{
 
-                        form.find(".show_error").hide().html(response).slideDown("fast");
+        } else {
 
-                        $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled',false);
+          form.find(".show_error").hide().html(response).slideDown("fast");
 
-                        
-
-                    }
-
-                },
-
-                error: function(xhr, textStatus, errorThrown) {
-
-                  console.log(xhr);
-
-                    $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled',false);
-
-                    form.find(".show_error").hide().html(xhr).slideDown("fast");
+          $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled', false);
 
 
 
-                }
+        }
 
-            });
+      },
 
-            return false;
+      error: function(xhr, textStatus, errorThrown) {
 
-    
+        console.log(xhr);
 
-        });
+        $(".btn-send").removeClass("disabled").html('<i class="fa fa-save"></i> Save').attr('disabled', false);
 
-  </script>
+        form.find(".show_error").hide().html(xhr).slideDown("fast");
+
+
+
+      }
+
+    });
+
+    return false;
+
+
+
+  });
+</script>

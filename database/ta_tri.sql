@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23 Jun 2020 pada 12.30
+-- Generation Time: 27 Jun 2020 pada 09.42
 -- Versi Server: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -473,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `file` (
   `status` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `file`
@@ -584,7 +584,58 @@ INSERT INTO `file` (`id`, `name`, `mime`, `dir`, `table`, `table_id`, `status`, 
 (103, '', '', '', 'form_tindak_lanjut', 2, 'ENABLE', '2020-05-17 15:57:32', NULL),
 (104, '', '', '', 'form_tindak_lanjut', 2, 'ENABLE', '2020-05-17 15:57:32', NULL),
 (105, '', '', '', 'form_tindak_lanjut', 3, 'ENABLE', '2020-05-17 15:59:17', NULL),
-(106, '', '', '', 'form_tindak_lanjut', 4, 'ENABLE', '2020-05-17 16:00:43', NULL);
+(106, '', '', '', 'form_tindak_lanjut', 4, 'ENABLE', '2020-05-17 16:00:43', NULL),
+(107, '', '', '', 'master_list_operator', 1, 'ENABLE', '2020-06-23 20:58:50', NULL),
+(108, '', '', '', 'master_list_operator', 2, 'ENABLE', '2020-06-23 20:59:10', NULL),
+(109, '', '', '', 'master_list_operator', 3, 'ENABLE', '2020-06-23 20:59:50', NULL),
+(110, '', '', '', 'master_list_operator', 4, 'ENABLE', '2020-06-23 21:00:55', NULL),
+(111, '', '', '', 'master_list_operator', 5, 'ENABLE', '2020-06-23 21:01:06', NULL),
+(112, '', '', '', 'master_list_operator', 6, 'ENABLE', '2020-06-23 21:01:24', NULL),
+(113, '', '', '', 'master_list_operator', 7, 'ENABLE', '2020-06-23 21:01:37', NULL),
+(114, '', '', '', 'master_list_operator', 8, 'ENABLE', '2020-06-23 21:01:50', NULL),
+(115, '', '', '', 'master_list_operator', 9, 'ENABLE', '2020-06-23 21:02:03', NULL),
+(116, '', '', '', 'master_list_operator', 10, 'ENABLE', '2020-06-23 21:02:15', NULL),
+(117, '', '', '', 'master_list_operator', 11, 'ENABLE', '2020-06-23 21:02:33', NULL),
+(118, '', '', '', 'master_list_operator', 12, 'ENABLE', '2020-06-23 21:03:45', NULL),
+(119, '', '', '', 'master_list_operator', 13, 'ENABLE', '2020-06-23 21:03:58', NULL),
+(120, '', '', '', 'master_list_operator', 14, 'ENABLE', '2020-06-23 21:04:14', NULL),
+(121, '', '', '', 'master_list_operator', 15, 'ENABLE', '2020-06-23 21:04:25', NULL),
+(122, '', '', '', 'master_list_operator', 16, 'ENABLE', '2020-06-23 21:04:40', NULL),
+(123, '', '', '', 'master_list_operator', 17, 'ENABLE', '2020-06-23 21:04:52', NULL),
+(124, '', '', '', 'master_list_operator', 18, 'ENABLE', '2020-06-23 21:05:07', NULL),
+(125, '', '', '', 'master_list_operator', 19, 'ENABLE', '2020-06-23 21:05:21', NULL),
+(126, '', '', '', 'master_list_operator', 20, 'ENABLE', '2020-06-23 21:05:32', NULL),
+(127, '', '', '', 'master_list_operator', 21, 'ENABLE', '2020-06-23 21:06:29', NULL),
+(128, '', '', '', 'master_list_operator', 22, 'ENABLE', '2020-06-23 21:06:40', NULL),
+(129, '', '', '', 'master_list_operator', 23, 'ENABLE', '2020-06-23 21:06:54', NULL),
+(130, '', '', '', 'master_list_operator', 24, 'ENABLE', '2020-06-23 21:07:04', NULL),
+(131, '', '', '', 'master_list_operator', 25, 'ENABLE', '2020-06-23 21:07:16', NULL),
+(132, '', '', '', 'master_list_crane', 1, 'ENABLE', '2020-06-23 21:07:48', NULL),
+(133, '', '', '', 'master_list_crane', 2, 'ENABLE', '2020-06-23 21:08:51', NULL),
+(134, '', '', '', 'master_list_crane', 3, 'ENABLE', '2020-06-23 21:09:02', NULL),
+(135, '', '', '', 'master_list_crane', 4, 'ENABLE', '2020-06-23 21:09:13', NULL),
+(136, '', '', '', 'master_list_crane', 5, 'ENABLE', '2020-06-23 21:09:25', NULL),
+(137, '', '', '', 'master_list_crane', 6, 'ENABLE', '2020-06-23 21:09:35', NULL),
+(138, '', '', '', 'master_list_crane', 7, 'ENABLE', '2020-06-23 21:09:43', NULL),
+(139, '', '', '', 'master_list_crane', 8, 'ENABLE', '2020-06-23 21:09:54', NULL),
+(140, '', '', '', 'master_list_crane', 9, 'ENABLE', '2020-06-23 21:10:05', NULL),
+(141, '', '', '', 'master_list_crane', 10, 'ENABLE', '2020-06-23 21:10:15', NULL),
+(142, '', '', '', 'master_list_crane', 11, 'ENABLE', '2020-06-23 21:10:24', NULL),
+(143, '', '', '', 'master_list_crane', 12, 'ENABLE', '2020-06-23 21:10:38', NULL),
+(144, '', '', '', 'master_list_crane', 13, 'ENABLE', '2020-06-23 21:10:47', NULL),
+(145, '', '', '', 'master_list_crane', 14, 'ENABLE', '2020-06-23 21:10:56', NULL),
+(146, '', '', '', 'master_list_crane', 15, 'ENABLE', '2020-06-23 21:11:04', NULL),
+(147, '', '', '', 'master_list_crane', 16, 'ENABLE', '2020-06-23 21:11:16', NULL),
+(148, '', '', '', 'master_list_crane', 17, 'ENABLE', '2020-06-23 21:11:26', NULL),
+(149, '', '', '', 'master_list_crane', 18, 'ENABLE', '2020-06-23 21:11:36', NULL),
+(150, '', '', '', 'master_list_crane', 19, 'ENABLE', '2020-06-23 21:11:49', NULL),
+(151, '', '', '', 'master_list_crane', 20, 'ENABLE', '2020-06-23 21:12:01', NULL),
+(152, '', '', '', 'master_list_crane', 21, 'ENABLE', '2020-06-23 21:12:10', NULL),
+(153, '', '', '', 'master_list_crane', 22, 'ENABLE', '2020-06-23 21:12:19', NULL),
+(154, '', '', '', 'master_list_crane', 23, 'ENABLE', '2020-06-23 21:12:27', NULL),
+(155, '', '', '', 'master_list_crane', 24, 'ENABLE', '2020-06-23 21:12:38', NULL),
+(156, '', '', '', 'master_list_crane', 25, 'ENABLE', '2020-06-23 21:12:47', NULL),
+(157, '', '', '', 'master_list_crane', 26, 'ENABLE', '2020-06-23 21:12:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -863,7 +914,7 @@ CREATE TABLE IF NOT EXISTS `log_aktivitas` (
   `log_action` varchar(500) NOT NULL,
   `log_tablename` varchar(500) NOT NULL,
   `log_jsondata` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=444 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=546 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `log_aktivitas`
@@ -1314,7 +1365,110 @@ INSERT INTO `log_aktivitas` (`log_id`, `log_created_at`, `log_created_by`, `log_
 (440, '2020-05-17 16:00:43', 4, 'insertData', 'form_tindak_lanjut', '{"id_laporan":4,"jenis":"","hasil_temuan":"","ke":"","tindak_lanjut":"","created_at":"2020-05-17 16:00:43","status":"ENABLE","created_by":"4"}'),
 (441, '2020-05-17 16:00:43', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"form_tindak_lanjut","table_id":4,"status":"ENABLE","created_at":"2020-05-17 16:00:43"}'),
 (442, '2020-06-23 17:12:24', 4, 'updateData', 'role', '{"id":"0","role":"Admin","status":"ENABLE","menu":"[\\"1\\",\\"33\\",\\"34\\",\\"16\\",\\"28\\",\\"29\\",\\"30\\",\\"31\\",\\"35\\"]","created_at":"2018-10-12 17:03:59","updated_at":"2020-05-17 14:22:11"}'),
-(443, '2020-06-23 17:19:20', 4, 'updateData', 'role', '{"id":"0","role":"Admin","status":"ENABLE","menu":"[\\"1\\"]","created_at":"2018-10-12 17:03:59","updated_at":"2020-06-23 17:12:24"}');
+(443, '2020-06-23 17:19:20', 4, 'updateData', 'role', '{"id":"0","role":"Admin","status":"ENABLE","menu":"[\\"1\\"]","created_at":"2018-10-12 17:03:59","updated_at":"2020-06-23 17:12:24"}'),
+(444, '2020-06-23 20:58:50', 4, 'insertData', 'master_list_operator', '{"nama":"Pesawat angkat dan angkut harus dioperasikan oleh operator  pesawat angkat dan angkut yang mempunyai lisensi K3 dan buku kerja sesuai jenis dan kualifikasinya ","pasal":"5","ayat":"1","butir":"-","created_by":"4","created_at":"2020-06-23 20:58:50","status":"ENABLE"}'),
+(445, '2020-06-23 20:58:50', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":1,"status":"ENABLE","created_at":"2020-06-23 20:58:50"}'),
+(446, '2020-06-23 20:59:10', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat  sekurang-kurangnya berpendidikan SLTA\\/sederajat","pasal":"7","ayat":"1","butir":"a","created_by":"4","created_at":"2020-06-23 20:59:10","status":"ENABLE"}'),
+(447, '2020-06-23 20:59:10', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":2,"status":"ENABLE","created_at":"2020-06-23 20:59:10"}'),
+(448, '2020-06-23 20:59:50', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berpengalaman sekurang-kurangnya 5 tahun membantu pelayanan di bidangnya","pasal":"7","ayat":"1","butir":"b","created_by":"4","created_at":"2020-06-23 20:59:50","status":"ENABLE"}'),
+(449, '2020-06-23 20:59:50', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":3,"status":"ENABLE","created_at":"2020-06-23 20:59:50"}'),
+(450, '2020-06-23 21:00:55', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berbadan sehat menurut keterangan dokter ","pasal":"7","ayat":"1","butir":"c","created_by":"4","created_at":"2020-06-23 21:00:55","status":"ENABLE"}'),
+(451, '2020-06-23 21:00:55', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":4,"status":"ENABLE","created_at":"2020-06-23 21:00:55"}'),
+(452, '2020-06-23 21:01:06', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berumur sekurang-kurangnya 23 tahun","pasal":"7","ayat":"1","butir":"d","created_by":"4","created_at":"2020-06-23 21:01:06","status":"ENABLE"}'),
+(453, '2020-06-23 21:01:06', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":5,"status":"ENABLE","created_at":"2020-06-23 21:01:06"}'),
+(454, '2020-06-23 21:01:24', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat  sekurang-kurangnya berpendidikan SLTA\\/sederajat","pasal":"7","ayat":"2","butir":"a","created_by":"4","created_at":"2020-06-23 21:01:24","status":"ENABLE"}'),
+(455, '2020-06-23 21:01:24', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":6,"status":"ENABLE","created_at":"2020-06-23 21:01:24"}'),
+(456, '2020-06-23 21:01:37', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berpengalaman sekurang-kurangnya 3 tahun membantu pelayanan di bidangnya","pasal":"7","ayat":"2","butir":"b","created_by":"4","created_at":"2020-06-23 21:01:37","status":"ENABLE"}'),
+(457, '2020-06-23 21:01:37', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":7,"status":"ENABLE","created_at":"2020-06-23 21:01:37"}'),
+(458, '2020-06-23 21:01:50', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berbadan sehat menurut keterangan dokter","pasal":"7","ayat":"2","butir":"c","created_by":"4","created_at":"2020-06-23 21:01:50","status":"ENABLE"}'),
+(459, '2020-06-23 21:01:50', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":8,"status":"ENABLE","created_at":"2020-06-23 21:01:50"}'),
+(460, '2020-06-23 21:02:02', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berumur sekurang-kurangnya 21 tahun","pasal":"7","ayat":"2","butir":"c","created_by":"4","created_at":"2020-06-23 21:02:02","status":"ENABLE"}'),
+(461, '2020-06-23 21:02:03', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":9,"status":"ENABLE","created_at":"2020-06-23 21:02:03"}'),
+(462, '2020-06-23 21:02:15', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat  sekurang-kurangnya berpendidikan SLTP\\/sederajat","pasal":"7","ayat":"3","butir":"a","created_by":"4","created_at":"2020-06-23 21:02:15","status":"ENABLE"}'),
+(463, '2020-06-23 21:02:15', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":10,"status":"ENABLE","created_at":"2020-06-23 21:02:15"}'),
+(464, '2020-06-23 21:02:33', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berpengalaman sekurang-kurangnya 1 tahun membantu pelayanan di bidangnya","pasal":"7","ayat":"3","butir":"b","created_by":"4","created_at":"2020-06-23 21:02:33","status":"ENABLE"}'),
+(465, '2020-06-23 21:02:33', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":11,"status":"ENABLE","created_at":"2020-06-23 21:02:33"}'),
+(466, '2020-06-23 21:03:45', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berbadan sehat menurut keterangan dokter ","pasal":"7","ayat":"3","butir":"c","created_by":"4","created_at":"2020-06-23 21:03:45","status":"ENABLE"}'),
+(467, '2020-06-23 21:03:45', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":12,"status":"ENABLE","created_at":"2020-06-23 21:03:45"}'),
+(468, '2020-06-23 21:03:58', 4, 'insertData', 'master_list_operator', '{"nama":"Operator peralatan angkat berumur sekurang-kurangnya 19 tahun","pasal":"7","ayat":"3","butir":"d","created_by":"4","created_at":"2020-06-23 21:03:58","status":"ENABLE"}'),
+(469, '2020-06-23 21:03:58', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":13,"status":"ENABLE","created_at":"2020-06-23 21:03:58"}'),
+(470, '2020-06-23 21:04:14', 4, 'insertData', 'master_list_operator', '{"nama":"Mengoperasikan peralatan angkat sesuai dengan jenisnya dengan kapasitas lebih dari 100 ton atau tinggi menara lebih dari 60 meter","pasal":"28","ayat":"1","butir":"a","created_by":"4","created_at":"2020-06-23 21:04:14","status":"ENABLE"}'),
+(471, '2020-06-23 21:04:14', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":14,"status":"ENABLE","created_at":"2020-06-23 21:04:14"}'),
+(472, '2020-06-23 21:04:24', 4, 'insertData', 'master_list_operator', '{"nama":"Mengawasi dan membimbing kegiatan operator kelas II dan\\/atau operator kelas III, apabila perlu didampingi oleh operator kelas II dan\\/atau kelas III","pasal":"28","ayat":"1","butir":"b","created_by":"4","created_at":"2020-06-23 21:04:24","status":"ENABLE"}'),
+(473, '2020-06-23 21:04:25', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":15,"status":"ENABLE","created_at":"2020-06-23 21:04:25"}'),
+(474, '2020-06-23 21:04:39', 4, 'insertData', 'master_list_operator', '{"nama":"Mengoperasikan peralatan angkat sesuai dengan jenisnya dengan kapasitas lebih dari 25 ton sampai kurang dari 100 ton atau tinggi menara lebih dari 40 meter sampai dengan 60 meter","pasal":"28","ayat":"2","butir":"a","created_by":"4","created_at":"2020-06-23 21:04:39","status":"ENABLE"}'),
+(475, '2020-06-23 21:04:40', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":16,"status":"ENABLE","created_at":"2020-06-23 21:04:40"}'),
+(476, '2020-06-23 21:04:52', 4, 'insertData', 'master_list_operator', '{"nama":"Mengawasi dan membimbing kegiatan operator kelas III, apabila perlu didampingi oleh operator kelas III","pasal":"28","ayat":"2","butir":"b","created_by":"4","created_at":"2020-06-23 21:04:52","status":"ENABLE"}'),
+(477, '2020-06-23 21:04:52', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":17,"status":"ENABLE","created_at":"2020-06-23 21:04:52"}'),
+(478, '2020-06-23 21:05:07', 4, 'insertData', 'master_list_operator', '{"nama":"Mengoperasikan peralatan angkat sesuai jenisnya dengan kapasitas kurang dari 25 ton atau tinggi menara sampai dengan 40 meter","pasal":"28","ayat":"3","butir":"-","created_by":"4","created_at":"2020-06-23 21:05:07","status":"ENABLE"}'),
+(479, '2020-06-23 21:05:07', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":18,"status":"ENABLE","created_at":"2020-06-23 21:05:07"}'),
+(480, '2020-06-23 21:05:21', 4, 'insertData', 'master_list_operator', '{"nama":"Melakukan pengecekan terhadap kondisi atau kemampuan kerja pesawat angkat dan angkut, alat-alat pengaman, dan alat-alat perlengkapan lainnya sebelum pengoperasian pesawat angkat dan angkut ","pasal":"34","ayat":"1","butir":"a","created_by":"4","created_at":"2020-06-23 21:05:21","status":"ENABLE"}'),
+(481, '2020-06-23 21:05:21', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":19,"status":"ENABLE","created_at":"2020-06-23 21:05:21"}'),
+(482, '2020-06-23 21:05:32', 4, 'insertData', 'master_list_operator', '{"nama":"Bertanggung jawab atas kegiatan pengoperasian pesawat angkat dan angkut dalam keadaan aman","pasal":"34","ayat":"1","butir":"b","created_by":"4","created_at":"2020-06-23 21:05:32","status":"ENABLE"}'),
+(483, '2020-06-23 21:05:32', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":20,"status":"ENABLE","created_at":"2020-06-23 21:05:32"}'),
+(484, '2020-06-23 21:06:29', 4, 'insertData', 'master_list_operator', '{"nama":"Tidak meninggalkan tempat pengoperasian pesawat angkat dan angkut, selama mesin dihidupkan","pasal":"34","ayat":"1","butir":"c","created_by":"4","created_at":"2020-06-23 21:06:29","status":"ENABLE"}'),
+(485, '2020-06-23 21:06:29', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":21,"status":"ENABLE","created_at":"2020-06-23 21:06:29"}');
+INSERT INTO `log_aktivitas` (`log_id`, `log_created_at`, `log_created_by`, `log_action`, `log_tablename`, `log_jsondata`) VALUES
+(486, '2020-06-23 21:06:40', 4, 'insertData', 'master_list_operator', '{"nama":"Menghentikan pesawat angkat dan angkut dan segera melaporkan kepada atasan, apabila alat pengaman atau perlengkapan pesawat angkat dan angkut tidak berfungsi dengan baik atau rusak","pasal":"34","ayat":"1","butir":"d","created_by":"4","created_at":"2020-06-23 21:06:40","status":"ENABLE"}'),
+(487, '2020-06-23 21:06:40', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":22,"status":"ENABLE","created_at":"2020-06-23 21:06:40"}'),
+(488, '2020-06-23 21:06:54', 4, 'insertData', 'master_list_operator', '{"nama":"Mengawasi dan mengkoordinasikan operator kelas II dan operator kelas III bagi operator kelas i, dan operator kelas II mengawasi dan mengkoordinasikan operator kelas III","pasal":"34","ayat":"1","butir":"e","created_by":"4","created_at":"2020-06-23 21:06:54","status":"ENABLE"}'),
+(489, '2020-06-23 21:06:54', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":23,"status":"ENABLE","created_at":"2020-06-23 21:06:54"}'),
+(490, '2020-06-23 21:07:04', 4, 'insertData', 'master_list_operator', '{"nama":"Mematuhi peraturan dan melakukan tindakan pengamanan yang telah ditetapkan dalam pengoperasian pesawat angkat dan angkut ","pasal":"34","ayat":"1","butir":"f","created_by":"4","created_at":"2020-06-23 21:07:04","status":"ENABLE"}'),
+(491, '2020-06-23 21:07:04', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":24,"status":"ENABLE","created_at":"2020-06-23 21:07:04"}'),
+(492, '2020-06-23 21:07:16', 4, 'insertData', 'master_list_operator', '{"nama":"Mengisi buku kerja dan membuat laporan harian selama mengoperasikan pesawat angkat dan angkut","pasal":"34","ayat":"1","butir":"g","created_by":"4","created_at":"2020-06-23 21:07:16","status":"ENABLE"}'),
+(493, '2020-06-23 21:07:16', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_operator","table_id":25,"status":"ENABLE","created_at":"2020-06-23 21:07:16"}'),
+(494, '2020-06-23 21:07:47', 4, 'insertData', 'master_list_crane', '{"nama":"Mengisi buku kerja dan membuat laporan harian selama mengoperasikan pesawat angkat dan angkut","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 4","created_by":"4","created_at":"2020-06-23 21:07:47","status":"ENABLE"}'),
+(495, '2020-06-23 21:07:48', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":1,"status":"ENABLE","created_at":"2020-06-23 21:07:48"}'),
+(496, '2020-06-23 21:08:51', 4, 'insertData', 'master_list_crane', '{"nama":"Baut pengikat yang dipergunakan peralatan angkat harus mempunyai kelebihan ulir sekerup pada suatu jarak yang cukup untuk pengencang, jika perlu harus dilengkapi dengan mur penjamin atau gelang pegas yang efektif","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 7","created_by":"4","created_at":"2020-06-23 21:08:51","status":"ENABLE"}'),
+(497, '2020-06-23 21:08:51', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":2,"status":"ENABLE","created_at":"2020-06-23 21:08:51"}'),
+(498, '2020-06-23 21:09:02', 4, 'insertData', 'master_list_crane', '{"nama":"Garis tengah tromol gulung sekurang-kurangnya berukuran 30 kali diameter tali baja dan 300 kali diameter kawat baja yang terbesar","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 8 ayat 1","created_by":"4","created_at":"2020-06-23 21:09:02","status":"ENABLE"}'),
+(499, '2020-06-23 21:09:02', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":3,"status":"ENABLE","created_at":"2020-06-23 21:09:02"}'),
+(500, '2020-06-23 21:09:13', 4, 'insertData', 'master_list_crane', '{"nama":"Ujung tali baja pada tromol gulung harus dipasang dengan kuat pada bagian dalam tromol dan sekurang-kurangnya harus dibelit 2 kali secara penuh pada tromol saat kait beban berada pada posisi yang paling rendah.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 8 ayat 3","created_by":"4","created_at":"2020-06-23 21:09:13","status":"ENABLE"}'),
+(501, '2020-06-23 21:09:13', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":4,"status":"ENABLE","created_at":"2020-06-23 21:09:13"}'),
+(502, '2020-06-23 21:09:25', 4, 'insertData', 'master_list_crane', '{"nama":"Tali baja yang digunakan untuk mengangkat harus:terbuat dari bahan baja yang kuat dan berkualitas tinggi, mempunyai factor keamanan sekurang-kurangnya 3 \\u00bd kali beban maksimum, tidak boleh ada sambungan, tidak ada simpul, belitan, kusut, berjumbai dan terkupas.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 9 Ayat 1","created_by":"4","created_at":"2020-06-23 21:09:25","status":"ENABLE"}'),
+(503, '2020-06-23 21:09:25', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":5,"status":"ENABLE","created_at":"2020-06-23 21:09:25"}'),
+(504, '2020-06-23 21:09:35', 4, 'insertData', 'master_list_crane', '{"nama":"Tali serat sebelum dipakai harus diperiksa dan selama dalam pemmakaian untuk mengangkat tali harus diperiksa sesering mungkin dan sekurang kurangnya 3 bulan.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 10 Ayat 2","created_by":"4","created_at":"2020-06-23 21:09:35","status":"ENABLE"}'),
+(505, '2020-06-23 21:09:35', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":6,"status":"ENABLE","created_at":"2020-06-23 21:09:35"}'),
+(506, '2020-06-23 21:09:43', 4, 'insertData', 'master_list_crane', '{"nama":"Rantai harus diganti apabila:tidak sesuai dengan ketentuan yang direncanakan, salah satu mata rantai mengalami perubahan panjang lebih dari 5% dari ukuran panjang mata rantai semula, pengausan satu sama lainnya melebihi \\u00bc dari diameter rantai semula.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 11 Ayat 1","created_by":"4","created_at":"2020-06-23 21:09:43","status":"ENABLE"}'),
+(507, '2020-06-23 21:09:43', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":7,"status":"ENABLE","created_at":"2020-06-23 21:09:43"}'),
+(508, '2020-06-23 21:09:54', 4, 'insertData', 'master_list_crane', '{"nama":"Sling harus dari rantai, tali baja atau tali serat dan mempunyai kekuatan yang memadai, Sling yang cacat dilarang dipakai, Bila digunakan sling lebih dari satu beban harus dibagi rata.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 12 ","created_by":"4","created_at":"2020-06-23 21:09:54","status":"ENABLE"}'),
+(509, '2020-06-23 21:09:54', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":8,"status":"ENABLE","created_at":"2020-06-23 21:09:54"}'),
+(510, '2020-06-23 21:10:04', 4, 'insertData', 'master_list_crane', '{"nama":"Kait untuk mengangakat beban harus dibuat dari baja tempa yang dipanaskan dan dipadatkan atau dari bahan lain yang mempunyai kekuatan yang sama, Kait harus di lengkapi dengan kunci pengaman","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 14","created_by":"4","created_at":"2020-06-23 21:10:04","status":"ENABLE"}'),
+(511, '2020-06-23 21:10:05', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":9,"status":"ENABLE","created_at":"2020-06-23 21:10:05"}'),
+(512, '2020-06-23 21:10:14', 4, 'insertData', 'master_list_crane', '{"nama":"Kekuatan tarik klem pengikat harus sekurang-kurangnya1\\u00bd kali tali pengikat","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 15 Ayat 1","created_by":"4","created_at":"2020-06-23 21:10:14","status":"ENABLE"}'),
+(513, '2020-06-23 21:10:15', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":10,"status":"ENABLE","created_at":"2020-06-23 21:10:15"}'),
+(514, '2020-06-23 21:10:24', 4, 'insertData', 'master_list_crane', '{"nama":"Klem pengikat untuk sangkar gantung harus mempunyai pengunci mur atau dengan cara lain yang cukup memadai.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 15 Ayat 2","created_by":"4","created_at":"2020-06-23 21:10:24","status":"ENABLE"}'),
+(515, '2020-06-23 21:10:24', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":11,"status":"ENABLE","created_at":"2020-06-23 21:10:24"}'),
+(516, '2020-06-23 21:10:38', 4, 'insertData', 'master_list_crane', '{"nama":"Semua peralatan angkat harus dilengkapi dengan rem yang secara efektif dapat mengerem suatu bobot yang tidak kurang dari 1 \\u00bd beban yang diijinkanmeter dari belakang kendaraan depannya","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 16","created_by":"4","created_at":"2020-06-23 21:10:38","status":"ENABLE"}'),
+(517, '2020-06-23 21:10:38', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":12,"status":"ENABLE","created_at":"2020-06-23 21:10:38"}'),
+(518, '2020-06-23 21:10:47', 4, 'insertData', 'master_list_crane', '{"nama":"Tali pengatur peralatan angkat harus diperlengkapi dengan peralatan gerakan tali dan tanda arah yang jelas gerak muatan jika tali ditarik","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 17 ayat 1","created_by":"4","created_at":"2020-06-23 21:10:47","status":"ENABLE"}'),
+(519, '2020-06-23 21:10:47', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":13,"status":"ENABLE","created_at":"2020-06-23 21:10:47"}'),
+(520, '2020-06-23 21:10:56', 4, 'insertData', 'master_list_crane', '{"nama":"Menaikan, menurunkan dan mengangkat muatan dengan pesawat pengangkat harus diatur dengan sandi isyarat yang seragam dan yang benar-benar dimengerti.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 18","created_by":"4","created_at":"2020-06-23 21:10:56","status":"ENABLE"}'),
+(521, '2020-06-23 21:10:56', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":14,"status":"ENABLE","created_at":"2020-06-23 21:10:56"}'),
+(522, '2020-06-23 21:11:04', 4, 'insertData', 'master_list_crane', '{"nama":"Apabila lebih dari seorang tenaga kerja yang bekerja pada peralatan angkat operator harus bekerja berdasarkan isyarat hanya dari satu orang yang ditunjuk;","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 19 ayat 1","created_by":"4","created_at":"2020-06-23 21:11:04","status":"ENABLE"}'),
+(523, '2020-06-23 21:11:04', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":15,"status":"ENABLE","created_at":"2020-06-23 21:11:04"}'),
+(524, '2020-06-23 21:11:16', 4, 'insertData', 'master_list_crane', '{"nama":"Muatan harus dinaikan secara vertikal untuk menghindari ayunan pada waktu diangkat;","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 20 ayat 1","created_by":"4","created_at":"2020-06-23 21:11:16","status":"ENABLE"}'),
+(525, '2020-06-23 21:11:16', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":16,"status":"ENABLE","created_at":"2020-06-23 21:11:16"}'),
+(526, '2020-06-23 21:11:26', 4, 'insertData', 'master_list_crane', '{"nama":"Peralatan angkat tidak diperbolehkan menggantung muatan pada waktu mengalami perbaikan ataupun bagian-bagian bawahnya digunakan oleh mesin yang bergerak","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 25","created_by":"4","created_at":"2020-06-23 21:11:26","status":"ENABLE"}'),
+(527, '2020-06-23 21:11:26', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":17,"status":"ENABLE","created_at":"2020-06-23 21:11:26"}'),
+(528, '2020-06-23 21:11:36', 4, 'insertData', 'master_list_crane', '{"nama":"Setiap roda gigi dan alat perlengkapan transmisi dari keran angkat harus dilengkapi dengan tutup pengaman.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 49","created_by":"4","created_at":"2020-06-23 21:11:36","status":"ENABLE"}'),
+(529, '2020-06-23 21:11:36', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":18,"status":"ENABLE","created_at":"2020-06-23 21:11:36"}'),
+(530, '2020-06-23 21:11:49', 4, 'insertData', 'master_list_crane', '{"nama":"Keran angkat digerakan dari lantai harus diberi ruang bebas dengan lebar sekurangkurangnya 90 cm sepanjang jalan gerak keran angkat tersebut","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 50","created_by":"4","created_at":"2020-06-23 21:11:49","status":"ENABLE"}'),
+(531, '2020-06-23 21:11:49', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":19,"status":"ENABLE","created_at":"2020-06-23 21:11:49"}'),
+(532, '2020-06-23 21:12:01', 4, 'insertData', 'master_list_crane', '{"nama":"Konstruksi dan letak ruangan operator harus bebas dan mempunyai pandangan luas kesekeliling operasi muatan.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 51","created_by":"4","created_at":"2020-06-23 21:12:01","status":"ENABLE"}'),
+(533, '2020-06-23 21:12:01', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":20,"status":"ENABLE","created_at":"2020-06-23 21:12:01"}'),
+(534, '2020-06-23 21:12:10', 4, 'insertData', 'master_list_crane', '{"nama":"Keran angkat yang beroperasi dilapangan terbuka harus dilengkapi dengan ruangan operator yang tertutup dengan jendela pada semua sisinya yang dapat bergerak ke atas dan ke bawah","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 52","created_by":"4","created_at":"2020-06-23 21:12:10","status":"ENABLE"}'),
+(535, '2020-06-23 21:12:10', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":21,"status":"ENABLE","created_at":"2020-06-23 21:12:10"}'),
+(536, '2020-06-23 21:12:19', 4, 'insertData', 'master_list_crane', '{"nama":"Dilarang masuk ke ruangan operator keran angkat, kecuali orang yang diberi kuasa untuk itu.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 53","created_by":"4","created_at":"2020-06-23 21:12:19","status":"ENABLE"}'),
+(537, '2020-06-23 21:12:19', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":22,"status":"ENABLE","created_at":"2020-06-23 21:12:19"}'),
+(538, '2020-06-23 21:12:27', 4, 'insertData', 'master_list_crane', '{"nama":"Setiap orang dilarang menumpang pada muatan atau sling keran angkat sewaktu beroperasi.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 54","created_by":"4","created_at":"2020-06-23 21:12:27","status":"ENABLE"}'),
+(539, '2020-06-23 21:12:27', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":23,"status":"ENABLE","created_at":"2020-06-23 21:12:27"}'),
+(540, '2020-06-23 21:12:38', 4, 'insertData', 'master_list_crane', '{"nama":"Semua keran angkat harus dilengkapi dengan alat otomatis yang dapat memberi tanda peringatan yang jelas, apabila beban maksimum yang diijinkan.","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 55","created_by":"4","created_at":"2020-06-23 21:12:38","status":"ENABLE"}'),
+(541, '2020-06-23 21:12:38', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":24,"status":"ENABLE","created_at":"2020-06-23 21:12:38"}'),
+(542, '2020-06-23 21:12:46', 4, 'insertData', 'master_list_crane', '{"nama":"Keran angkat berpindah harus direncanakan dan dipasang sedemikian rupa sehingga setiap saat terdapat ruang bebas yang cukup diantaranya:Titik tertinggi dari keran tersebut dan konstruksi atas, bagian-bagin keran dan tembok, pilar atau bangunan tetap lainnya, Bagian ujung keran satu sama lain dalam dua sudut sejajar","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 58","created_by":"4","created_at":"2020-06-23 21:12:46","status":"ENABLE"}'),
+(543, '2020-06-23 21:12:47', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":25,"status":"ENABLE","created_at":"2020-06-23 21:12:47"}'),
+(544, '2020-06-23 21:12:55', 4, 'insertData', 'master_list_crane', '{"nama":"Keran angkat yang beroperasi dilapangan terbuka harus:Direncanakan dengan memperhitungkan angina, Dilengkapi dengan kunci roda, jepitan rel, jangkar dan rem dengan pasak pengunci,","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 60","created_by":"4","created_at":"2020-06-23 21:12:55","status":"ENABLE"}'),
+(545, '2020-06-23 21:12:55', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":26,"status":"ENABLE","created_at":"2020-06-23 21:12:55"}');
 
 -- --------------------------------------------------------
 
@@ -1358,7 +1512,39 @@ CREATE TABLE IF NOT EXISTS `master_list_crane` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `master_list_crane`
+--
+
+INSERT INTO `master_list_crane` (`id`, `nama`, `dasar_hukum`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 'Mengisi buku kerja dan membuat laporan harian selama mengoperasikan pesawat angkat dan angkut', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 4', 'ENABLE', '2020-06-23 21:07:47', '0000-00-00 00:00:00', 4),
+(2, 'Baut pengikat yang dipergunakan peralatan angkat harus mempunyai kelebihan ulir sekerup pada suatu jarak yang cukup untuk pengencang, jika perlu harus dilengkapi dengan mur penjamin atau gelang pegas yang efektif', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 7', 'ENABLE', '2020-06-23 21:08:51', '0000-00-00 00:00:00', 4),
+(3, 'Garis tengah tromol gulung sekurang-kurangnya berukuran 30 kali diameter tali baja dan 300 kali diameter kawat baja yang terbesar', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 8 ayat 1', 'ENABLE', '2020-06-23 21:09:02', '0000-00-00 00:00:00', 4),
+(4, 'Ujung tali baja pada tromol gulung harus dipasang dengan kuat pada bagian dalam tromol dan sekurang-kurangnya harus dibelit 2 kali secara penuh pada tromol saat kait beban berada pada posisi yang paling rendah.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 8 ayat 3', 'ENABLE', '2020-06-23 21:09:13', '0000-00-00 00:00:00', 4),
+(5, 'Tali baja yang digunakan untuk mengangkat harus:terbuat dari bahan baja yang kuat dan berkualitas tinggi, mempunyai factor keamanan sekurang-kurangnya 3 ½ kali beban maksimum, tidak boleh ada sambungan, tidak ada simpul, belitan, kusut, berjumbai dan terk', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 9 Ayat 1', 'ENABLE', '2020-06-23 21:09:25', '0000-00-00 00:00:00', 4),
+(6, 'Tali serat sebelum dipakai harus diperiksa dan selama dalam pemmakaian untuk mengangkat tali harus diperiksa sesering mungkin dan sekurang kurangnya 3 bulan.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 10 Ayat 2', 'ENABLE', '2020-06-23 21:09:35', '0000-00-00 00:00:00', 4),
+(7, 'Rantai harus diganti apabila:tidak sesuai dengan ketentuan yang direncanakan, salah satu mata rantai mengalami perubahan panjang lebih dari 5% dari ukuran panjang mata rantai semula, pengausan satu sama lainnya melebihi ¼ dari diameter rantai semula.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 11 Ayat 1', 'ENABLE', '2020-06-23 21:09:43', '0000-00-00 00:00:00', 4),
+(8, 'Sling harus dari rantai, tali baja atau tali serat dan mempunyai kekuatan yang memadai, Sling yang cacat dilarang dipakai, Bila digunakan sling lebih dari satu beban harus dibagi rata.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 12 ', 'ENABLE', '2020-06-23 21:09:54', '0000-00-00 00:00:00', 4),
+(9, 'Kait untuk mengangakat beban harus dibuat dari baja tempa yang dipanaskan dan dipadatkan atau dari bahan lain yang mempunyai kekuatan yang sama, Kait harus di lengkapi dengan kunci pengaman', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 14', 'ENABLE', '2020-06-23 21:10:04', '0000-00-00 00:00:00', 4),
+(10, 'Kekuatan tarik klem pengikat harus sekurang-kurangnya1½ kali tali pengikat', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 15 Ayat 1', 'ENABLE', '2020-06-23 21:10:14', '0000-00-00 00:00:00', 4),
+(11, 'Klem pengikat untuk sangkar gantung harus mempunyai pengunci mur atau dengan cara lain yang cukup memadai.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 15 Ayat 2', 'ENABLE', '2020-06-23 21:10:24', '0000-00-00 00:00:00', 4),
+(12, 'Semua peralatan angkat harus dilengkapi dengan rem yang secara efektif dapat mengerem suatu bobot yang tidak kurang dari 1 ½ beban yang diijinkanmeter dari belakang kendaraan depannya', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 16', 'ENABLE', '2020-06-23 21:10:38', '0000-00-00 00:00:00', 4),
+(13, 'Tali pengatur peralatan angkat harus diperlengkapi dengan peralatan gerakan tali dan tanda arah yang jelas gerak muatan jika tali ditarik', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 17 ayat 1', 'ENABLE', '2020-06-23 21:10:47', '0000-00-00 00:00:00', 4),
+(14, 'Menaikan, menurunkan dan mengangkat muatan dengan pesawat pengangkat harus diatur dengan sandi isyarat yang seragam dan yang benar-benar dimengerti.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 18', 'ENABLE', '2020-06-23 21:10:56', '0000-00-00 00:00:00', 4),
+(15, 'Apabila lebih dari seorang tenaga kerja yang bekerja pada peralatan angkat operator harus bekerja berdasarkan isyarat hanya dari satu orang yang ditunjuk;', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 19 ayat 1', 'ENABLE', '2020-06-23 21:11:04', '0000-00-00 00:00:00', 4),
+(16, 'Muatan harus dinaikan secara vertikal untuk menghindari ayunan pada waktu diangkat;', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 20 ayat 1', 'ENABLE', '2020-06-23 21:11:16', '0000-00-00 00:00:00', 4),
+(17, 'Peralatan angkat tidak diperbolehkan menggantung muatan pada waktu mengalami perbaikan ataupun bagian-bagian bawahnya digunakan oleh mesin yang bergerak', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 25', 'ENABLE', '2020-06-23 21:11:26', '0000-00-00 00:00:00', 4),
+(18, 'Setiap roda gigi dan alat perlengkapan transmisi dari keran angkat harus dilengkapi dengan tutup pengaman.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 49', 'ENABLE', '2020-06-23 21:11:36', '0000-00-00 00:00:00', 4),
+(19, 'Keran angkat digerakan dari lantai harus diberi ruang bebas dengan lebar sekurangkurangnya 90 cm sepanjang jalan gerak keran angkat tersebut', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 50', 'ENABLE', '2020-06-23 21:11:49', '0000-00-00 00:00:00', 4),
+(20, 'Konstruksi dan letak ruangan operator harus bebas dan mempunyai pandangan luas kesekeliling operasi muatan.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 51', 'ENABLE', '2020-06-23 21:12:01', '0000-00-00 00:00:00', 4),
+(21, 'Keran angkat yang beroperasi dilapangan terbuka harus dilengkapi dengan ruangan operator yang tertutup dengan jendela pada semua sisinya yang dapat bergerak ke atas dan ke bawah', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 52', 'ENABLE', '2020-06-23 21:12:10', '0000-00-00 00:00:00', 4),
+(22, 'Dilarang masuk ke ruangan operator keran angkat, kecuali orang yang diberi kuasa untuk itu.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 53', 'ENABLE', '2020-06-23 21:12:19', '0000-00-00 00:00:00', 4),
+(23, 'Setiap orang dilarang menumpang pada muatan atau sling keran angkat sewaktu beroperasi.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 54', 'ENABLE', '2020-06-23 21:12:27', '0000-00-00 00:00:00', 4),
+(24, 'Semua keran angkat harus dilengkapi dengan alat otomatis yang dapat memberi tanda peringatan yang jelas, apabila beban maksimum yang diijinkan.', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 55', 'ENABLE', '2020-06-23 21:12:38', '0000-00-00 00:00:00', 4),
+(25, 'Keran angkat berpindah harus direncanakan dan dipasang sedemikian rupa sehingga setiap saat terdapat ruang bebas yang cukup diantaranya:Titik tertinggi dari keran tersebut dan konstruksi atas, bagian-bagin keran dan tembok, pilar atau bangunan tetap lainn', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 58', 'ENABLE', '2020-06-23 21:12:46', '0000-00-00 00:00:00', 4),
+(26, 'Keran angkat yang beroperasi dilapangan terbuka harus:Direncanakan dengan memperhitungkan angina, Dilengkapi dengan kunci roda, jepitan rel, jangkar dan rem dengan pasak pengunci,', 'Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 60', 'ENABLE', '2020-06-23 21:12:55', '0000-00-00 00:00:00', 4);
 
 -- --------------------------------------------------------
 
@@ -1376,7 +1562,38 @@ CREATE TABLE IF NOT EXISTS `master_list_operator` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `master_list_operator`
+--
+
+INSERT INTO `master_list_operator` (`id`, `nama`, `pasal`, `ayat`, `butir`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 'Pesawat angkat dan angkut harus dioperasikan oleh operator  pesawat angkat dan angkut yang mempunyai lisensi K3 dan buku kerja sesuai jenis dan kualifikasinya ', '5', '1', '-', 'ENABLE', '2020-06-23 20:58:50', '0000-00-00 00:00:00', 4),
+(2, 'Operator peralatan angkat  sekurang-kurangnya berpendidikan SLTA/sederajat', '7', '1', 'a', 'ENABLE', '2020-06-23 20:59:10', '0000-00-00 00:00:00', 4),
+(3, 'Operator peralatan angkat berpengalaman sekurang-kurangnya 5 tahun membantu pelayanan di bidangnya', '7', '1', 'b', 'ENABLE', '2020-06-23 20:59:50', '0000-00-00 00:00:00', 4),
+(4, 'Operator peralatan angkat berbadan sehat menurut keterangan dokter ', '7', '1', 'c', 'ENABLE', '2020-06-23 21:00:55', '0000-00-00 00:00:00', 4),
+(5, 'Operator peralatan angkat berumur sekurang-kurangnya 23 tahun', '7', '1', 'd', 'ENABLE', '2020-06-23 21:01:06', '0000-00-00 00:00:00', 4),
+(6, 'Operator peralatan angkat  sekurang-kurangnya berpendidikan SLTA/sederajat', '7', '2', 'a', 'ENABLE', '2020-06-23 21:01:24', '0000-00-00 00:00:00', 4),
+(7, 'Operator peralatan angkat berpengalaman sekurang-kurangnya 3 tahun membantu pelayanan di bidangnya', '7', '2', 'b', 'ENABLE', '2020-06-23 21:01:37', '0000-00-00 00:00:00', 4),
+(8, 'Operator peralatan angkat berbadan sehat menurut keterangan dokter', '7', '2', 'c', 'ENABLE', '2020-06-23 21:01:50', '0000-00-00 00:00:00', 4),
+(9, 'Operator peralatan angkat berumur sekurang-kurangnya 21 tahun', '7', '2', 'c', 'ENABLE', '2020-06-23 21:02:02', '0000-00-00 00:00:00', 4),
+(10, 'Operator peralatan angkat  sekurang-kurangnya berpendidikan SLTP/sederajat', '7', '3', 'a', 'ENABLE', '2020-06-23 21:02:15', '0000-00-00 00:00:00', 4),
+(11, 'Operator peralatan angkat berpengalaman sekurang-kurangnya 1 tahun membantu pelayanan di bidangnya', '7', '3', 'b', 'ENABLE', '2020-06-23 21:02:33', '0000-00-00 00:00:00', 4),
+(12, 'Operator peralatan angkat berbadan sehat menurut keterangan dokter ', '7', '3', 'c', 'ENABLE', '2020-06-23 21:03:45', '0000-00-00 00:00:00', 4),
+(13, 'Operator peralatan angkat berumur sekurang-kurangnya 19 tahun', '7', '3', 'd', 'ENABLE', '2020-06-23 21:03:58', '0000-00-00 00:00:00', 4),
+(14, 'Mengoperasikan peralatan angkat sesuai dengan jenisnya dengan kapasitas lebih dari 100 ton atau tinggi menara lebih dari 60 meter', '28', '1', 'a', 'ENABLE', '2020-06-23 21:04:14', '0000-00-00 00:00:00', 4),
+(15, 'Mengawasi dan membimbing kegiatan operator kelas II dan/atau operator kelas III, apabila perlu didampingi oleh operator kelas II dan/atau kelas III', '28', '1', 'b', 'ENABLE', '2020-06-23 21:04:24', '0000-00-00 00:00:00', 4),
+(16, 'Mengoperasikan peralatan angkat sesuai dengan jenisnya dengan kapasitas lebih dari 25 ton sampai kurang dari 100 ton atau tinggi menara lebih dari 40 meter sampai dengan 60 meter', '28', '2', 'a', 'ENABLE', '2020-06-23 21:04:39', '0000-00-00 00:00:00', 4),
+(17, 'Mengawasi dan membimbing kegiatan operator kelas III, apabila perlu didampingi oleh operator kelas III', '28', '2', 'b', 'ENABLE', '2020-06-23 21:04:52', '0000-00-00 00:00:00', 4),
+(18, 'Mengoperasikan peralatan angkat sesuai jenisnya dengan kapasitas kurang dari 25 ton atau tinggi menara sampai dengan 40 meter', '28', '3', '-', 'ENABLE', '2020-06-23 21:05:07', '0000-00-00 00:00:00', 4),
+(19, 'Melakukan pengecekan terhadap kondisi atau kemampuan kerja pesawat angkat dan angkut, alat-alat pengaman, dan alat-alat perlengkapan lainnya sebelum pengoperasian pesawat angkat dan angkut ', '34', '1', 'a', 'ENABLE', '2020-06-23 21:05:21', '0000-00-00 00:00:00', 4),
+(20, 'Bertanggung jawab atas kegiatan pengoperasian pesawat angkat dan angkut dalam keadaan aman', '34', '1', 'b', 'ENABLE', '2020-06-23 21:05:32', '0000-00-00 00:00:00', 4),
+(21, 'Tidak meninggalkan tempat pengoperasian pesawat angkat dan angkut, selama mesin dihidupkan', '34', '1', 'c', 'ENABLE', '2020-06-23 21:06:29', '0000-00-00 00:00:00', 4),
+(22, 'Menghentikan pesawat angkat dan angkut dan segera melaporkan kepada atasan, apabila alat pengaman atau perlengkapan pesawat angkat dan angkut tidak berfungsi dengan baik atau rusak', '34', '1', 'd', 'ENABLE', '2020-06-23 21:06:40', '0000-00-00 00:00:00', 4),
+(23, 'Mengawasi dan mengkoordinasikan operator kelas II dan operator kelas III bagi operator kelas i, dan operator kelas II mengawasi dan mengkoordinasikan operator kelas III', '34', '1', 'e', 'ENABLE', '2020-06-23 21:06:54', '0000-00-00 00:00:00', 4),
+(24, 'Mematuhi peraturan dan melakukan tindakan pengamanan yang telah ditetapkan dalam pengoperasian pesawat angkat dan angkut ', '34', '1', 'f', 'ENABLE', '2020-06-23 21:07:04', '0000-00-00 00:00:00', 4),
+(25, 'Mengisi buku kerja dan membuat laporan harian selama mengoperasikan pesawat angkat dan angkut', '34', '1', 'g', 'ENABLE', '2020-06-23 21:07:16', '0000-00-00 00:00:00', 4);
 
 -- --------------------------------------------------------
 
@@ -1508,7 +1725,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `menu` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `role`
@@ -1623,7 +1840,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=107;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=158;
 --
 -- AUTO_INCREMENT for table `konfig`
 --
@@ -1648,7 +1865,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=444;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=546;
 --
 -- AUTO_INCREMENT for table `log_backupdb`
 --
@@ -1658,12 +1875,12 @@ ALTER TABLE `log_backupdb`
 -- AUTO_INCREMENT for table `master_list_crane`
 --
 ALTER TABLE `master_list_crane`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `master_list_operator`
 --
 ALTER TABLE `master_list_operator`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `menu_master`
 --
@@ -1693,7 +1910,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
