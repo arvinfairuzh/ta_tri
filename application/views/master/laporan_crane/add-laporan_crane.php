@@ -112,6 +112,47 @@
                   </div>
                 </div>
               </div>
+              <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                      <tr>
+                        <th>
+                          JENIS TEMUAN
+                        </th>
+                        <th>
+                          HASIL TEMUAN
+                        </th>
+                        <th>
+                          TEMUAN BERULANG KE
+                        </th>
+                        <th class="hidden">
+                          TINDAK LANJUT
+                        </th>
+                        <th>
+                        </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select style="width: 100%" id="role0" name="jenis_temuan[]" class="form-control select2 role">
+                            <option value="">Pilih Jenis Temuan</option>
+                            <option value="UA">Sikap Tidak Aman</option>
+                            <option value="UC">Kondisi Tidak Aman</option>
+                            <option value="LK">Lingkungan Kerja</option>
+                          </select>
+                        </td>
+                        <td>
+                          <textarea class="form-control" name="hasil_temuan[]" rows="1"></textarea>
+                        </td>
+                        <td>
+                          <input type="number" class="form-control" name="ke[]">
+                        </td>
+                        <td class="hidden">
+                          <textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>
+                          <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
+                        </td>
+                        <td style="width:5%;">
+                          <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
+                        </td>
+                      </tr>
+                    </table>
               <div class="form-group">
                 <label for="form-keterangan_tolak">Keterangan Tolak</label>
                 <input type="text" class="form-control" id="form-keterangan_tolak" placeholder="Masukan Keterangan Tolak" name="dt[keterangan_tolak]">
@@ -178,7 +219,41 @@
 
 <script type="text/javascript">
 
-      
+$(document).ready(function() {
+    var i = 1;
+    $('#addinvoice').click(function() {
+      i++;
+      $('#dynamic_fieldinvoice').append('<tr id="rowinvoice' + i + '">' +
+        '<td>' +
+        '<select style="width: 100%" id="role0" name="jenis_temuan[]" class="form-control select2 role">' +
+        '<option value="">Pilih Jenis Temuan</option>' +
+        '<option value="UA">Sikap Tidak Aman</option>' +
+        '<option value="UC">Kondisi Tidak Aman</option>' +
+        '<option value="LK">Lingkungan Kerja</option>' +
+        '</select>' +
+        '</td>' +
+        '<td>' +
+        '<textarea class="form-control" name="hasil_temuan[]" rows="1"></textarea>' +
+        '</td>' +
+        '<td>' +
+        '<input type="number" class="form-control" name="ke[]">' +
+        '</td>' +
+        '<td class="hidden">' +
+        '<textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>' +
+        '<input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">' +
+        '</td>' +
+        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove pull-right"><i class="fa fa-trash"></i></button></td>' +
+        '</tr>');
+      $('.select2').select2();
+
+    });
+
+    $(document).on('click', '.btn_remove', function() {
+      var button_id = $(this).attr("id");
+      $('#rowinvoice' + button_id + '').remove();
+    });
+
+  });  
   $("#upload-create").submit(function() {
 
     var form = $(this);
