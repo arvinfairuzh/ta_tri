@@ -44,7 +44,82 @@
                     <!-- /.box-header -->
                     <div class="box-header">
                         <div class="col-md-7">
-                            <h4><b>Laporan Crane</b></h4>
+                            <?php
+                            $keterangan_tolak = 'hide';
+                            if ($laporan_crane['validasi'] == 0) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($laporan_crane['validasi'] == 1) {
+                                $badge_color = 'bg-red';
+                                $keterangan_tolak = '';
+                            } else if ($laporan_crane['validasi'] == 2) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($laporan_crane['validasi'] == 3) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($laporan_crane['validasi'] == 4) {
+                                $badge_color = 'bg-red';
+                                $keterangan_tolak = '';
+                            } else if ($laporan_crane['validasi'] == 5) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($laporan_crane['validasi'] == 6) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($laporan_crane['validasi'] == 7) {
+                                $badge_color = 'bg-red';
+                                $keterangan_tolak = '';
+                            } else if ($laporan_crane['validasi'] == 8) {
+                                $badge_color = 'bg-yellow';
+                            } else if ($laporan_crane['validasi'] == 9) {
+                                $badge_color = 'bg-red';
+                                $keterangan_tolak = '';
+                            } else {
+                                $badge_color = 'bg-green';
+                            }
+                            ?>
+                            <label class="">Status Sekarang <span class='badge badge-pill <?= $badge_color ?>'><?= $master_status['nama'] ?></span></label>
+                            <br>
+                            <div class="<?= $keterangan_tolak ?>"><b class="">Keterangan Ditolak : </b> <?= $laporan_crane['keterangan_tolak'] ?></div>
+                        </div>
+                        <div class="col-md-5 pull-right">
+                            <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
+                            <?php
+                            if ($_SESSION['id_role'] == 1) {
+                                if ($laporan_crane['validasi'] == 0 || $laporan_crane['validasi'] == 2 || $laporan_crane['validasi'] == 6) {
+                            ?>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                <?php
+                                }
+                                ?>
+                            <?php
+                            } else if ($_SESSION['id_role'] == 2) {
+                            ?>
+                                <?php
+                                if ($laporan_crane['validasi'] == 3 || $laporan_crane['validasi'] == 8) {
+                                ?>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <!-- <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button> -->
+                                <?php
+                                }
+                                ?>
+                                <?php
+                            } else if ($_SESSION['id_role'] == 3) {
+                                if ($laporan_crane['validasi'] == 1 || $laporan_crane['validasi'] == 4 || $laporan_crane['validasi'] == 9) {
+                                ?>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                                <?php
+                                }
+                                ?>
+                                <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
+                                <?php
+                            } else if ($_SESSION['id_role'] == 4) {
+                                if ($laporan_crane['validasi'] == 5 || $laporan_crane['validasi'] == 7) {
+                                ?>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
+                            <?php
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="box-body">
@@ -57,7 +132,6 @@
                         <div class="col-xs-12">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
-                                    <tr>
                                     <tr align="center">
                                         <th rowspan="2">NO</th>
                                         <th rowspan="2" style="width: 40%;">URAIAN</th>
@@ -68,7 +142,6 @@
                                     <tr align="center">
                                         <th width="50">YA</th>
                                         <th width="50">TIDAK</th>
-                                    </tr>
                                     </tr>
                                     <?php
                                     $jawaban = json_decode($laporan_crane['value_json']);
@@ -115,7 +188,7 @@
                                     ?>
                                 </table>
                             </div>
-                        <hr>
+                            <hr>
                         </div>
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -134,15 +207,15 @@
                                         $i++;
                                     ?>
                                         <tr id="rowinvoice<?= $i ?>">
-                                            <td><?= $rc['rekomendasi'] ?></td>
+                                            <td><?= $rc->rekomendasi ?></td>
                                             <td>
                                                 <?php
-                                                if ($rc['gambar'] != "") {
+                                                if ($rc->gambar != "") {
                                                 ?>
-                                                    <img src="<?= base_url($rc['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
+                                                    <img src="<?= base_url($rc->gambar) ?>" style="width: 200px" class="img img-thumbnail">
                                                     <br>
                                                 <?php } ?>
-                                                <?= $rc['tindak_lanjut'] ?>
+                                                <?= $rc->tindak_lanjut ?>
                                             </td>
                                         </tr>
                                     <?php

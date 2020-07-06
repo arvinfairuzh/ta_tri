@@ -10,7 +10,7 @@ if ($this->session->userdata('session_sop') == "") {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>K3</title>
+  <title>TRITANTA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -47,6 +47,7 @@ if ($this->session->userdata('session_sop') == "") {
 
   <link href="<?= FAVICON ?>" rel=icon type=image/png> <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
 
+  <link href="<?= base_url('assets/') ?>custom/custom.css" rel="stylesheet" type="text/css" />
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Poppins:300,400,500,600,700|Raleway:300,400,500,600,700');
 
@@ -85,237 +86,119 @@ if ($this->session->userdata('session_sop') == "") {
         "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
       };
     };
-
-    function idleLogout() {
-      var t;
-      window.onload = resetTimer;
-      window.onmousemove = resetTimer;
-      window.onmousedown = resetTimer; // catches touchscreen presses
-      window.onclick = resetTimer; // catches touchpad clicks
-      window.onscroll = resetTimer; // catches scrolling with arrow keys
-      window.onkeypress = resetTimer;
-
-      function logout() {
-        window.location.href = '<?= base_url('login/lockscreen?user=' . $this->session->userdata('nip')) ?>';
-      }
-
-      function resetTimer() {
-        clearTimeout(t);
-        t = setTimeout(logout, 900000); // time is in milliseconds //60000 = 1 minutes
-      }
-    }
-
-    idleLogout();
   </script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script> -->
-  <!-- Google Font -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
-
-  <style>
-    .ui-autocomplete {
-      z-index: 2147483647;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    h7,
-    p,
-    span,
-    body {
-      font-family: Poppins-Regular, sans-serif !important;
-    }
-  </style>
-
-
-  <style type="text/css">
-    ::-webkit-scrollbar-track {
-      background-color: #1a1b1d;
-    }
-
-    ::-webkit-scrollbar {
-      width: 5px;
-      background-color: #1a1b1d;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: #36b554;
-    }
-  </style>
-
 </head>
 
-<body class="hold-transition <?= SKIN  ?> sidebar-mini fixed" onload="startTime()">
+<body class="hold-transition skin-green layout-top-nav scroll-bar">
   <?php //print_r($this->session->all_userdata())
   ?>
   <div class="wrapper">
-
     <header class="main-header">
-      <!-- Logo -->
-      <a href="<?= base_url() ?>" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">PG</span>
-        <!-- logo for regular state and mobile devices -->
-        <div style="margin-left:-20px"> 
-          <table>
-            <tr>
-              <td>
-              <!-- <img src=" <?= LOGO ?>" width="95"> -->
-              </td>
-              <td>
-              <!-- <span class="logo-lg" style="margin-top:-10px">K3</span> -->
-              </td>
-            </tr>
-          </table>
+      <nav class="navbar navbar-static-top" style="">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+          <a href="<?= base_url() ?>" class="navbar-brand" style="padding: 5px 5px; margin-left: 30px; margin-top: -10px; margin-right: 30px;">
+            <h3>TRITANTA</h3>
+          </a>
+          <!-- <h3 style="color: white; margin-left: 30px; margin-top: 13px; margin-right: 30px;"><img src="<?= base_url('assets/logo-text.png') ?>" width="height :"></h3> -->
         </div>
-        
-      </a>
-      <!-- Header Navbar: style can be found in header.less -->
-      <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
-        </a>
+        <div class="collapse navbar-collapse pull-left menu-custom_css" style="margin-left: 5px;" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <?php
+            $role = $this->mymodel->selectDataone('role', ['id' => $this->session->userdata('id_role')]);
+            $jsonmenu = json_decode($role['menu']);
+            $this->db->order_by('urutan asc');
+            $this->db->where_in('id', $jsonmenu);
+            $menu = $this->mymodel->selectWhere('menu_master', ['parent' => 0, 'status' => 'ENABLE']);
+            foreach ($menu as $m) {
+              $this->db->where_in('id', $jsonmenu);
+              $parent = $this->mymodel->selectWhere('menu_master', ['parent' => $m['id'], 'status' => 'ENABLE']);
+              if (count($parent) == 0) {
+            ?>
+                <li class="<?php if ($page_name == $m['name']) echo "active"; ?>">
+                  <a href="<?= base_url($m['link']) ?>">
+                    <span><i class="<?= $m['icon'] ?>"></i> <?= $m['name'] ?></span>
+                    <?php if ($m['notif'] != "") { ?>
+                      <span class="pull-right-container">
+                        <small class="label pull-right label-danger" id="<?= $m['notif'] ?>">0</small>
+                      </span>
+                    <?php } ?>
+                  </a>
+                </li>
+              <?php } else { ?>
+                <li class="<?php if ($page_name == $m['name']) echo "active"; ?>">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span><i class="<?= $m['icon'] ?>"></i> <?= $m['name'] ?></span>
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu animate slideIn" role="menu">
+                    <?php foreach ($parent as $p) { ?>
+                      <li class="<?php if ($page_name == $p['name']) echo "active"; ?>">
+                        <a href="<?= base_url($p['link']) ?>">
+                          <?= $p['name'] ?>
+                          <?php if ($p['notif'] != "") { ?>
+                            <span class="pull-right-container">
+                              <small class="label pull-right label-danger" id="<?= $p['notif'] ?>">0</small>
+                            </span>
+                          <?php } ?>
+                        </a>
+                      </li>
+                    <?php } ?>
 
+                  </ul>
+                </li>
+              <?php } ?>
+            <?php } ?>
+          </ul>
+        </div>
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <li class="dropdown user user-menu">
               <?php
               $id = $this->session->userdata('id');
-              $file = $this->mymodel->selectDataone('file', array('table' => 'user', 'table_id' => $id));
+              $file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
+              // print_r($file);
               ?>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <object data="<?= base_url('webfile/default.png') ?>" type="image/png" class="user-image" alt="User Image">
-                  <img src="<?= base_url('webfile/default.png') ?>" class="user-image" alt="User Image">
-                </object>
-                <?php 
-                if ( $role[0]['role'] = "0"){
-                ?>
+                <?php if (empty(base_url($file['dir']))) { ?>
+                  <img style='height: 20px; width: 20px; object-fit: cover; display: inline;' class='img-circle' src="https://pbs.twimg.com/profile_images/3341772292/f8ee4303c175705037fabd77ba61235f_400x400.png" class="user-image">
+                <?php } else { ?>
+                  <img style='height: 20px; width: 20px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/' . $file['dir']) ?>" class="user-image">
+                <?php } ?>
                 <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
-                <?php }
-                else{?>
-                  <span class="hidden-xs"><?= $this->session->userdata('name'); ?> - <?php $role = $this->mymodel->selectWhere('role', array('id' => $this->session->userdata('role_id')));
-                echo $role[0]['role']; ?></span></span>
-                  <?php }?>
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu animate slideIn">
                 <!-- User image -->
-                <li class="user-header">
-                  <object data="<?= base_url('webfile/default.png') ?>" type="image/png" style="width: 100px;">
-                    <img src="<?= base_url('webfile/default.png') ?>" alt="example">
-                  </object>
+                <li class="user-header" style="height: 201px">
+                  <?php if (empty(base_url($file['dir']))) { ?>
+                    <img style='height: 100px; width: 100px; object-fit: cover; display: inline;' class='img-circle' src="https://pbs.twimg.com/profile_images/3341772292/f8ee4303c175705037fabd77ba61235f_400x400.png" class="user-image">
+                  <?php } else { ?>
+                    <img style='height: 100px; width: 100px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/' . $file['dir']) ?>" class="user-image">
+                  <?php } ?>
 
                   <p>
-                    <?= $this->session->userdata('name'); ?> - <?php $role = $this->mymodel->selectWhere('role', array('id' => $this->session->userdata('role_id')));
-                                                                echo $role[0]['role']; ?>
+                    <?= $this->session->userdata('name'); ?> <br>
+                    <?= $this->session->userdata('nip'); ?> <br>
+                    <?php $role = $this->mymodel->selectDataone('role', array('id' => $this->session->userdata('id_role')));
+                    echo $role['role']; ?>
                   </p>
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <!-- <div class="pull-left"> -->
-                  <!-- <a href="<?= base_url('master/user/editUser/') . $this->template->sonEncode($this->session->userdata('id')); ?>" class="btn btn-default btn-flat"><i class="fa fa-user"></i> Profile</a> -->
-                  <a href="<?= base_url('login/lockscreen?user=') . $this->session->userdata('nip'); ?>" class="btn btn-default btn-flat"><i class="fa fa-key"></i> Lockscreen</a>
                   <!-- </div> -->
                   <!-- <div class="pull-right"> -->
                   <a href="<?= base_url('login/logout') ?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
                 </li>
               </ul>
             </li>
-            <!-- Control Sidebar Toggle Button -->
-            <!-- <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li> -->
           </ul>
         </div>
       </nav>
     </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-        <form class="sidebar-form">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search..." id="user-data-autocomplete">
-            <span class="input-group-btn">
-              <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
-          </div>
-        </form>
-        <!-- Sidebar user panel -->
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">MENU BUILD</li>
-
-          <?php
-          $role = $this->mymodel->selectDataone('role', ['id' => $this->session->userdata('role_id')]);
-          $jsonmenu = json_decode($role['menu']);
-          $this->db->order_by('urutan asc');
-          $this->db->where_in('id', $jsonmenu);
-          $menu = $this->mymodel->selectWhere('menu_master', ['parent' => 0, 'status' => 'ENABLE']);
-          foreach ($menu as $m) {
-            $this->db->where_in('id', $jsonmenu);
-            $parent = $this->mymodel->selectWhere('menu_master', ['parent' => $m['id'], 'status' => 'ENABLE']);
-            $this->db->order_by('urutan asc');
-            if (count($parent) == 0) {
-          ?>
-              <li class="<?php if ($page_name == $m['name']) echo "active"; ?>">
-                <a href="<?= base_url($m['link']) ?>">
-                  <i class="<?= $m['icon'] ?>"></i> <span><?= $m['name'] ?></span>
-                  <?php if ($m['notif'] != "") { ?>
-                    <span class="pull-right-container">
-                      <small class="label pull-right label-danger" id="<?= $m['notif'] ?>">0</small>
-                    </span>
-                  <?php } ?>
-                </a>
-              </li>
-            <?php } else { ?>
-
-              <li class="treeview <?php if ($page_name == $m['name']) echo "active"; ?>">
-                <a href="#">
-                  <i class="<?= $m['icon'] ?>"></i> <span><?= $m['name'] ?></span>
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <?php foreach ($parent as $p) { ?>
-                    <li class="<?php if ($page_name == $p['name']) echo "active"; ?>">
-                      <a href="<?= base_url($p['link']) ?>">
-                        <i class="<?= $p['icon'] ?>"></i> <?= $p['name'] ?>
-                        <?php if ($p['notif'] != "") { ?>
-                          <span class="pull-right-container">
-                            <small class="label pull-right label-danger" id="<?= $p['notif'] ?>">0</small>
-                          </span>
-                        <?php } ?>
-                      </a>
-                    </li>
-                  <?php } ?>
-
-                </ul>
-              </li>
-            <?php } ?>
-          <?php } ?>
-
-
-
-
-
-        </ul>
-      </section>
-      <!-- /.sidebar -->
-    </aside>
-
+    <div class="row" style="height: 50px; background-color: ;"></div>
     <?= $contents ?>
-
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
         <b>Version</b> <?= VERSION ?>

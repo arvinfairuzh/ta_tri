@@ -1,8 +1,6 @@
 
-
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
-
+error_reporting(0);
 
 class Laporan_crane extends MY_Controller
 {
@@ -14,6 +12,7 @@ class Laporan_crane extends MY_Controller
 	{
 
 		parent::__construct();
+		$this->load->model('Report_laporan_crane', 'rLaporan_crane');
 	}
 
 
@@ -25,6 +24,90 @@ class Laporan_crane extends MY_Controller
 		$data['page_name'] = "laporan_crane";
 
 		$this->template->load('template/template', 'master/laporan_crane/all-laporan_crane', $data);
+	}
+
+	function ajaxAll()
+	{
+		$list = $this->rLaporan_crane->get_datatables();
+		$data = array();
+		$i = 1;
+		foreach ($list as $u) {
+			$row = array();
+
+			$row[] = $i;
+			$row[] = $u->tanggal;
+			$row[] = $u->id_se;
+			$row[] = $u->id_spv;
+			$row[] = $u->id_inspektor;
+			$row[] = $u->id_gudang;
+			if ($u->validasi == 0) {
+				$badge_color = 'bg-yellow';
+			} else if ($u->validasi == 1) {
+				$badge_color = 'bg-red';
+			} else if ($u->validasi == 2) {
+				$badge_color = 'bg-yellow';
+			} else if ($u->validasi == 3) {
+				$badge_color = 'bg-yellow';
+			} else if ($u->validasi == 4) {
+				$badge_color = 'bg-red';
+			} else if ($u->validasi == 5) {
+				$badge_color = 'bg-yellow';
+			} else if ($u->validasi == 6) {
+				$badge_color = 'bg-yellow';
+			} else if ($u->validasi == 7) {
+				$badge_color = 'bg-red';
+			} else if ($u->validasi == 8) {
+				$badge_color = 'bg-yellow';
+			} else if ($u->validasi == 9) {
+				$badge_color = 'bg-red';
+			} else {
+				$badge_color = 'bg-green';
+			}
+			$row[] = "<h6><span class='badge badge-pill $badge_color'>$u->nama_status</span></h6>";
+			$row[] = "<button type='button' class='btn btn-sm btn-info pull-right' onclick='detail($u->id)'>Detail</button>";
+			$data[] = $row;
+			$i++;
+		}
+
+
+
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->rLaporan_crane->count_all(),
+			"recordsFiltered" => $this->rLaporan_crane->count_filtered(),
+			"data" => $data
+		);
+
+		echo json_encode($output);
+	}
+
+
+	function getExcel()
+	{
+		$list = $this->rLaporan_crane->get_data();
+		$data = array();
+		$i = 1;
+		foreach ($list as $u) {
+
+
+
+			$data[] = array($i, $u->tanggal, $u->validasi, $u->id_se, $u->id_spv, $u->id_inspektor, $u->id_gudang);
+
+			$i++;
+		}
+
+		$judul = "Report Laporan_crane";
+
+		$head = array('No', 'tanggal', 'validasi', 'id_se', 'id_spv', 'id_inspektor', 'id_gudang');
+
+		$json = [
+			'judul' => $judul,
+			'head' => $head,
+			'data' => $data
+		];
+
+		$this->session->set_flashdata('report', $json);
+		redirect('fitur/exportreport');
 	}
 
 	public function create()
@@ -82,43 +165,12 @@ class Laporan_crane extends MY_Controller
 			}
 			$datajson = json_encode($json);
 			$dt['value_json'] = $datajson;
+			$dt['id_inspektor'] = $_SESSION['id'];
 			$dt['created_by'] = $_SESSION['id'];
 			$dt['created_at'] = date('Y-m-d H:i:s');
 			$dt['status'] = "ENABLE";
 
 			$this->mymodel->insertData('laporan_crane', $dt);
-
-			$last_id = $this->db->insert_id();
-
-			for ($i = 0; $i < count($rekomendasi); $i++) {
-				$dta['id_laporan'] = $last_id;
-				$dta['rekomendasi'] = $rekomendasi[$i];
-				$dta['tindak_lanjut'] = $tindak_lanjut[$i];
-				$dta['created_at'] = date('Y-m-d H:i:s');
-				$dta['status'] = "ENABLE";
-				$dta['created_by'] = $_SESSION['id'];
-
-				$upload = '';
-				if (!empty($_FILES['file']['name'][$i])) {
-					$path = $_SERVER['DOCUMENT_ROOT'] . "/ta_tri/webfile/laporan_crane/";
-					$dir  = "webfile/laporan_crane/";
-					// $path = base_url()."webfile/document/my_document-$last_agenda/";
-					// print_r($path);
-					// die();
-
-					$file_ext = $_FILES['file']['name'][$i];
-					$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
-					$file_name = 'ftl-' . $last_id . '.' . $ext;
-					$file_size = $_FILES['file']['size'][$i];
-					$file_tmp = $_FILES['file']['tmp_name'][$i];
-					$file_type = $_FILES['file']['type'][$i];
-
-					move_uploaded_file($file_tmp, $path . $file_name);
-					$upload = $dir . $file_name;
-				}
-				$dta['gambar'] = $upload;
-				$this->mymodel->insertData('rekomendasi_crane', $dta);
-			}
 
 			$this->alert->alertsuccess('Success Send Data');
 		}
@@ -159,7 +211,7 @@ class Laporan_crane extends MY_Controller
 	public function edit($id)
 	{
 		$data['laporan_crane'] = $this->mymodel->selectDataone('laporan_crane', array('id' => $id));
-		$data['rekomendasi_crane'] = $this->mymodel->selectWhere('rekomendasi_crane', array('id_laporan' => $id));
+		$data['rekomendasi_crane'] = json_decode($data['laporan_crane']['rekomendasi']);
 		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'laporan_crane'));
 		$data['page_name'] = "laporan_crane";
 
@@ -179,7 +231,7 @@ class Laporan_crane extends MY_Controller
 			$keterangan = $_POST['keterangan'];
 			$rekomendasi = $_POST['rekomendasi'];
 			$tindak_lanjut = $_POST['tindak_lanjut'];
-			$id_rc = $_POST['id_rc'];
+			$hasil_file_old = $_POST['hasil_file_old'];
 			$count_id_dp = count($id_dp);
 			for ($i = 0; $i < $count_id_dp; $i++) {
 				$hasil_text = '';
@@ -199,37 +251,36 @@ class Laporan_crane extends MY_Controller
 			$datajson = json_encode($json);
 			$dt['value_json'] = $datajson;
 			$dt['updated_at'] = date("Y-m-d H:i:s");
-			$this->db->update('laporan_crane', $dt, array('id' => $id));
-
 			for ($i = 0; $i < count($rekomendasi); $i++) {
-				$rekomendasi_crane = $this->mymodel->selectDataone('rekomendasi_crane', array('id' => $id_rc[$i]));
-				$dta['rekomendasi'] = $rekomendasi[$i];
-				$dta['tindak_lanjut'] = $tindak_lanjut[$i];
-				$dta['updated_at'] = date('Y-m-d H:i:s');
 
 				$upload = '';
 				if (!empty($_FILES['file']['name'][$i])) {
 					$path = $_SERVER['DOCUMENT_ROOT'] . "/ta_tri/webfile/laporan_crane/";
 					$dir  = "webfile/laporan_crane/";
-					// $path = base_url()."webfile/document/my_document-$last_agenda/";
-					// print_r($path);
-					// die();
 
 					$file_ext = $_FILES['file']['name'][$i];
 					$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
-					$file_name = 'ftl-' . $id_rc[$i] . '.' . $ext;
+					$file_name = 'ftl-'. $id . $i . '.' . $ext;
 					$file_size = $_FILES['file']['size'][$i];
 					$file_tmp = $_FILES['file']['tmp_name'][$i];
 					$file_type = $_FILES['file']['type'][$i];
 
 					move_uploaded_file($file_tmp, $path . $file_name);
 					$upload = $dir . $file_name;
-					$dta['gambar'] = $upload;
+					$gambar = $upload;
 				} else {
-					$dta['gambar'] = $rekomendasi_crane['gambar'];
+					$gambar = $hasil_file_old[$i];
 				}
-				$this->db->update('rekomendasi_crane', $dta, array('id' => $id_rc[$i]));
+				$json_rekomendasi[$i] = array(
+					'rekomendasi' => $rekomendasi[$i],
+					'tindak_lanjut' => $tindak_lanjut[$i],
+					'gambar' => $gambar
+				);
 			}
+			// print_r($json_rekomendasi);
+			$dt['rekomendasi'] = json_encode($json_rekomendasi);
+			// die();
+			$this->db->update('laporan_crane', $dt, array('id' => $id));
 
 			$this->alert->alertsuccess('Success Send Data');
 		}
@@ -238,7 +289,8 @@ class Laporan_crane extends MY_Controller
 	public function detail($id)
 	{
 		$data['laporan_crane'] = $this->mymodel->selectDataone('laporan_crane', array('id' => $id));
-		$data['rekomendasi_crane'] = $this->mymodel->selectWhere('rekomendasi_crane', array('id_laporan' => $id));
+		$data['rekomendasi_crane'] = json_decode($data['laporan_crane']['rekomendasi']);
+		$data['master_status'] = $this->mymodel->selectDataone('master_status', array('id' => $data['laporan_crane']['validasi']));
 		$data['page_name'] = "laporan_crane";
 
 		$this->template->load('template/template', 'master/laporan_crane/detail-laporan_crane', $data);
@@ -247,30 +299,92 @@ class Laporan_crane extends MY_Controller
 	public function cetak($id)
 	{
 		$data['laporan_crane'] = $this->mymodel->selectDataone('laporan_crane', array('id' => $id));
+		$data['rekomendasi_crane'] = json_decode($data['laporan_crane']['rekomendasi']);
 		$data['page_name'] = "laporan_crane";
 
 		$this->load->view('master/laporan_crane/cetak-laporan_crane', $data);
 	}
 
 
-	public function delete()
-
+	public function validasi($id)
 	{
+		$data['laporan_crane'] = $this->mymodel->selectDataone('laporan_crane', array('id' => $id));
+		$data['id'] = $data['laporan_crane']['id'];
+		$data['page_name'] = "laporan_crane";
 
-		$id = $this->input->post('id', TRUE);
-		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'laporan_crane'));
-
-		@unlink($file['dir']);
-
-		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'laporan_crane'));
-
-
-
-		$str = $this->mymodel->deleteData('laporan_crane',  array('id' => $id));
-		return $str;
+		$this->load->view('master/laporan_crane/modal', $data);
 	}
 
+	public function validasi_tolak($id)
+	{
+		$laporan_crane = $this->mymodel->selectDataone('laporan_crane', array('id' => $id));
+		$data['id'] = $laporan_crane['id'];
+		$data['page_name'] = "laporan_crane";
 
+		$this->load->view('master/laporan_crane/modal-tolak', $data);
+	}
+
+	public function validasi_act($id, $status)
+	{
+		$laporan_crane = $this->mymodel->selectDataone('laporan_crane', array('id' => $id));
+		$status_sekarang = $laporan_crane['validasi'];
+		if ($status == 'terima') {
+			if ($_SESSION['id_role'] == 1) {
+				$dt['id_se'] = $_SESSION['id'];
+				if ($status_sekarang == 0) {
+					$validasi = 2;
+				} else if ($status_sekarang == 2) {
+					$validasi = 3;
+				} else if ($status_sekarang == 6) {
+					$validasi = 8;
+				}
+			} else if ($_SESSION['id_role'] == 2) {
+				$dt['id_spv'] = $_SESSION['id'];
+				if ($status_sekarang == 3) {
+					$validasi = 5;
+				} else if ($status_sekarang == 8) {
+					$validasi = 10;
+				}
+			} else if ($_SESSION['id_role'] == 3) {
+				$validasi = 0;
+			} else if ($_SESSION['id_role'] == 4) {
+				$dt['id_gudang'] = $_SESSION['id'];
+				$validasi = 6;
+			}
+		} else {
+			$dt['keterangan_tolak'] = $_POST['keterangan'];
+			if ($_SESSION['id_role'] == 1) {
+				$dt['id_se'] = $_SESSION['id'];
+				if ($status_sekarang == 0) {
+					$validasi = 1;
+				} else if ($status_sekarang == 2) {
+					$validasi = 8;
+				} else if ($status_sekarang == 6) {
+					$validasi = 7;
+				}
+			} else if ($_SESSION['id_role'] == 2) {
+				$dt['id_spv'] = $_SESSION['id'];
+				if ($status_sekarang == 3) {
+					$validasi = 4;
+				} else if ($status_sekarang == 8) {
+					$validasi = 9;
+				}
+			}
+		}
+		$dt['validasi'] = $validasi;
+		$dt['updated_at'] = date('Y-m-d H:i:s');
+		$this->db->update('laporan_crane', $dt, array('id' => $id));
+		// die();
+		header('Location: ' . base_url('master/laporan_crane/'));
+	}
+
+	public function delete()
+	{
+		$id = $this->input->post('id', TRUE);
+		$dt['status'] = 'DISABLE';
+		$str = $this->db->update('laporan_crane', $dt, array('id' => $id));
+		header('Location: ' . base_url('master/laporan_crane/'));
+	}
 
 	public function status($id, $status)
 

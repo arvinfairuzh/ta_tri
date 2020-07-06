@@ -54,123 +54,123 @@
                         <div class="col-md-12" align="center">
                             <h4><b>CHECKLIST OPERATOR CRANE</b></h4>
                         </div>
-                        <div class="col-md-5">
-                            <!-- <div class="col-md-12">
-                                <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
-                                <?php
-                                if ($_SESSION['role_id'] == 1) {
-                                    if ($laporan_crane['status_bulanan'] == 1) {
-                                ?>
-                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                    <?php
-                                    }
-                                    ?>
-                                    <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
-                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
-                                    <?php
-                                } else if ($_SESSION['role_id'] == 3) {
-                                    if ($laporan_crane['status_bulanan'] == 0 || $laporan_crane['status_bulanan'] == 2) {
-                                    ?>
-                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                    <?php
-                                    }
-                                    ?>
-                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
-                                <?php
-                                }
-                                if ($laporan_crane['status_bulanan'] == 0) {
-                                    $badge_color = 'bg-yellow';
-                                } else if ($laporan_crane['status_bulanan'] == 1) {
-                                    $badge_color = 'bg-blue';
-                                } else if ($laporan_crane['status_bulanan'] == 2) {
-                                    $badge_color = 'bg-red';
-                                } else {
-                                    $badge_color = 'bg-green';
-                                }
-                                ?>
-                            </div> -->
-                        </div>
                     </div>
                     <div class="box-body">
-                        
-                        <div class="row">
-                            <div class="col-xs-12">
+                        <div class="show_error"></div>
+                        <div class="col-xs-12">
+                            <b>Tanggal</b> :
+                            <?= $laporan_operator['tanggal'] ?>
+                        </div>
+                        <hr>
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
-                                    <thead>
                                     <tr>
                                         <th rowspan="2">No</th>
-                                        <th rowspan="2">Uraian</th>
-                                        <th colspan="3" width="120">Kesesuaian </th>
+                                        <th rowspan="2" style="width: 40%;">Uraian</th>
+                                        <th colspan="2">Kesesuaian </th>
                                         <th rowspan="2">Keterangan</th>
                                         <th colspan="3">Dasar Hukum</th>
                                     </tr>
                                     <tr>
-                                        <th>Ya</th>
-                                        <th>Tidak</th>
-                                        <th width="90">Tidak ada</th>
+                                        <th width="50">YA</th>
+                                        <th width="50">TIDAK</th>
                                         <th>Pasal</th>
                                         <th>Ayat</th>
                                         <th>Butir</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
                                     <?php
+                                    $jawaban = json_decode($laporan_operator['value_json']);
                                     $master_list_operator = $this->mymodel->selectWithQuery("SELECT * FROM master_list_operator");
                                     ?>
                                     <?php
                                     $no = 0;
-                                    
                                     foreach ($master_list_operator as $dp) {
                                         $no++;
-                                        
+                                        $keterangan = '';
+                                        $ya_text = '';
+                                        $tidak_text = '';
+                                        foreach ($jawaban as $j) {
+                                            if ($j->id == $dp['id']) {
+                                                if ($j->kesesuaian == 'Ya') {
+                                                    $ya_text = 'fa fa-check-circle';
+                                                } else {
+                                                    $tidak_text = 'fa fa-check-circle';
+                                                }
+                                                $keterangan = $j->keterangan;
+                                            } else {
+                                            }
+                                        }
+                                        // print_r($hasil);
                                     ?>
-                                    <?php 
-                                        if($dp['id'] == '1'){
-                                            $sub = '<tr>
-                                            Kualifikasi dan Persyaratan
-                                            </tr>;'
-                                            ?>
-                                            <?php }?>
-                                        <?= $sub ?>
-
                                         <tr>
-                                        <td>
-                                        <?= $no ?></td>
-                                        <td>
-                                            <input type="hidden" name="id_dp[]" value="<?= $dp['id'] ?>">
-                                            <?= $dp['nama'] ?>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td><textarea name="keterangan[]" id="" rows="1" class="form-control"></textarea></td>
-                                        <td>
-                                            <?= $dp['pasal'] ?>
-                                        </td>
-                                        <td>
-                                            <?= $dp['ayat'] ?>
-                                        </td>
-                                        <td>
-                                            <?= $dp['butir'] ?>
-                                        </td>
+                                            <td><?= $no ?></td>
+                                            <td>
+                                                <?= $dp['nama'] ?>
+                                            </td>
+                                            <td align="center">
+                                                <i class="<?= $ya_text ?>"></i>
+                                            </td>
+                                            <td align="center">
+                                                <i class="<?= $tidak_text ?>"></i>
+                                            </td>
+                                            <td><?= $keterangan ?></td>
+                                            <td>
+                                                <?= $dp['pasal'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $dp['ayat'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $dp['butir'] ?>
+                                            </td>
                                         </tr>
-                                        
                                     <?php
                                     }
                                     ?>
-                                    </tbody>
+                                </table>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                                    <tr>
+                                        <th style="width: 50%;">
+                                            REKOMENDASI
+                                        </th>
+                                        <th>
+                                            TINDAK LANJUT
+                                        </th>
+                                    </tr>
+                                    <?php
+                                    $i = 100;
+                                    foreach ($rekomendasi_operator as $rc) {
+                                        $i++;
+                                    ?>
+                                        <tr id="rowinvoice<?= $i ?>">
+                                            <td><?= $rc->rekomendasi ?></td>
+                                            <td>
+                                                <?php
+                                                if ($rc->gambar != "") {
+                                                ?>
+                                                    <img src="<?= base_url($rc->gambar) ?>" style="width: 200px" class="img img-thumbnail">
+                                                    <br>
+                                                <?php } ?>
+                                                <?= $rc->tindak_lanjut ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    } ?>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
     </section>
-    
+
 
     <script type="text/javascript">
         window.print();

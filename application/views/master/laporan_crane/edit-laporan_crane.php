@@ -28,131 +28,140 @@
             </div>
             <div class="box-body">
               <div class="show_error"></div>
-              <div class="form-group">
-                <label for="form-tanggal">Tanggal</label>
-                <input type="text" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]" value="<?= $laporan_crane['tanggal'] ?>">
-              </div>
-              <div class="form-group col-md-12">
-                <div class="table-responsive">
-                  <table class="table table-bordered">
-                    <tr>
-                      <th>No</th>
-                      <th style="width: 40%;">Uraian</th>
-                      <th>Kesesuaian </th>
-                      <th>Keterangan</th>
-                      <th>Dasar Hukum</th>
-                    </tr>
-                    <?php
-                    $jawaban = json_decode($laporan_crane['value_json']);
-                    $master_list_crane = $this->mymodel->selectWithQuery("SELECT * FROM master_list_crane");
-                    ?>
-                    <?php
-                    $no = 0;
-                    foreach ($master_list_crane as $dp) {
-                      $no++;
-                      $keterangan = '';
-                      foreach ($jawaban as $j) {
-                        if ($j->id == $dp['id']) {
-                          if ($j->kesesuaian == 'Ya') {
-                            $hasil = 'checked';
-                            $hasil_text = 'Ya';
-                          } else {
-                            $hasil = '';
-                            $hasil_text = 'Tidak';
-                          }
-                          $keterangan = $j->keterangan;
-                        } else {
-                        }
-                      }
-                    ?>
+              <?php
+              if ($_SESSION['id_role'] == 3) {
+                $form_atas = '';
+                $form_bawah = 'hide';
+              } else {
+                $form_atas = 'hide';
+                $form_bawah = '';
+              }
+              ?>
+                <div class="form-group <?= $form_atas ?>">
+                  <label for="form-tanggal">Tanggal</label>
+                  <input type="date" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]" value="<?= $laporan_crane['tanggal'] ?>">
+                </div>
+                <div class="form-group col-md-12 <?= $form_atas ?>">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
                       <tr>
-                        <td><?= $no ?></td>
-                        <td>
-                          <input type="hidden" name="id_dp[]" value="<?= $dp['id'] ?>">
-                          <?= $dp['nama'] ?>
-                        </td>
-                        <td>
-                          <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle" <?= $hasil ?>>
-                          <input type="hidden" name="hasil[]" id="hasil<?= $dp['id'] ?>" value="<?= $hasil_text ?>">
-                        </td>
-                        <td><textarea name="keterangan[]" id="" rows="1" class="form-control"><?= $keterangan ?></textarea></td>
-                        <td>
+                        <th>No</th>
+                        <th style="width: 40%;">Uraian</th>
+                        <th>Kesesuaian </th>
+                        <th>Keterangan</th>
+                        <th>Dasar Hukum</th>
+                      </tr>
+                      <?php
+                      $jawaban = json_decode($laporan_crane['value_json']);
+                      $master_list_crane = $this->mymodel->selectWithQuery("SELECT * FROM master_list_crane");
+                      ?>
+                      <?php
+                      $no = 0;
+                      foreach ($master_list_crane as $dp) {
+                        $no++;
+                        $keterangan = '';
+                        foreach ($jawaban as $j) {
+                          if ($j->id == $dp['id']) {
+                            if ($j->kesesuaian == 'Ya') {
+                              $hasil = 'checked';
+                              $hasil_text = 'Ya';
+                            } else {
+                              $hasil = '';
+                              $hasil_text = 'Tidak';
+                            }
+                            $keterangan = $j->keterangan;
+                          } else {
+                          }
+                        }
+                      ?>
+                        <tr>
+                          <td><?= $no ?></td>
+                          <td>
+                            <input type="hidden" name="id_dp[]" value="<?= $dp['id'] ?>">
+                            <?= $dp['nama'] ?>
+                          </td>
+                          <td>
+                            <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle" <?= $hasil ?>>
+                            <input type="hidden" name="hasil[]" id="hasil<?= $dp['id'] ?>" value="<?= $hasil_text ?>">
+                          </td>
+                          <td><textarea name="keterangan[]" id="" rows="1" class="form-control"><?= $keterangan ?></textarea></td>
+                          <td>
                             <?= $dp['dasar_hukum'] ?>
                           </td>
-                      </tr>
-                    <?php
-                    }
-                    ?>
-                  </table>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                    </table>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group col-md-12">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
-                    <tr>
-                      <th>
-                        REKOMENDASI
-                      </th>
-                      <th>
-                        TINDAK LANJUT
-                      </th>
-                      <th>
-                      </th>
-                    </tr>
-                    <?php
-                    $i = 100;
-                    foreach ($rekomendasi_crane as $rc) {
-                      $i++;
-                    ?>
-                      <tr id="rowinvoice<?= $i ?>">
-                        <td>
-                          <input type="hidden" name="id_rc[]" value="<?= $rc['id'] ?>">
-                          <textarea class="form-control" name="rekomendasi[]" rows="1"><?= $rc['rekomendasi'] ?></textarea>
-                        </td>
-                        <td>
-                          <?php
-                          if ($rc['gambar'] != "") {
-                          ?>
-                            <img src="<?= base_url($rc['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
-                            <br>
-                          <?php } ?>
-                          <textarea class="form-control" name="tindak_lanjut[]" rows="1"><?= $rc['tindak_lanjut'] ?></textarea>
-                          <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
-                        </td>
-                        <td align="center">
-                          <button type="button" name="remove" id="<?= $i ?>" data-toggle="modal" title="Hapus" data-target="#modal-delete-file-<?= $i ?>" class="btn pull-right btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                        </td>
-                        <div class="modal modal-default fade" id="modal-delete-file-<?= $i ?>" style="display: none;">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header bg-red">
-                                <h4 class="modal-title" align="center"> Hapus File</h4>
-                              </div>
-                              <div class="modal-body" align="center">
-                                <h4>Anda yakin ingin menghapus data ini?</h4>
-                                <div class="box-footer" align="center">
-                                  <button type="button" class="btn btn-info" data-dismiss="modal"><i class="mdi mdi-close"></i> Tutup</button>
-                                  <button type="button" id="<?= $i ?>" class="btn btn-danger btn_remove"><i class="mdi mdi-delete"></i> Hapus</button>
+                <div class="form-group col-md-12 <?= $form_bawah ?>">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                      <tr>
+                        <th>
+                          REKOMENDASI
+                        </th>
+                        <th>
+                          TINDAK LANJUT
+                        </th>
+                        <th>
+                        </th>
+                      </tr>
+                      <?php
+                      $i = 100;
+                      foreach ($rekomendasi_crane as $rc) {
+                        $i++;
+                      ?>
+                        <tr id="rowinvoice<?= $i ?>">
+                          <td>
+                            <textarea class="form-control" name="rekomendasi[]" rows="1"><?= $rc->rekomendasi ?></textarea>
+                          </td>
+                          <td>
+                            <?php
+                            if ($rc->gambar != "") {
+                            ?>
+                              <img src="<?= base_url($rc->gambar) ?>" style="width: 200px" class="img img-thumbnail">
+                              <br>
+                            <?php } ?>
+                            <textarea class="form-control" name="tindak_lanjut[]" rows="1"><?= $rc->tindak_lanjut ?></textarea>
+                            <input type="hidden" class="form-control" name="hasil_file_old[]" value="<?= $rc->gambar ?>">
+                            <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
+                          </td>
+                          <td align="center">
+                            <button type="button" name="remove" id="<?= $i ?>" data-toggle="modal" title="Hapus" data-target="#modal-delete-file-<?= $i ?>" class="btn pull-right btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                          </td>
+                          <div class="modal modal-default fade" id="modal-delete-file-<?= $i ?>" style="display: none;">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header bg-red">
+                                  <h4 class="modal-title" align="center"> Hapus File</h4>
+                                </div>
+                                <div class="modal-body" align="center">
+                                  <h4>Anda yakin ingin menghapus data ini?</h4>
+                                  <div class="box-footer" align="center">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="mdi mdi-close"></i> Tutup</button>
+                                    <button type="button" id="<?= $i ?>" class="btn btn-danger btn_remove"><i class="mdi mdi-delete"></i> Hapus</button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </tr>
-                    <?php
-                    } ?>
-                    <tfoot>
-                      <tr>
-                        <td colspan="4">
-                        </td>
-                        <td style="width:5%;">
-                          <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
+                        </tr>
+                      <?php
+                      } ?>
+                      <tfoot>
+                        <tr>
+                          <td colspan="4">
+                          </td>
+                          <td style="width:5%;">
+                            <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
                 </div>
-              </div>
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>

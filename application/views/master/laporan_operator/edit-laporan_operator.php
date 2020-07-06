@@ -1,101 +1,83 @@
 <!-- Content Wrapper. Contains page content -->
-
 <div class="content-wrapper">
-
   <!-- Content Header (Page header) -->
-
   <section class="content-header">
-
     <h1>
-
       Laporan Operator
-
       <small>Edit</small>
-
     </h1>
-
     <ol class="breadcrumb">
-
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-
       <li><a href="#">Master</a></li>
-
       <li class="#">Laporan Operator</li>
-
       <li class="active">Edit</li>
-
     </ol>
-
   </section>
-
   <!-- Main content -->
-
   <section class="content">
-
     <form method="POST" action="<?= base_url('master/Laporan_operator/update') ?>" id="upload-create" enctype="multipart/form-data">
-
       <input type="hidden" name="id" value="<?= $laporan_operator['id'] ?>">
-
-
-
-
-
       <div class="row">
-
         <div class="col-xs-12">
-
           <div class="box">
-
             <!-- /.box-header -->
-
             <div class="box-header">
-
               <h5 class="box-title">
-
                 Edit Laporan Operator
-
               </h5>
-
             </div>
-
             <div class="box-body">
-
               <div class="show_error"></div>
-              <div class="form-group">
-                <label for="form-tanggal">Tanggal</label>
-                <input type="text" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]" value="<?= $laporan_operator['tanggal'] ?>">
-              </div>
-              <!-- <div class="form-group">
-                <label for="form-value_json">Value Json</label>
-                <input type="text" class="form-control" id="form-value_json" placeholder="Masukan Value Json" name="dt[value_json]" value="<?= $laporan_operator['value_json'] ?>">
-              </div> -->
-              <div class="form-group">
-                <div class="form-group col-md-12">
+              <?php
+              if ($_SESSION['id_role'] == 3) {
+                $form_atas = '';
+                $form_bawah = 'hide';
+              } else {
+                $form_atas = 'hide';
+                $form_bawah = '';
+              }
+              ?>
+                <div class="form-group <?= $form_atas ?>">
+                  <label for="form-tanggal">Tanggal</label>
+                  <input type="date" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]" value="<?= $laporan_operator['tanggal'] ?>">
+                </div>
+                <div class="form-group col-md-12 <?= $form_atas ?>">
                   <div class="table-responsive">
                     <table class="table table-bordered">
                       <tr>
-                        <th>No</th>
-                        <th>Uraian</th>
-                        <th width="120">Kesesuaian </th>
-                        <th>Keterangan</th>
+                        <th rowspan="2">No</th>
+                        <th rowspan="2">Uraian</th>
+                        <th width="120" rowspan="2">Kesesuaian </th>
+                        <th rowspan="2">Keterangan</th>
                         <th colspan="3">Dasar Hukum</th>
                       </tr>
                       <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         <th>Pasal</th>
                         <th>Ayat</th>
                         <th>Butir</th>
                       </tr>
                       <?php
+                      $jawaban = json_decode($laporan_operator['value_json']);
                       $master_list_operator = $this->mymodel->selectWithQuery("SELECT * FROM master_list_operator");
                       ?>
                       <?php
                       $no = 0;
                       foreach ($master_list_operator as $dp) {
                         $no++;
+                        $keterangan = '';
+                        foreach ($jawaban as $j) {
+                          if ($j->id == $dp['id']) {
+                            if ($j->kesesuaian == 'Ya') {
+                              $hasil = 'checked';
+                              $hasil_text = 'Ya';
+                            } else {
+                              $hasil = '';
+                              $hasil_text = 'Tidak';
+                            }
+                            $keterangan = $j->keterangan;
+                          } else {
+                          }
+                        }
                       ?>
                         <tr>
                           <td><?= $no ?></td>
@@ -103,17 +85,11 @@
                             <input type="hidden" name="id_dp[]" value="<?= $dp['id'] ?>">
                             <?= $dp['nama'] ?>
                           </td>
-
                           <td>
-                            <!-- <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle" > -->
-                            <input type="radio" name="hasil[]" value="ya">
-                            <label for="Tidak">Ya</label><br>
-                            <input type="radio" name="hasil[]" value="tidak">
-                            <label for="Tidak">Tidak</label><br>
-                            <input type="radio" name="hasil[]" value="tidak_ada">
-                            <label for="Tidak">Tidak Ada</label>
+                            <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle" <?= $hasil ?>>
+                            <input type="hidden" name="hasil[]" id="hasil<?= $dp['id'] ?>" value="<?= $hasil_text ?>">
                           </td>
-                          <td><textarea name="keterangan[]" id="" rows="1" class="form-control"></textarea></td>
+                          <td><textarea name="keterangan[]" id="" rows="1" class="form-control"><?= $keterangan ?></textarea></td>
                           <td>
                             <?= $dp['pasal'] ?>
                           </td>
@@ -130,105 +106,137 @@
                     </table>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="form-keterangan_tolak">Keterangan Tolak</label>
-                <input type="text" class="form-control" id="form-keterangan_tolak" placeholder="Masukan Keterangan Tolak" name="dt[keterangan_tolak]" value="<?= $laporan_operator['keterangan_tolak'] ?>">
-              </div>
-              <div class="form-group">
-                <label for="form-validasi">Validasi</label>
-                <input type="text" class="form-control" id="form-validasi" placeholder="Masukan Validasi" name="dt[validasi]" value="<?= $laporan_operator['validasi'] ?>">
-              </div>
-              <div class="form-group">
-                <label for="form-id_se">Id Se</label>
-                <input type="text" class="form-control" id="form-id_se" placeholder="Masukan Id Se" name="dt[id_se]" value="<?= $laporan_operator['id_se'] ?>">
-              </div>
-              <div class="form-group">
-                <label for="form-id_spv">Id Spv</label>
-                <input type="text" class="form-control" id="form-id_spv" placeholder="Masukan Id Spv" name="dt[id_spv]" value="<?= $laporan_operator['id_spv'] ?>">
-              </div>
-              <div class="form-group">
-                <label for="form-id_inspektor">Id Inspektor</label>
-                <input type="text" class="form-control" id="form-id_inspektor" placeholder="Masukan Id Inspektor" name="dt[id_inspektor]" value="<?= $laporan_operator['id_inspektor'] ?>">
-              </div>
-              <div class="form-group">
-                <label for="form-id_gudang">Id Gudang</label>
-                <input type="text" class="form-control" id="form-id_gudang" placeholder="Masukan Id Gudang" name="dt[id_gudang]" value="<?= $laporan_operator['id_gudang'] ?>">
-              </div><?php
-                    if ($file['dir'] != "") {
-                      $types = explode("/", $file['mime']);
-                      if ($types[0] == "image") {
-                    ?>
-                  <img src="<?= base_url($file['dir']) ?>" style="width: 200px" class="img img-thumbnail">
-
-                  <br>
-
-                <?php } else { ?>
-
-
-
-                  <i class="fa fa-file fa-5x text-danger"></i>
-
-                  <br>
-
-                  <a href="<?= base_url($file['dir']) ?>" target="_blank"><i class="fa fa-download"></i> <?= $file['name'] ?></a>
-
-                  <br>
-
-                  <br>
-
-                <?php } ?>
-
-              <?php } ?><div class="form-group">
-
-                <label for="form-file">File</label>
-
-                <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file">
-
-              </div>
+                <div class="form-group col-md-12 <?= $form_bawah ?>">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                      <tr>
+                        <th>
+                          REKOMENDASI
+                        </th>
+                        <th>
+                          TINDAK LANJUT
+                        </th>
+                        <th>
+                        </th>
+                      </tr>
+                      <?php
+                      $i = 100;
+                      foreach ($rekomendasi_operator as $rc) {
+                        $i++;
+                      ?>
+                        <tr id="rowinvoice<?= $i ?>">
+                          <td>
+                            <textarea class="form-control" name="rekomendasi[]" rows="1"><?= $rc->rekomendasi ?></textarea>
+                          </td>
+                          <td>
+                            <?php
+                            if ($rc->gambar != "") {
+                            ?>
+                              <img src="<?= base_url($rc->gambar) ?>" style="width: 200px" class="img img-thumbnail">
+                              <br>
+                            <?php } ?>
+                            <textarea class="form-control" name="tindak_lanjut[]" rows="1"><?= $rc->tindak_lanjut ?></textarea>
+                            <input type="hidden" class="form-control" name="hasil_file_old[]" value="<?= $rc->gambar ?>">
+                            <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
+                          </td>
+                          <td align="center">
+                            <button type="button" name="remove" id="<?= $i ?>" data-toggle="modal" title="Hapus" data-target="#modal-delete-file-<?= $i ?>" class="btn pull-right btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                          </td>
+                          <div class="modal modal-default fade" id="modal-delete-file-<?= $i ?>" style="display: none;">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header bg-red">
+                                  <h4 class="modal-title" align="center"> Hapus File</h4>
+                                </div>
+                                <div class="modal-body" align="center">
+                                  <h4>Anda yakin ingin menghapus data ini?</h4>
+                                  <div class="box-footer" align="center">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="mdi mdi-close"></i> Tutup</button>
+                                    <button type="button" id="<?= $i ?>" class="btn btn-danger btn_remove"><i class="mdi mdi-delete"></i> Hapus</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </tr>
+                      <?php
+                      } ?>
+                      <tfoot>
+                        <tr>
+                          <td colspan="4">
+                          </td>
+                          <td style="width:5%;">
+                            <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
             </div>
-
             <div class="box-footer">
-
               <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
-
               <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
-
-
-
             </div>
-
             <!-- /.box-body -->
-
           </div>
-
           <!-- /.box -->
-
-
-
           <!-- /.box -->
-
         </div>
-
         <!-- /.col -->
-
       </div>
-
       <!-- /.row -->
-
     </form>
-
-
-
   </section>
-
   <!-- /.content -->
-
 </div>
-
 <!-- /.content-wrapper -->
-
 <script type="text/javascript">
+  $(function() {
+    $('.hasil_toggle').bootstrapToggle({
+      on: 'Ya',
+      off: 'Tidak'
+    });
+  })
+  $(document).on('change', '.hasil_toggle', function() {
+    var switchStatus = false;
+    var str = $(this).attr("id");
+    var id = str.substring(12);
+    if ($("#hasil_toggle" + id).is(':checked')) {
+      switchStatus = $("#hasil_toggle" + id).is(':checked');
+      $("#hasil" + id).val('Ya');
+    } else {
+      switchStatus = $("#hasil_toggle" + id).is(':checked');
+      $("#hasil" + id).val('Tidak');
+    }
+  });
+
+  $(document).ready(function() {
+    var i = 1;
+    $('#addinvoice').click(function() {
+      i++;
+      $('#dynamic_fieldinvoice').append('<tr id="rowinvoice' + i + '">' +
+        '<td>' +
+        '<textarea class="form-control" name="rekomendasi[]" rows="1"></textarea>' +
+        '</td>' +
+        '<td>' +
+        '<textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>' +
+        '<input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">' +
+        '</td>' +
+        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove pull-right"><i class="fa fa-trash"></i></button></td>' +
+        '</tr>');
+      $('.select2').select2();
+
+    });
+
+    $(document).on('click', '.btn_remove', function() {
+      var button_id = $(this).attr("id");
+      $("#modal-delete-file-" + button_id).modal('hide');
+      $('#rowinvoice' + button_id + '').remove();
+    });
+
+  });
+
   $("#upload-create").submit(function() {
 
     var form = $(this);

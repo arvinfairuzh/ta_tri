@@ -60,29 +60,18 @@
                 <label for="form-tanggal">Tanggal</label>
                 <input type="date" class="form-control" id="form-tanggal" placeholder="Masukan Tanggal" name="dt[tanggal]">
               </div>
-              <!-- <div class="form-group">
-
-                <label for="form-value_json">Value Json</label>
-
-                <input type="text" class="form-control" id="form-value_json" placeholder="Masukan Value Json" name="dt[value_json]">
-
-              </div> -->
               <div class="form-group">
                 <div class="form-group col-md-12">
                   <div class="table-responsive">
                     <table class="table table-bordered">
                       <tr>
-                        <th>No</th>
-                        <th>Uraian</th>
-                        <th width="120">Kesesuaian </th>
-                        <th>Keterangan</th>
+                        <th rowspan="2">No</th>
+                        <th rowspan="2">Uraian</th>
+                        <th width="120" rowspan="2">Kesesuaian </th>
+                        <th rowspan="2">Keterangan</th>
                         <th colspan="3">Dasar Hukum</th>
                       </tr>
                       <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         <th>Pasal</th>
                         <th>Ayat</th>
                         <th>Butir</th>
@@ -103,13 +92,8 @@
                           </td>
 
                           <td>
-                            <!-- <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle" > -->
-                            <input type="radio" name="hasil[]" value="ya">
-                            <label for="Tidak">Ya</label><br>
-                            <input type="radio" name="hasil[]" value="tidak">
-                            <label for="Tidak">Tidak</label><br>
-                            <input type="radio" name="hasil[]" value="tidak_ada">
-                            <label for="Tidak">Tidak Ada</label>
+                            <input type="checkbox" class="hasil_toggle" id="hasil_toggle<?= $dp['id'] ?>" data-toggle="toggle">
+                            <input type="hidden" name="hasil[]" id="hasil<?= $dp['id'] ?>" value="">
                           </td>
                           <td><textarea name="keterangan[]" id="" rows="1" class="form-control"></textarea></td>
                           <td>
@@ -129,71 +113,46 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="form-keterangan_tolak">Keterangan Tolak</label>
-                <input type="text" class="form-control" id="form-keterangan_tolak" placeholder="Masukan Keterangan Tolak" name="dt[keterangan_tolak]">
-              </div>
-              <div class="form-group">
-                <label for="form-validasi">Validasi</label>
-                <input type="text" class="form-control" id="form-validasi" placeholder="Masukan Validasi" name="dt[validasi]">
-              </div>
-              <div class="form-group">
-                <label for="form-id_se">Id Se</label>
-                <input type="text" class="form-control" id="form-id_se" placeholder="Masukan Id Se" name="dt[id_se]">
-              </div>
-              <div class="form-group">
-                <label for="form-id_spv">Id Spv</label>
-                <input type="text" class="form-control" id="form-id_spv" placeholder="Masukan Id Spv" name="dt[id_spv]">
-              </div>
-              <div class="form-group">
-                <label for="form-id_inspektor">Id Inspektor</label>
-                <input type="text" class="form-control" id="form-id_inspektor" placeholder="Masukan Id Inspektor" name="dt[id_inspektor]">
-              </div>
-              <div class="form-group">
-                <label for="form-id_gudang">Id Gudang</label>
-                <input type="text" class="form-control" id="form-id_gudang" placeholder="Masukan Id Gudang" name="dt[id_gudang]">
-              </div>
-              <div class="form-group">
-                <label for="form-file">File</label>
-                <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file">
-              </div>
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
               <button type="reset" class="btn btn-danger"><i class="fa fa-refresh"></i> Reset</button>
             </div>
-
             <!-- /.box-body -->
-
           </div>
-
           <!-- /.box -->
-
-
-
           <!-- /.box -->
-
         </div>
-
         <!-- /.col -->
-
       </div>
-
       <!-- /.row -->
-
     </form>
-
-
-
   </section>
-
   <!-- /.content -->
-
 </div>
 
 <!-- /.content-wrapper -->
 
 <script type="text/javascript">
+  $(function() {
+    $('.hasil_toggle').bootstrapToggle({
+      on: 'Ya',
+      off: 'Tidak'
+    });
+  })
+  $(document).on('change', '.hasil_toggle', function() {
+    var switchStatus = false;
+    var str = $(this).attr("id");
+    var id = str.substring(12);
+    if ($("#hasil_toggle" + id).is(':checked')) {
+      switchStatus = $("#hasil_toggle" + id).is(':checked');
+      $("#hasil" + id).val('Ya');
+    } else {
+      switchStatus = $("#hasil_toggle" + id).is(':checked');
+      $("#hasil" + id).val('Tidak');
+    }
+  });
+
   $("#upload-create").submit(function() {
 
     var form = $(this);

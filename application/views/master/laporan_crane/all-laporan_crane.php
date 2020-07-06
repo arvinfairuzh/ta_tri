@@ -2,7 +2,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Laporan Bulanan</h1>
+    <h1>Laporan Crane</h1>
     <h5 style="padding-left:1px;"></h5>
   </section>
 
@@ -15,7 +15,7 @@
             <!-- FILTER  -->
             <div class="row">
               <div class="col-md-12">
-                <?php if ($_SESSION['role_id'] == 1) {
+                <?php if ($_SESSION['id_role'] == 3) {
                 ?>
                   <a href="<?= base_url('master/laporan_crane/create') ?>">
                     <button type="button" class="btn btn-sm pull-right btn-primary"><i class="fa fa-plus"></i> Tambah Data</button>
@@ -23,7 +23,7 @@
                 <?php
                 }
                 ?>
-                <a class="btn btn-success pull-right btn-sm " style="margin-right: 5px;" href="<?= base_url('report/laporan_crane/getExcel/') ?>" target="_blank"><i class="fa fa-file-excel-o"></i> Export Excel</a>
+                <a class="btn btn-warning pull-right btn-sm " style="margin-right: 5px;" href="<?= base_url('master/laporan_crane/getExcel/') ?>" target="_blank"><i class="fa fa-file-excel-o"></i> Export Excel</a>
               </div>
             </div>
             <!-- FILTER  -->
@@ -68,7 +68,7 @@
       "scrollX": true,
       // Load data for the table's content from an Ajax source
       "ajax": {
-        "url": "<?php echo base_url('report/laporan_crane/ajaxall/') ?>",
+        "url": "<?php echo base_url('master/laporan_crane/ajaxall/') ?>",
         "type": "POST"
       },
       //Set column definition initialisation properties.
