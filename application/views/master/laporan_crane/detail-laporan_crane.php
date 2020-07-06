@@ -46,114 +46,122 @@
                         <div class="col-md-7">
                             <h4><b>Laporan Crane</b></h4>
                         </div>
-                        <div class="col-md-5">
-                            <!-- <div class="col-md-12">
-                                <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
-                                <?php
-                                if ($_SESSION['role_id'] == 1) {
-                                    if ($laporan_crane['status_bulanan'] == 1) {
-                                ?>
-                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                    <?php
-                                    }
-                                    ?>
-                                    <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
-                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
-                                    <?php
-                                } else if ($_SESSION['role_id'] == 3) {
-                                    if ($laporan_crane['status_bulanan'] == 0 || $laporan_crane['status_bulanan'] == 2) {
-                                    ?>
-                                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
-                                    <?php
-                                    }
-                                    ?>
-                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
-                                <?php
-                                }
-                                if ($laporan_crane['status_bulanan'] == 0) {
-                                    $badge_color = 'bg-yellow';
-                                } else if ($laporan_crane['status_bulanan'] == 1) {
-                                    $badge_color = 'bg-blue';
-                                } else if ($laporan_crane['status_bulanan'] == 2) {
-                                    $badge_color = 'bg-red';
-                                } else {
-                                    $badge_color = 'bg-green';
-                                }
-                                ?>
-                            </div> -->
-                        </div>
                     </div>
                     <div class="box-body">
-                        
-                        <div class="row">
-                            <div class="col-xs-12">
+                        <div class="show_error"></div>
+                        <div class="col-xs-12">
+                            <b>Tanggal</b> :
+                            <?= $laporan_crane['tanggal'] ?>
+                        </div>
+                        <hr>
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
-                                    <thead>
-                                        <tr align="center">
-                                            <th>No</th>
-                                            <th>Uraian</th>
-                                            <th colspan="3">Kesesuaian</th>
-                                            <th>Keterangan</th>
-                                            <th>Dasar Hukum</th>
-                                        </tr>
-                                        <tr align="center">
-                                            <th></th>
-                                            <th></th>
-                                            <th width="50">Ya</th>
-                                            <th width="50">Tidak</th>
-                                            <th width="50">Tidak Ada</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                    <tr>
+                                    <tr align="center">
+                                        <th rowspan="2">NO</th>
+                                        <th rowspan="2" style="width: 40%;">URAIAN</th>
+                                        <th colspan="2">KESESUAIAN</th>
+                                        <th rowspan="2">KETERANGAN</th>
+                                        <th rowspan="2">DASAR HUKUM</th>
+                                    </tr>
+                                    <tr align="center">
+                                        <th width="50">YA</th>
+                                        <th width="50">TIDAK</th>
+                                    </tr>
+                                    </tr>
                                     <?php
+                                    $jawaban = json_decode($laporan_crane['value_json']);
                                     $master_list_crane = $this->mymodel->selectWithQuery("SELECT * FROM master_list_crane");
                                     ?>
                                     <?php
                                     $no = 0;
                                     foreach ($master_list_crane as $dp) {
                                         $no++;
-                                        ?>
-                                    <tr>
-                                        <td><?= $no ?></td>
-                                        <td>
-                                        <input type="hidden" name="id_dp[]" value="<?= $dp['id'] ?>">
-                                        <?= $dp['nama'] ?>
-                                        </td>
-                                        
-                                        <td>
-                                        
-                                        </td>
-                                        <td>
-                                        
-                                        </td>
-                                        <td>
-                                        
-                                        </td>
-                                        <td><textarea name="keterangan[]" id="" rows="1" class="form-control"></textarea></td>
-                                        <td>
-                                        <?= $dp['dasar_hukum'] ?>
-                                        </td>
-                                    </tr>
+                                        $keterangan = '';
+                                        $ya_text = '';
+                                        $tidak_text = '';
+                                        foreach ($jawaban as $j) {
+                                            if ($j->id == $dp['id']) {
+                                                if ($j->kesesuaian == 'Ya') {
+                                                    $ya_text = 'fa fa-check-circle';
+                                                } else {
+                                                    $tidak_text = 'fa fa-check-circle';
+                                                }
+                                                $keterangan = $j->keterangan;
+                                            } else {
+                                            }
+                                        }
+                                        // print_r($hasil);
+                                    ?>
+                                        <tr>
+                                            <td><?= $no ?></td>
+                                            <td>
+                                                <?= $dp['nama'] ?>
+                                            </td>
+                                            <td align="center">
+                                                <i class="<?= $ya_text ?>"></i>
+                                            </td>
+                                            <td align="center">
+                                                <i class="<?= $tidak_text ?>"></i>
+                                            </td>
+                                            <td><?= $keterangan ?></td>
+                                            <td>
+                                                <?= $dp['dasar_hukum'] ?>
+                                            </td>
+                                        </tr>
                                     <?php
                                     }
                                     ?>
-                                    </tbody>
+                                </table>
+                            </div>
+                        <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                                    <tr>
+                                        <th style="width: 50%;">
+                                            REKOMENDASI
+                                        </th>
+                                        <th>
+                                            TINDAK LANJUT
+                                        </th>
+                                    </tr>
+                                    <?php
+                                    $i = 100;
+                                    foreach ($rekomendasi_crane as $rc) {
+                                        $i++;
+                                    ?>
+                                        <tr id="rowinvoice<?= $i ?>">
+                                            <td><?= $rc['rekomendasi'] ?></td>
+                                            <td>
+                                                <?php
+                                                if ($rc['gambar'] != "") {
+                                                ?>
+                                                    <img src="<?= base_url($rc['gambar']) ?>" style="width: 200px" class="img img-thumbnail">
+                                                    <br>
+                                                <?php } ?>
+                                                <?= $rc['tindak_lanjut'] ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    } ?>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
     </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
-<div class="modal fade bd-example-modal-sm" tabindex="-1" form_laporan_bulanan="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
+<div class="modal fade bd-example-modal-sm" tabindex="-1" laporan_crane="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <form method="post" action="<?= base_url('master/Form_laporan_bulanan/delete') ?>">
+            <form method="post" action="<?= base_url('master/laporan_crane/delete') ?>">
                 <div class="modal-header">
                     <h5 class="modal-title">Confirm delete</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -193,16 +201,16 @@
 
         $("#modal-form").modal();
         $("#title-form").html('Validasi');
-        $("#load-form").load("<?= base_url('master/Form_laporan_bulanan/validasi/') ?>" + id);
+        $("#load-form").load("<?= base_url('master/laporan_crane/validasi/') ?>" + id);
 
     }
 
     function edit(id) {
-        location.href = "<?= base_url('master/Form_laporan_bulanan/edit/') ?>" + id;
+        location.href = "<?= base_url('master/laporan_crane/edit/') ?>" + id;
     }
 
     function cetak(id) {
-        window.open("<?= base_url('master/Form_laporan_bulanan/cetak/') ?>" + id);
+        window.open("<?= base_url('master/laporan_crane/cetak/') ?>" + id);
     }
 
     function hapus(id) {

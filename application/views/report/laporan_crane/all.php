@@ -2,7 +2,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Laporan Bulanan</h1>
+    <h1>Report Laporan_crane</h1>
     <h5 style="padding-left:1px;"></h5>
   </section>
 
@@ -15,15 +15,7 @@
             <!-- FILTER  -->
             <div class="row">
               <div class="col-md-12">
-                <?php if ($_SESSION['role_id'] == 1) {
-                ?>
-                  <a href="<?= base_url('master/laporan_crane/create') ?>">
-                    <button type="button" class="btn btn-sm pull-right btn-primary"><i class="fa fa-plus"></i> Tambah Data</button>
-                  </a>
-                <?php
-                }
-                ?>
-                <a class="btn btn-success pull-right btn-sm " style="margin-right: 5px;" href="<?= base_url('report/laporan_crane/getExcel/') ?>" target="_blank"><i class="fa fa-file-excel-o"></i> Export Excel</a>
+                <a class="btn btn-success pull-right btn-flat" href="<?= base_url('report/Laporan_crane/getExcel/') ?>" target="_blank"><i class="fa fa-file-excel-o"></i> Export Excel</a>
               </div>
             </div>
             <!-- FILTER  -->
@@ -34,11 +26,11 @@
                 <tr class="bg-success">
                   <th>No</th>
                   <th>Tanggal</th>
-                  <th>SE</th>
-                  <th>SPV</th>
-                  <th>Inspektor</th>
-                  <th>Gudang</th>
                   <th>Validasi</th>
+                  <th>Id se</th>
+                  <th>Id spv</th>
+                  <th>Id inspektor</th>
+                  <th>Id gudang</th>
                   <th></th>
                 </tr>
               </thead>
@@ -54,10 +46,6 @@
 </div>
 
 <script type="text/javascript">
-  function detail(id) {
-    location.href = "<?= base_url('master/laporan_crane/detail/') ?>" + id;
-  }
-
   var table;
   $(document).ready(function() {
     //datatables
@@ -68,7 +56,7 @@
       "scrollX": true,
       // Load data for the table's content from an Ajax source
       "ajax": {
-        "url": "<?php echo base_url('report/laporan_crane/ajaxall/') ?>",
+        "url": "<?php echo base_url('report/Laporan_crane/ajaxall/') ?>",
         "type": "POST"
       },
       //Set column definition initialisation properties.
@@ -78,4 +66,9 @@
       }, ],
     });
   });
+
+
+  function detail() {
+    alert('Detailnya buat sendiri ya cuk :)')
+  }
 </script>

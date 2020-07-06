@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Jun 2020 pada 09.42
+-- Generation Time: 06 Jul 2020 pada 15.24
 -- Versi Server: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -694,7 +694,16 @@ CREATE TABLE IF NOT EXISTS `laporan_crane` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `laporan_crane`
+--
+
+INSERT INTO `laporan_crane` (`id`, `tanggal`, `value_json`, `keterangan_tolak`, `validasi`, `id_se`, `id_spv`, `id_inspektor`, `id_gudang`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, '2020-07-06', '[{"id":"1","kesesuaian":"Ya","keterangan":""},{"id":"2","kesesuaian":"Tidak","keterangan":""},{"id":"3","kesesuaian":"Ya","keterangan":""},{"id":"4","kesesuaian":"Tidak","keterangan":""},{"id":"5","kesesuaian":"Tidak","keterangan":""},{"id":"6","kesesuaian":"Tidak","keterangan":""},{"id":"7","kesesuaian":"Ya","keterangan":""},{"id":"8","kesesuaian":"Tidak","keterangan":""},{"id":"9","kesesuaian":"Ya","keterangan":""},{"id":"10","kesesuaian":"Tidak","keterangan":""},{"id":"11","kesesuaian":"Tidak","keterangan":""},{"id":"12","kesesuaian":"Tidak","keterangan":""},{"id":"13","kesesuaian":"Ya","keterangan":""},{"id":"14","kesesuaian":"Tidak","keterangan":""},{"id":"15","kesesuaian":"Ya","keterangan":""},{"id":"16","kesesuaian":"Ya","keterangan":""},{"id":"17","kesesuaian":"Ya","keterangan":""},{"id":"18","kesesuaian":"Ya","keterangan":""},{"id":"19","kesesuaian":"Tidak","keterangan":""},{"id":"20","kesesuaian":"Tidak","keterangan":""},{"id":"21","kesesuaian":"Tidak","keterangan":""},{"id":"22","kesesuaian":"Ya","keterangan":""},{"id":"23","kesesuaian":"Ya","keterangan":""},{"id":"24","kesesuaian":"Tidak","keterangan":""},{"id":"25","kesesuaian":"Tidak","keterangan":""},{"id":"26","kesesuaian":"Ya","keterangan":""}]', '', 0, 0, 0, 0, 0, 'ENABLE', '2020-07-06 19:04:49', '0000-00-00 00:00:00', 4),
+(2, '2020-07-06', '[{"id":"1","kesesuaian":"Ya","keterangan":""},{"id":"2","kesesuaian":"Tidak","keterangan":""},{"id":"3","kesesuaian":"Ya","keterangan":""},{"id":"4","kesesuaian":"Tidak","keterangan":""},{"id":"5","kesesuaian":"Tidak","keterangan":""},{"id":"6","kesesuaian":"Tidak","keterangan":""},{"id":"7","kesesuaian":"Ya","keterangan":""},{"id":"8","kesesuaian":"Tidak","keterangan":""},{"id":"9","kesesuaian":"Ya","keterangan":""},{"id":"10","kesesuaian":"Tidak","keterangan":""},{"id":"11","kesesuaian":"Tidak","keterangan":""},{"id":"12","kesesuaian":"Tidak","keterangan":""},{"id":"13","kesesuaian":"Ya","keterangan":""},{"id":"14","kesesuaian":"Tidak","keterangan":""},{"id":"15","kesesuaian":"Ya","keterangan":""},{"id":"16","kesesuaian":"Ya","keterangan":""},{"id":"17","kesesuaian":"Ya","keterangan":""},{"id":"18","kesesuaian":"Ya","keterangan":""},{"id":"19","kesesuaian":"Tidak","keterangan":""},{"id":"20","kesesuaian":"Tidak","keterangan":""},{"id":"21","kesesuaian":"Tidak","keterangan":""},{"id":"22","kesesuaian":"Ya","keterangan":""},{"id":"23","kesesuaian":"Ya","keterangan":""},{"id":"24","kesesuaian":"Tidak","keterangan":""},{"id":"25","kesesuaian":"Tidak","keterangan":""},{"id":"26","kesesuaian":"Ya","keterangan":""}]', '', 0, 0, 0, 0, 0, 'ENABLE', '2020-07-06 19:05:02', '0000-00-00 00:00:00', 4),
+(3, '2020-07-06', '[{"id":"1","kesesuaian":"Ya","keterangan":""},{"id":"2","kesesuaian":"Tidak","keterangan":""},{"id":"3","kesesuaian":"Ya","keterangan":""},{"id":"4","kesesuaian":"Tidak","keterangan":""},{"id":"5","kesesuaian":"Tidak","keterangan":""},{"id":"6","kesesuaian":"Tidak","keterangan":""},{"id":"7","kesesuaian":"Ya","keterangan":""},{"id":"8","kesesuaian":"Tidak","keterangan":""},{"id":"9","kesesuaian":"Ya","keterangan":""},{"id":"10","kesesuaian":"Tidak","keterangan":""},{"id":"11","kesesuaian":"Tidak","keterangan":""},{"id":"12","kesesuaian":"Tidak","keterangan":""},{"id":"13","kesesuaian":"Ya","keterangan":""},{"id":"14","kesesuaian":"Tidak","keterangan":""},{"id":"15","kesesuaian":"Ya","keterangan":""},{"id":"16","kesesuaian":"Ya","keterangan":""},{"id":"17","kesesuaian":"Ya","keterangan":""},{"id":"18","kesesuaian":"Ya","keterangan":""},{"id":"19","kesesuaian":"Tidak","keterangan":""},{"id":"20","kesesuaian":"Tidak","keterangan":""},{"id":"21","kesesuaian":"Tidak","keterangan":""},{"id":"22","kesesuaian":"Ya","keterangan":""},{"id":"23","kesesuaian":"Ya","keterangan":""},{"id":"24","kesesuaian":"Tidak","keterangan":""},{"id":"25","kesesuaian":"Tidak","keterangan":""},{"id":"26","kesesuaian":"Ya","keterangan":""}]', '', 0, 0, 0, 0, 0, 'ENABLE', '2020-07-06 19:05:50', '2020-07-06 19:28:49', 4);
 
 -- --------------------------------------------------------
 
@@ -914,7 +923,7 @@ CREATE TABLE IF NOT EXISTS `log_aktivitas` (
   `log_action` varchar(500) NOT NULL,
   `log_tablename` varchar(500) NOT NULL,
   `log_jsondata` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=546 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=554 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `log_aktivitas`
@@ -1468,7 +1477,15 @@ INSERT INTO `log_aktivitas` (`log_id`, `log_created_at`, `log_created_by`, `log_
 (542, '2020-06-23 21:12:46', 4, 'insertData', 'master_list_crane', '{"nama":"Keran angkat berpindah harus direncanakan dan dipasang sedemikian rupa sehingga setiap saat terdapat ruang bebas yang cukup diantaranya:Titik tertinggi dari keran tersebut dan konstruksi atas, bagian-bagin keran dan tembok, pilar atau bangunan tetap lainnya, Bagian ujung keran satu sama lain dalam dua sudut sejajar","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 58","created_by":"4","created_at":"2020-06-23 21:12:46","status":"ENABLE"}'),
 (543, '2020-06-23 21:12:47', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":25,"status":"ENABLE","created_at":"2020-06-23 21:12:47"}'),
 (544, '2020-06-23 21:12:55', 4, 'insertData', 'master_list_crane', '{"nama":"Keran angkat yang beroperasi dilapangan terbuka harus:Direncanakan dengan memperhitungkan angina, Dilengkapi dengan kunci roda, jepitan rel, jangkar dan rem dengan pasak pengunci,","dasar_hukum":"Peraturan Menteri Tenaga Kerja No 5 Tahun 1985 Pasal 60","created_by":"4","created_at":"2020-06-23 21:12:55","status":"ENABLE"}'),
-(545, '2020-06-23 21:12:55', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":26,"status":"ENABLE","created_at":"2020-06-23 21:12:55"}');
+(545, '2020-06-23 21:12:55', 4, 'insertData', 'file', '{"id":"","name":"","mime":"","dir":"","table":"master_list_crane","table_id":26,"status":"ENABLE","created_at":"2020-06-23 21:12:55"}'),
+(546, '2020-07-06 19:04:49', 4, 'insertData', 'laporan_crane', '{"tanggal":"2020-07-06","value_json":"[{\\"id\\":\\"1\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"2\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"3\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"4\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"5\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"6\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"7\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"8\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"9\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"10\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"11\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"12\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"13\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"14\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"15\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"16\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"17\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"18\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"19\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"20\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"21\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"22\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"23\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"24\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"25\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"26\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"}]","created_by":"4","created_at":"2020-07-06 19:04:49","status":"ENABLE"}'),
+(547, '2020-07-06 19:04:50', 4, 'insertData', 'rekomendasi_crane', '{"id_laporan":1,"rekomendasi":"aaaa","tindak_lanjut":"adsdasd","created_at":"2020-07-06 19:04:50","status":"ENABLE","created_by":"4","gambar":"webfile\\/tindak_lanjut\\/ftl-1.jpg"}'),
+(548, '2020-07-06 19:05:02', 4, 'insertData', 'laporan_crane', '{"tanggal":"2020-07-06","value_json":"[{\\"id\\":\\"1\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"2\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"3\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"4\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"5\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"6\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"7\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"8\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"9\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"10\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"11\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"12\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"13\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"14\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"15\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"16\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"17\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"18\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"19\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"20\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"21\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"22\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"23\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"24\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"25\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"26\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"}]","created_by":"4","created_at":"2020-07-06 19:05:02","status":"ENABLE"}'),
+(549, '2020-07-06 19:05:02', 4, 'insertData', 'rekomendasi_crane', '{"id_laporan":2,"rekomendasi":"aaaa","tindak_lanjut":"adsdasd","created_at":"2020-07-06 19:05:02","status":"ENABLE","created_by":"4","gambar":"webfile\\/tindak_lanjut\\/ftl-2.jpg"}'),
+(550, '2020-07-06 19:05:50', 4, 'insertData', 'laporan_crane', '{"tanggal":"2020-07-06","value_json":"[{\\"id\\":\\"1\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"2\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"3\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"4\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"5\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"6\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"7\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"8\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"9\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"10\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"11\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"12\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"13\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"14\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"15\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"16\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"17\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"18\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"19\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"20\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"21\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"22\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"23\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"24\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"25\\",\\"kesesuaian\\":\\"Tidak\\",\\"keterangan\\":\\"\\"},{\\"id\\":\\"26\\",\\"kesesuaian\\":\\"Ya\\",\\"keterangan\\":\\"\\"}]","created_by":"4","created_at":"2020-07-06 19:05:50","status":"ENABLE"}'),
+(551, '2020-07-06 19:05:50', 4, 'insertData', 'rekomendasi_crane', '{"id_laporan":3,"rekomendasi":"aaaa","tindak_lanjut":"adsdasd","created_at":"2020-07-06 19:05:50","status":"ENABLE","created_by":"4","gambar":"webfile\\/tindak_lanjut\\/ftl-3.jpg"}'),
+(552, '2020-07-06 19:05:50', 4, 'insertData', 'rekomendasi_crane', '{"id_laporan":3,"rekomendasi":"dafqwe","tindak_lanjut":"fdsxcv","created_at":"2020-07-06 19:05:50","status":"ENABLE","created_by":"4","gambar":"webfile\\/tindak_lanjut\\/ftl-3.jpg"}'),
+(553, '2020-07-06 19:46:29', 4, 'updateData', 'report', '{"id":"4","name":"Laporan Crane","query":"SELECT * FROM laporan_crane","header":null,"status":"ENABLE","created_at":"2020-07-06 19:46:03","updated_at":null}');
 
 -- --------------------------------------------------------
 
@@ -1598,6 +1615,21 @@ INSERT INTO `master_list_operator` (`id`, `nama`, `pasal`, `ayat`, `butir`, `sta
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `master_status`
+--
+
+CREATE TABLE IF NOT EXISTS `master_status` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `status` enum('ENABLE','DISABLE') NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `menu_master`
 --
 
@@ -1669,9 +1701,22 @@ CREATE TABLE IF NOT EXISTS `rekomendasi_crane` (
   `id` int(11) NOT NULL,
   `id_laporan` int(11) NOT NULL,
   `rekomendasi` text NOT NULL,
+  `tindak_lanjut` text NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `validasi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `validasi` int(11) NOT NULL,
+  `status` enum('ENABLE','DISABLE') NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `rekomendasi_crane`
+--
+
+INSERT INTO `rekomendasi_crane` (`id`, `id_laporan`, `rekomendasi`, `tindak_lanjut`, `gambar`, `validasi`, `status`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 3, 'aaaa', 'adsdasd', 'webfile/laporan_crane/ftl-1.png', 0, 'ENABLE', '2020-07-06 19:05:50', '2020-07-06 19:28:49', 4),
+(2, 3, 'dafqwe', 'fdsxcv', 'webfile/laporan_crane/ftl-2.jpg', 0, 'ENABLE', '2020-07-06 19:05:50', '2020-07-06 19:28:49', 4);
 
 -- --------------------------------------------------------
 
@@ -1683,6 +1728,7 @@ CREATE TABLE IF NOT EXISTS `rekomendasi_operator` (
   `id` int(11) NOT NULL,
   `id_laporan` int(11) NOT NULL,
   `rekomendasi` text NOT NULL,
+  `tindak_lanjut` text NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `validasi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1701,7 +1747,7 @@ CREATE TABLE IF NOT EXISTS `report` (
   `status` enum('ENABLE','DISABLE') DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `report`
@@ -1710,7 +1756,8 @@ CREATE TABLE IF NOT EXISTS `report` (
 INSERT INTO `report` (`id`, `name`, `query`, `header`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Users', 'SELECT * FROM user', '["nip","name","email","password","role_id","desc","status","created_at","updated_at"]', 'ENABLE', '2019-03-13 09:57:07', '2019-03-19 17:13:35'),
 (2, 'Customer', 'SELECT customer.*,file.dir FROM customer LEFT JOIN file ON file.table_id = customer.id and file.table= ''customer''', '["nama","email","telp","alamat","status","dir"]', 'ENABLE', '2019-03-25 10:47:39', '2019-07-01 09:01:19'),
-(3, 'Statistik', 'SELECT date_format(pembayaran_spp.bulan, ''%M %Y'') as bulan, a.belum_bayar, c.sudah_bayar, b.belum_validasi, d.sudah_validasi\r\nFROM pembayaran_spp\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) a\r\nON pembayaran_spp.bulan = a.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) b\r\nON pembayaran_spp.bulan = b.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) c\r\nON pembayaran_spp.bulan = c.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) d\r\nON pembayaran_spp.bulan = d.bulan\r\nGROUP BY pembayaran_spp.bulan', '["bulan","belum_bayar","belum_validasi","sudah_bayar","sudah_validasi"]', 'ENABLE', '2020-01-07 13:56:11', '2020-01-07 13:58:08');
+(3, 'Statistik', 'SELECT date_format(pembayaran_spp.bulan, ''%M %Y'') as bulan, a.belum_bayar, c.sudah_bayar, b.belum_validasi, d.sudah_validasi\r\nFROM pembayaran_spp\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) a\r\nON pembayaran_spp.bulan = a.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as belum_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi = ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) b\r\nON pembayaran_spp.bulan = b.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_bayar\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_pembayaran != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) c\r\nON pembayaran_spp.bulan = c.bulan\r\nLEFT JOIN\r\n	(\r\n        SELECT pembayaran_spp.bulan, COUNT(pembayaran_spp.id) as sudah_validasi\r\n        FROM pembayaran_spp\r\n        WHERE pembayaran_spp.tanggal_validasi != ''0000-00-00 00:00:00''\r\n        GROUP BY pembayaran_spp.bulan\r\n        ) d\r\nON pembayaran_spp.bulan = d.bulan\r\nGROUP BY pembayaran_spp.bulan', '["bulan","belum_bayar","belum_validasi","sudah_bayar","sudah_validasi"]', 'ENABLE', '2020-01-07 13:56:11', '2020-01-07 13:58:08'),
+(4, 'Laporan Crane', 'SELECT * FROM laporan_crane', '["tanggal","validasi","id_se","id_spv","id_inspektor","id_gudang"]', 'ENABLE', '2020-07-06 19:46:03', '2020-07-06 19:46:29');
 
 -- --------------------------------------------------------
 
@@ -1797,6 +1844,12 @@ ALTER TABLE `master_list_operator`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `master_status`
+--
+ALTER TABLE `master_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `menu_master`
 --
 ALTER TABLE `menu_master`
@@ -1850,7 +1903,7 @@ ALTER TABLE `konfig`
 -- AUTO_INCREMENT for table `laporan_crane`
 --
 ALTER TABLE `laporan_crane`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `laporan_operator`
 --
@@ -1865,7 +1918,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `log_aktivitas`
 --
 ALTER TABLE `log_aktivitas`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=546;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=554;
 --
 -- AUTO_INCREMENT for table `log_backupdb`
 --
@@ -1882,6 +1935,11 @@ ALTER TABLE `master_list_crane`
 ALTER TABLE `master_list_operator`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
+-- AUTO_INCREMENT for table `master_status`
+--
+ALTER TABLE `master_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `menu_master`
 --
 ALTER TABLE `menu_master`
@@ -1895,7 +1953,7 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `rekomendasi_crane`
 --
 ALTER TABLE `rekomendasi_crane`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `rekomendasi_operator`
 --
@@ -1905,7 +1963,7 @@ ALTER TABLE `rekomendasi_operator`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `role`
 --
