@@ -1,189 +1,236 @@
-<!-- Content Wrapper. Contains page content -->
-
-<div class="content-wrapper">
-
-  <!-- Content Header (Page header) -->
-
-  <section class="content-header">
-
-    <h1>
-
-      Pegawai
-
-      <small>Data</small>
-
-    </h1>
-
-    <ol class="breadcrumb">
-
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-
-      <li><a href="#">Master</a></li>
-
-      <li class="#">Pegawai</li>
-
-      <li class="active">Data</li>
-
-    </ol>
-
-  </section>
-
-  <!-- Main content -->
-
-  <section class="content">
-
-    <div class="row">
-
-      <div class="col-xs-12">
-
-        <div class="box">
-
-          <!-- /.box-header -->
-
-          <div class="box-header">
-
-            <div class="row">
-
-              <div class="col-md-6">
-
-                <select onchange="loadtable(this.value)" id="select-status" style="width: 150px" class="form-control">
-
-                  <option value="ENABLE">ENABLE</option>
-
-                  <option value="DISABLE">DISABLE</option>
 
 
 
-                </select>
 
-              </div>
+ <!-- Content Wrapper. Contains page content -->
 
-              <div class="col-md-6">
+  <div class="content-wrapper">
 
-                <div class="pull-right"> <a href="<?= base_url('master/Pegawai/create') ?>">
+    <!-- Content Header (Page header) -->
 
-                    <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</button>
+    <section class="content-header">
 
-                  </a>
+      <h1>
+
+        Pegawai
+
+        <small>Data</small>
+
+      </h1>
+
+      <ol class="breadcrumb">
+
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+
+        <li><a href="#">Master</a></li>
+
+        <li class="#">Pegawai</li>
+
+        <li class="active">Data</li>
+
+      </ol>
+
+    </section>
+
+    <!-- Main content -->
+
+    <section class="content">
+
+      <div class="row">
+
+        <div class="col-xs-12">
+
+          <div class="box">
+
+            <!-- /.box-header -->
+
+            <div class="box-header">
+
+              <div class="row">
+
+                <div class="col-md-6">
+
+                  <select onchange="loadtable(this.value)" id="select-status" style="width: 150px" class="form-control">
+
+                      <option value="ENABLE">ENABLE</option>
+
+                      <option value="DISABLE">DISABLE</option>
+
+
+
+                  </select>
 
                 </div>
 
+                <div class="col-md-6">
+
+                  <div class="pull-right">          <a href="javascript::void(0)" onclick="create()">
+
+        <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Data</button> 
+
+      </a>
+
+
+                  <a href="<?= base_url('fitur/ekspor/pegawai') ?>" target="_blank">
+
+                    <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-file-excel-o"></i> Ekspor Data</button> 
+
+                  </a>
+
+                  <button type="button" class="btn btn-sm btn-info" onclick="$('#modal-impor').modal()"><i class="fa fa-file-excel-o"></i> Import Data</button>
+
+                  </div>
+
+                </div>  
+
+              </div>
+
+              
+
+            </div>
+
+            <div class="box-body">
+
+                <div class="show_error"></div>
+
+
+
+              <div class="table-responsive">
+
+                <div id="load-table"></div>
+
               </div>
 
             </div>
-            <hr>
-          </div>
 
-          <div class="box-body">
-
-            <div class="show_error"></div>
-
-
-
-            <div class="table-responsive">
-
-              <div id="load-table"></div>
-
-            </div>
+            <!-- /.box-body -->
 
           </div>
 
-          <!-- /.box-body -->
+          <!-- /.box -->
 
         </div>
 
-        <!-- /.box -->
+        <!-- /.col -->
 
       </div>
 
-      <!-- /.col -->
+      <!-- /.row -->
 
-    </div>
+    </section>
 
-    <!-- /.row -->
-
-  </section>
-
-  <!-- /.content -->
-
-</div>
-
-<!-- /.content-wrapper -->
-
-
-<div class="modal fade bd-example-modal-sm" tabindex="-1" pegawai="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
-
-  <div class="modal-dialog modal-sm">
-
-    <div class="modal-content">
-
-      <form id="upload-delete" action="<?= base_url('master/Pegawai/delete') ?>">
-
-        <div class="modal-header">
-
-          <h5 class="modal-title">Confirm delete</h5>
-
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-            <span aria-hidden="true">&times;</span>
-
-          </button>
-
-        </div>
-
-        <div class="modal-body">
-
-          <input type="hidden" name="id" id="delete-input">
-
-          <p>Are you sure to delete this data?</p>
-
-        </div>
-
-        <div class="modal-footer">
-
-          <button type="submit" class="btn btn-danger btn-send">Yes, Delete</button>
-
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-        </div>
-
-      </form>
-
-    </div>
+    <!-- /.content -->
 
   </div>
 
-</div>
+  <!-- /.content-wrapper -->
+  
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" pegawai="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-form">
+
+      <div class="modal-dialog modal-md">
+
+          <div class="modal-content">
 
 
+              <div class="modal-header">
 
-<div class="modal fade" id="modal-impor">
+                  <h5 class="modal-title" id="title-form" ></h5>
 
-  <div class="modal-dialog">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
-    <div class="modal-content">
+                      <span aria-hidden="true">&times;</span>
 
-      <div class="modal-header">
+                  </button>
 
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
 
-        <h4 class="modal-title">Impor Data</h4>
+              <div class="modal-body">
+                <div id="load-form"></div>
+
+              </div>
+
+              
+
+          </div>
 
       </div>
 
-      <form action="<?= base_url('fitur/impor/pegawai') ?>" method="POST" enctype="multipart/form-data">
+  </div> 
+
+
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" pegawai="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-delete">
+
+      <div class="modal-dialog modal-sm">
+
+          <div class="modal-content">
+
+              <form id="upload-delete" action="<?= base_url('master/Pegawai/delete') ?>">
+
+              <div class="modal-header">
+
+                  <h5 class="modal-title">Confirm delete</h5>
+
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                      <span aria-hidden="true">&times;</span>
+
+                  </button>
+
+              </div>
+
+              <div class="modal-body">
+
+                  <input type="hidden" name="id" id="delete-input">
+
+                  <p>Are you sure to delete this data?</p>
+
+              </div>
+
+              <div class="modal-footer">
+
+                  <button type="submit" class="btn btn-danger btn-send">Yes, Delete</button>
+
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+              </div>
+
+              </form>
+
+          </div>
+
+      </div>
+
+  </div> 
+
+
+
+  <div class="modal fade" id="modal-impor">
+
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+          <h4 class="modal-title">Impor Data</h4>
+
+        </div>
+
+        <form action="<?= base_url('fitur/impor/pegawai') ?>" method="POST"  enctype="multipart/form-data">
 
 
 
         <div class="modal-body">
 
-          <div class="form-group">
+            <div class="form-group">
 
-            <label for="">File Excel</label>
+              <label for="">File Excel</label>
 
-            <input type="file" class="form-control" id="" name="file" placeholder="Input field">
+              <input type="file" class="form-control" id="" name="file" placeholder="Input field">
 
-          </div>
+            </div>
 
         </div>
 
@@ -195,301 +242,270 @@
 
         </div>
 
-      </form>
+        </form>
 
 
+
+      </div>
 
     </div>
 
   </div>
 
-</div>
 
 
+  <script type="text/javascript">
 
-<script type="text/javascript">
-  function loadtable(status) {
+    
 
-    var table = '<table class="table table-bordered" id="mytable">' +
+        function loadtable(status) {
 
-      '     <thead>' +
+            var table = '<table class="table table-bordered" id="mytable">'+
 
-      '     <tr class="bg-success">' +
+                   '     <thead>'+
 
-      '       <th style="width:20px">No</th>' + '<th>NIK</th>' + '<th>Nama</th>' + '<th>Shift</th>' + '<th>Kompartemen</th>' + '<th>Departemen</th>' + '<th>Bagian</th>' + '<th>Jabatan</th>' + '<th>Role</th>' + '       <th style="width:150px">Status</th>' +
+                   '     <tr class="bg-success">'+
 
-      '       <th style="width:150px"></th>' +
+                   '       <th style="width:20px">No</th>'+'<th>Nik</th>'+'<th>Email</th>'+'<th>Password</th>'+'<th>Nama</th>'+'<th>Id Role</th>'+'       <th style="width:150px">Status</th>'+
 
-      '     </tr>' +
+                   '       <th style="width:150px"></th>'+
 
-      '     </thead>' +
+                   '     </tr>'+
 
-      '     <tbody>' +
+                   '     </thead>'+
 
-      '     </tbody>' +
+                   '     <tbody>'+
 
-      ' </table>';
+                   '     </tbody>'+
 
-    // body...
+                   ' </table>';
 
-    $("#load-table").html(table)
+             // body...
 
+             $("#load-table").html(table)
 
 
-    var t = $("#mytable").dataTable({
 
-      initComplete: function() {
+              var t = $("#mytable").dataTable({
 
-        var api = this.api();
+                initComplete: function() {
 
-        $('#mytable_filter input')
+                    var api = this.api();
 
-          .off('.DT')
+                    $('#mytable_filter input')
 
-          .on('keyup.DT', function(e) {
+                            .off('.DT')
 
-            if (e.keyCode == 13) {
+                            .on('keyup.DT', function(e) {
 
-              api.search(this.value).draw();
+                                if (e.keyCode == 13) {
 
-            }
+                                    api.search(this.value).draw();
 
-          });
+                        }
 
-      },
+                    });
 
-      oLanguage: {
+                },
 
-        sProcessing: "loading..."
+                oLanguage: {
 
-      },
+                    sProcessing: "loading..."
 
-      processing: true,
+                },
 
-      serverSide: true,
+                processing: true,
 
-      ajax: {
-        "url": "<?= base_url('master/Pegawai/json?status=') ?>" + status,
-        "type": "POST"
-      },
+                serverSide: true,
 
-      columns: [
+                ajax: {"url": "<?= base_url('master/Pegawai/json?status=') ?>"+status, "type": "POST"},
 
-        {
-          "data": "id",
-          "orderable": false
-        }, {
-          "data": "nip"
-        }, {
-          "data": "nama"
-        }, {
-          "data": "shift"
-        }, {
-          "data": "kompartemen"
-        }, {
-          "data": "departemen"
-        }, {
-          "data": "bagian"
-        }, {
-          "data": "jabatan"
-        }, {
-          "data": "role"
-        },
+                columns: [
 
-        {
-          "data": "status"
-        },
+                    {"data": "id","orderable": false},{"data": "nik"},{"data": "email"},{"data": "password"},{"data": "nama"},{"data": "id_role"},
 
-        {
-          "data": "view",
+                   {"data": "status"},
 
-          "orderable": false
-
-        }
-
-      ],
-
-      order: [
-        [1, 'asc']
-      ],
-
-      columnDefs: [{
-          targets: [3],
-          render: function(data, type, row, meta) {
-            if (row['id_role'] == 1) {
-              var htmls = row['shift'];
-            } else {
-              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
-            }
-            return htmls;
-          }
-        },
-        {
-          targets: [4],
-          render: function(data, type, row, meta) {
-            if (row['id_role'] != 0) {
-              var htmls = row['kompartemen'];
-            } else {
-              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
-            }
-            return htmls;
-          }
-        },
-        {
-          targets: [5],
-          render: function(data, type, row, meta) {
-            if (row['id_role'] != 0 && row['id_role'] != 2) {
-              var htmls = row['departemen'];
-            } else {
-              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
-            }
-            return htmls;
-          }
-        },
-        {
-          targets: [6],
-          render: function(data, type, row, meta) {
-            if (row['id_role'] != 0 && row['id_role'] != 2 && row['id_role'] != 4) {
-              var htmls = row['bagian'];
-            } else {
-              var htmls = "<span class='badge badge-pill badge-secondary'>Tidak Tersedia</span>"
-            }
-            return htmls;
-          }
-        },
-        {
-          targets: [9],
-          render: function(data, type, row, meta) {
-            if (row['status'] == 'ENABLE') {
-              var htmls = '<a href="<?= base_url('master/Pegawai/status/') ?>' + row['id'] + '/DISABLE">' +
-                '    <button type="button" class="btn btn-sm btn-sm btn-success"><i class="fa fa-home"></i> ENABLE</button>' +
-                '</a>';
-            } else {
-              var htmls = '<a href="<?= base_url('master/Pegawai/status/') ?>' + row['id'] + '/ENABLE">' +
-                '    <button type="button" class="btn btn-sm btn-sm btn-danger"><i class="fa fa-home"></i> DISABLE</button>' +
-                '</a>';
-            }
-            return htmls;
-          }
-        }
+                    {   "data": "view",
 
-      ],
+                        "orderable": false
 
-      rowCallback: function(row, data, iDisplayIndex) {
+                    }
 
-        var info = this.fnPagingInfo();
+                ],
 
-        var page = info.iPage;
+                order: [[1, 'asc']],
 
-        var length = info.iLength;
+                columnDefs : [
 
-        var index = page * length + (iDisplayIndex + 1);
+                    { targets : [6],
 
-        $('td:eq(0)', row).html(index);
+                        render : function (data, type, row, meta) {
 
-      }
+                              if(row['status']=='ENABLE'){
 
-    });
+                                var htmls = '<a href="<?= base_url('master/Pegawai/status/') ?>'+row['id']+'/DISABLE">'+
 
-  }
+                                            '    <button type="button" class="btn btn-sm btn-sm btn-success"><i class="fa fa-home"></i> ENABLE</button>'+
 
+                                            '</a>';
 
+                              }else{
 
+                                var htmls = '<a href="<?= base_url('master/Pegawai/status/') ?>'+row['id']+'/ENABLE">'+
 
+                                            '    <button type="button" class="btn btn-sm btn-sm btn-danger"><i class="fa fa-home"></i> DISABLE</button>'+
 
-  loadtable($("#select-status").val());
+                                            '</a>';
 
 
 
-  function edit(id) {
+                              }
 
-    location.href = "<?= base_url('master/Pegawai/edit/') ?>" + id;
+                              return htmls;
 
-  }
+                          }
 
-  function hapus(id) {
+                      }
 
-    $("#modal-delete").modal('show');
+                ],
 
-    $("#delete-input").val(id);
+             
 
+                rowCallback: function(row, data, iDisplayIndex) {
 
+                    var info = this.fnPagingInfo();
 
-  }
+                    var page = info.iPage;
 
-  $("#upload-delete").submit(function() {
+                    var length = info.iLength;
 
-    event.preventDefault();
+                    var index = page * length + (iDisplayIndex + 1);
 
-    var form = $(this);
+                    $('td:eq(0)', row).html(index);
 
-    var mydata = new FormData(this);
+                }
 
+            });
 
+         }
 
-    $.ajax({
 
-      type: "POST",
 
-      url: form.attr("action"),
 
-      data: mydata,
 
-      cache: false,
+         loadtable($("#select-status").val());
 
-      contentType: false,
+           
 
-      processData: false,
+      function edit(id) {
 
-      beforeSend: function() {
+            // location.href = "<?= base_url('master/Pegawai/edit/') ?>"+id;
+            $("#load-form").html('loading...');
+            
+            $("#modal-form").modal();
+            $("#title-form").html('Edit Data');
+            $("#load-form").load("<?= base_url('master/Pegawai/edit/') ?>"+id);
+            
+         }
 
-        $(".btn-send").addClass("disabled").html("<i class='la la-spinner la-spin'></i>  Processing...").attr('disabled', true);
+      function create() {
+            $("#load-form").html('loading...');
 
-        $(".show_error").slideUp().html("");
+            // location.href = "<?= base_url('master/Pegawai/edit/') ?>"+id;
+            $("#modal-form").modal();
+            $("#title-form").html('Create Data');
+            $("#load-form").load("<?= base_url('master/Pegawai/create/') ?>");
+            
+         }
 
-      },
 
-      success: function(response, textStatus, xhr) {
 
-        var str = response;
 
-        if (str.indexOf("success") != -1) {
+                  function hapus(id) {
 
-          $(".show_error").hide().html(response).slideDown("fast");
+            $("#modal-delete").modal('show');
 
+            $("#delete-input").val(id);
 
+            
 
-          $(".btn-send").removeClass("disabled").html('Yes, Delete it').attr('disabled', false);
+         }
 
-        } else {
+         $("#upload-delete").submit(function(){
 
-          setTimeout(function() {
+            event.preventDefault();
 
-            $("#modal-delete").modal('hide');
+            var form = $(this);
 
-          }, 1000);
+            var mydata = new FormData(this);
 
-          $(".show_error").hide().html(response).slideDown("fast");
 
-          $(".btn-send").removeClass("disabled").html('Yes , Delete it').attr('disabled', false);
 
-          loadtable($("#select-status").val());
+            $.ajax({
 
-        }
+                type: "POST",
 
-      },
+                url: form.attr("action"),
 
-      error: function(xhr, textStatus, errorThrown) {
+                data: mydata,
 
+                cache: false,
 
+                contentType: false,
 
-      }
+                processData: false,
 
-    });
+                beforeSend : function(){
 
-    return false;
+                    $(".btn-send").addClass("disabled").html("<i class='la la-spinner la-spin'></i>  Processing...").attr('disabled',true);
 
+                    $(".show_error").slideUp().html("");
 
+                },
 
-  });
-</script>
+                success: function(response, textStatus, xhr) {
+
+                   var str = response;
+
+                    if (str.indexOf("success") != -1){
+
+                        $(".show_error").hide().html(response).slideDown("fast");
+
+                       
+
+                        $(".btn-send").removeClass("disabled").html('Yes, Delete it').attr('disabled',false);
+
+                    }else{
+
+                         setTimeout(function(){ 
+
+                           $("#modal-delete").modal('hide');
+
+                        }, 1000);
+
+                        $(".show_error").hide().html(response).slideDown("fast");
+
+                        $(".btn-send").removeClass("disabled").html('Yes , Delete it').attr('disabled',false);
+
+                        loadtable($("#select-status").val());
+
+                    }
+
+                },
+
+                error: function(xhr, textStatus, errorThrown) {
+
+            
+
+                }
+
+            });
+
+            return false;
+
+    
+
+        });
+
+  </script>

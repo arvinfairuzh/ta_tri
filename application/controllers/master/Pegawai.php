@@ -1,344 +1,366 @@
 
 
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 
-class Pegawai extends MY_Controller
-{
+	class Pegawai extends MY_Controller {
 
 
 
-	public function __construct()
+		public function __construct()
 
-	{
+		{
 
-		parent::__construct();
+			parent::__construct();
+
+		}
+
+
+
+		public function index()
+
+		{
+
+			$data['page_name'] = "pegawai";
+
+			$this->template->load('template/template','master/pegawai/all-pegawai',$data);
+
+		}
+
+		public function create()
+
+		{
+
+			$this->load->view('master/pegawai/add-pegawai');
+
+		}
+
+		public function validate()
+
+		{
+
+			$this->form_validation->set_error_delimiters('<li>', '</li>');
+
+	$this->form_validation->set_rules('dt[nik]', '<strong>Nik</strong>', 'required');
+$this->form_validation->set_rules('dt[email]', '<strong>Email</strong>', 'required');
+$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
+$this->form_validation->set_rules('dt[id_role]', '<strong>Id Role</strong>', 'required');
 	}
 
 
 
-	public function index()
-	{
-		$filter = array(
-			'kompartemen' => $this->input->post('kompartemen'),
-			'departemen' => $this->input->post('departemen'),
-			'bagian' => $this->input->post('bagian'),
-			'role' => $this->input->post('role')
-		);
+		public function store()
 
-		$this->session->set_userdata($filter);
+		{
 
-		$data['page_name'] = "pegawai";
-		$this->template->load('template/template', 'master/pegawai/all-pegawai', $data);
-	}
+			$this->validate();
 
-	public function create()
+	    	if ($this->form_validation->run() == FALSE){
 
-	{
+				$this->alert->alertdanger(validation_errors());     
 
-		$data['page_name'] = "pegawai";
+	        }else{
 
-		$this->template->load('template/template', 'master/pegawai/add-pegawai', $data);
-	}
+				$dt = $_POST['dt'];
+				
+				
 
-	public function validate()
+				$dt['created_by'] = $_SESSION['id'];
 
-	{
+				$dt['created_at'] = date('Y-m-d H:i:s');
 
-		$this->form_validation->set_error_delimiters('<li>', '</li>');
+				$dt['status'] = "ENABLE";
 
-		$this->form_validation->set_rules(
-			'dt[nip]',
-			'<strong>NIK</strong>',
-			'required|is_unique[pegawai.nip]',
-			array(
-				'required'      => 'You have not provided %s.',
-				'is_unique'     => 'This %s already exists.'
-			)
-		);
-		$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
-		$this->form_validation->set_rules('dt[id_role]', '<strong>Id Role</strong>', 'required');
-	}
+				$str = $this->mymodel->insertData('pegawai', $dt);
+
+				$last_id = $this->db->insert_id();	    if (!empty($_FILES['file']['name'])){
+
+		        	$dir  = "webfile/";
+
+					$config['upload_path']          = $dir;
+
+					$config['allowed_types']        = '*';
+
+					$config['file_name']           = md5('smartsoftstudio').rand(1000,100000);
 
 
 
-	public function store()
+					$this->load->library('upload', $config);
 
-	{
+					if ( ! $this->upload->do_upload('file')){
 
-		$this->validate();
+						$error = $this->upload->display_errors();
 
-		if ($this->form_validation->run() == FALSE) {
+						$this->alert->alertdanger($error);		
 
-			$this->alert->alertdanger(validation_errors());
-		} else {
+					}else{
 
-			$dt = $_POST['dt'];
+					   	$file = $this->upload->data();
 
+						$data = array(
 
+					   				'id' => '',
 
-			$dt['created_by'] = $_SESSION['id'];
+					   				'name'=> $file['file_name'],
 
-			$dt['created_at'] = date('Y-m-d H:i:s');
+					   				'mime'=> $file['file_type'],
 
-			$dt['status'] = "ENABLE";
+					   				'dir'=> $dir.$file['file_name'],
 
-			$str = $this->mymodel->insertData('pegawai', $dt);
+					   				'table'=> 'pegawai',
 
-			$last_id = $this->db->insert_id();
-			if (!empty($_FILES['file']['name'])) {
+					   				'table_id'=> $last_id,
 
-				$dir  = "webfile/";
+					   				'status'=>'ENABLE',
 
-				$config['upload_path']          = $dir;
+					   				'created_at'=>date('Y-m-d H:i:s')
 
-				$config['allowed_types']        = '*';
+					   	 		);
 
-				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
+					   	$str = $this->mymodel->insertData('file', $data);
 
+						$this->alert->alertsuccess('Success Send Data');    
 
+					} 
 
-				$this->load->library('upload', $config);
-
-				if (!$this->upload->do_upload('file')) {
-
-					$error = $this->upload->display_errors();
-
-					$this->alert->alertdanger($error);
-				} else {
-
-					$file = $this->upload->data();
+				}else{
 
 					$data = array(
 
-						'id' => '',
+				   				'id' => '',
 
-						'name' => $file['file_name'],
+				   				'name'=> '',
 
-						'mime' => $file['file_type'],
+				   				'mime'=> '',
 
-						'dir' => $dir . $file['file_name'],
+				   				'dir'=> '',
 
-						'table' => 'pegawai',
+				   				'table'=> 'pegawai',
 
-						'table_id' => $last_id,
+				   				'table_id'=> $last_id,
 
-						'status' => 'ENABLE',
+				   				'status'=>'ENABLE',
 
-						'created_at' => date('Y-m-d H:i:s')
+				   				'created_at'=>date('Y-m-d H:i:s')
 
-					);
+				   	 		);
 
-					$str = $this->mymodel->insertData('file', $data);
+
+
+				   	$str = $this->mymodel->insertData('file', $data);
 
 					$this->alert->alertsuccess('Success Send Data');
-				}
-			} else {
-
-				$data = array(
-
-					'id' => '',
-
-					'name' => '',
-
-					'mime' => '',
-
-					'dir' => '',
-
-					'table' => 'pegawai',
-
-					'table_id' => $last_id,
-
-					'status' => 'ENABLE',
-
-					'created_at' => date('Y-m-d H:i:s')
-
-				);
 
 
 
-				$str = $this->mymodel->insertData('file', $data);
-				// die();
-				$this->alert->alertsuccess('Success Send Data');
-			}
-		}
-	}
-
-
-
-	public function json()
-	{
-		$status = $_GET['status'];
-		$kompartemen = $_SESSION['kompartemen'];
-		$departemen = $_SESSION['departemen'];
-		$bagian = $_SESSION['bagian'];
-		$role = $_SESSION['role'];
-
-		if ($status == '') {
-			$status = 'ENABLE';
-		}
-		header('Content-Type: application/json');
-		$this->datatables->select('pegawai.id,nip,master_bagian.nama as bagian,pegawai.nama,master_shift.nama as shift,master_departemen.nama as departemen,master_kompartemen.nama as kompartemen,master_jabatan.nama as jabatan,role.role as role,pegawai.id_bagian,pegawai.id_shift,pegawai.id_departemen,pegawai.id_kompartemen,pegawai.id_shift,pegawai.id_role,pegawai.status');
-		$this->datatables->where('pegawai.status', $status);
-		if ($kompartemen) {
-			$this->datatables->where('pegawai.id_kompartemen', $kompartemen);
-		}
-		if ($departemen) {
-			$this->datatables->where('pegawai.id_departemen', $departemen);
-		}
-		if ($bagian) {
-			$this->datatables->where('pegawai.id_bagian', $bagian);
-		}
-		if ($role) {
-			$this->datatables->where('pegawai.id_role', $role);
-		}
-		$this->datatables->from('pegawai');
-		$this->datatables->join('master_departemen', 'pegawai.id_departemen = master_departemen.id', 'left');
-		$this->datatables->join('master_kompartemen', 'pegawai.id_kompartemen = master_kompartemen.id', 'left');
-		$this->datatables->join('master_shift', 'pegawai.id_shift = master_shift.id', 'left');
-		$this->datatables->join('master_jabatan', 'pegawai.id_jabatan = master_jabatan.id', 'left');
-		$this->datatables->join('master_bagian', 'pegawai.id_bagian = master_bagian.id', 'left');
-		$this->datatables->join('role', 'pegawai.id_role = role.id', 'left');
-		if ($status == "ENABLE") {
-			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button></div>', 'id');
-		} else {
-			$this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button><button type="button" onclick="hapus($1)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Hapus</button></div>', 'id');
-		}
-		echo $this->datatables->generate();
-	}
-
-	public function edit($id)
-
-	{
-
-		$data['pegawai'] = $this->mymodel->selectDataone('pegawai', array('id' => $id));
-		$data['file'] = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
-		$data['page_name'] = "pegawai";
-
-		$this->template->load('template/template', 'master/pegawai/edit-pegawai', $data);
-	}
-
-
-	public function update()
-
-	{
-		$dt = $_POST['dt'];
-		$this->form_validation->set_error_delimiters('<li>', '</li>');
-		if ($_POST['nik_last'] != $dt['nip']) {
-			$this->form_validation->set_rules(
-				'dt[nip]',
-				'<strong>NIK</strong>',
-				'required|is_unique[pegawai.nip]',
-				array(
-					'required'      => 'You have not provided %s.',
-					'is_unique'     => 'This %s already exists.'
-				)
-			);
-		}
-		$this->form_validation->set_rules('dt[nama]', '<strong>Nama</strong>', 'required');
-		$this->form_validation->set_rules('dt[id_role]', '<strong>Id Role</strong>', 'required');
-		if ($this->form_validation->run() == FALSE) {
-
-			$this->alert->alertdanger(validation_errors());
-		} else {
-
-			$id = $this->input->post('id', TRUE);
-
-			if (!empty($_FILES['file']['name'])) {
-
-				$dir  = "webfile/";
-
-				$config['upload_path']          = $dir;
-
-				$config['allowed_types']        = '*';
-
-				$config['file_name']           = md5('smartsoftstudio') . rand(1000, 100000);
-
-				$this->load->library('upload', $config);
-
-				if (!$this->upload->do_upload('file')) {
-
-					$error = $this->upload->display_errors();
-
-					$this->alert->alertdanger($error);
-				} else {
-
-					$file = $this->upload->data();
-
-					$data = array(
-
-						'name' => $file['file_name'],
-
-						'mime' => $file['file_type'],
-
-						// 'size'=> $file['file_size'],
-
-						'dir' => $dir . $file['file_name'],
-
-						'table' => 'pegawai',
-
-						'table_id' => $id,
-
-						'updated_at' => date('Y-m-d H:i:s')
-
-					);
-
-					$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
-
-					@unlink($file['dir']);
-
-					if ($file == "") {
-
-						$this->mymodel->insertData('file', $data);
-					} else {
-
-						$this->mymodel->updateData('file', $data, array('id' => $file['id']));
 					}
-					$dt['updated_at'] = date("Y-m-d H:i:s");
-					$str =  $this->mymodel->updateData('pegawai', $dt, array('id' => $id));
-					return $str;
-				}
-			} else {
-				$dt['updated_at'] = date("Y-m-d H:i:s");
 
-				$str = $this->mymodel->updateData('pegawai', $dt, array('id' => $id));
+					    
 
-				return $str;
+					
+
 			}
+
 		}
+
+
+
+		public function json()
+
+		{
+
+			$status = $_GET['status'];
+
+			if($status==''){
+
+				$status = 'ENABLE';
+
+			}
+
+			header('Content-Type: application/json');
+
+	        $this->datatables->select('id,nik,email,password,nama,id_role,status');
+
+	        $this->datatables->where('status',$status);
+
+	        $this->datatables->from('pegawai');
+
+	        if($status=="ENABLE"){
+
+	        $this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button></div>', 'id');
+
+
+
+	    	}else{
+
+	        $this->datatables->add_column('view', '<div class="btn-group"><button type="button" class="btn btn-sm btn-primary" onclick="edit($1)"><i class="fa fa-pencil"></i> Edit</button><button type="button" onclick="hapus($1)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Hapus</button></div>', 'id');
+
+
+
+	    	}
+
+	        echo $this->datatables->generate();
+
+		}
+
+		public function edit($id)
+
+		{
+
+			$data['pegawai'] = $this->mymodel->selectDataone('pegawai',array('id'=>$id));$data['file'] = $this->mymodel->selectDataone('file',array('table_id'=>$id,'table'=>'pegawai'));$data['page_name'] = "pegawai";
+
+			$this->load->view('master/pegawai/edit-pegawai',$data);
+
+		}
+
+
+
+
+
+		public function update()
+
+		{	
+
+			$this->validate();
+
+			
+
+
+
+	    	if ($this->form_validation->run() == FALSE){
+
+				$this->alert->alertdanger(validation_errors());     
+
+	        }else{
+
+				$id = $this->input->post('id', TRUE);
+
+	        	if (!empty($_FILES['file']['name'])){
+
+	        		$dir  = "webfile/";
+
+					$config['upload_path']          = $dir;
+
+					$config['allowed_types']        = '*';
+
+					$config['file_name']           = md5('smartsoftstudio').rand(1000,100000);
+
+	        		$this->load->library('upload', $config);
+
+				if ( ! $this->upload->do_upload('file')){
+
+						$error = $this->upload->display_errors();
+
+						$this->alert->alertdanger($error);		
+
+					}else{
+
+						$file = $this->upload->data();
+
+						$data = array(
+
+					   				'name'=> $file['file_name'],
+
+					   				'mime'=> $file['file_type'],
+
+					   				// 'size'=> $file['file_size'],
+
+					   				'dir'=> $dir.$file['file_name'],
+
+					   				'table'=> 'pegawai',
+
+					   				'table_id'=> $id,
+
+					   				'updated_at'=>date('Y-m-d H:i:s')
+
+					   	 		);
+
+						$file = $this->mymodel->selectDataone('file',array('table_id'=>$id,'table'=>'pegawai'));
+
+						@unlink($file['dir']);
+
+						if($file==""){
+
+							$this->mymodel->insertData('file', $data);
+
+						}else{
+
+							$this->mymodel->updateData('file', $data , array('id'=>$file['id']));
+
+						}
+
+						
+
+
+
+						$dt = $_POST['dt'];
+
+						
+
+						$dt['updated_at'] = date("Y-m-d H:i:s");
+
+						$str =  $this->mymodel->updateData('pegawai', $dt , array('id'=>$id));
+
+						return $str;  
+	
+
+					}
+
+				}else{
+
+					$dt = $_POST['dt'];
+
+					
+
+					$dt['updated_at'] = date("Y-m-d H:i:s");
+
+					$str = $this->mymodel->updateData('pegawai', $dt , array('id'=>$id));
+
+					return $str;  
+
+				}}
+
+		}
+
+
+
+		public function delete()
+
+		{
+
+				$id = $this->input->post('id', TRUE);$file = $this->mymodel->selectDataone('file',array('table_id'=>$id,'table'=>'pegawai'));
+
+				@unlink($file['dir']);
+
+				$this->mymodel->deleteData('file',  array('table_id'=>$id,'table'=>'pegawai'));
+
+
+
+				$str = $this->mymodel->deleteData('pegawai',  array('id'=>$id));
+				return $str;
+				
+
+
+		}
+
+
+
+		public function status($id,$status)
+
+		{
+
+			$this->mymodel->updateData('pegawai',array('status'=>$status),array('id'=>$id));
+
+
+			redirect('master/Pegawai');
+
+		}
+
+
+
+
+
 	}
-
-
-
-	public function delete()
-
-	{
-
-		$id = $this->input->post('id', TRUE);
-		$file = $this->mymodel->selectDataone('file', array('table_id' => $id, 'table' => 'pegawai'));
-
-		@unlink($file['dir']);
-
-		$this->mymodel->deleteData('file',  array('table_id' => $id, 'table' => 'pegawai'));
-
-
-
-		$str = $this->mymodel->deleteData('pegawai',  array('id' => $id));
-		return $str;
-	}
-
-
-
-	public function status($id, $status)
-
-	{
-
-		$this->mymodel->updateData('pegawai', array('status' => $status), array('id' => $id));
-
-
-		redirect('master/Pegawai');
-	}
-}
 
 ?>
