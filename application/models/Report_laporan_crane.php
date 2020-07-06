@@ -13,12 +13,16 @@ class Report_laporan_crane extends CI_Model
         $this->column_order = array('tanggal', 'validasi', 'id_se', 'id_spv', 'id_inspektor', 'id_gudang'); //field yang ada di table user
         $this->column_search = array('tanggal', 'validasi', 'id_se', 'id_spv', 'id_inspektor', 'id_gudang'); //field yang ada di table user
         $this->order = array('tanggal' => 'asc'); // default order 
-        $this->table = "(SELECT laporan_crane.*, master_status.nama as nama_status FROM laporan_crane
+        $this->table = "(SELECT laporan_crane.id, laporan_crane.tanggal, laporan_crane.validasi, master_status.nama as nama_status,
+        se.nama as id_se, spv.nama as id_spv, inspektor.nama as id_inspektor, gudang.nama as id_gudang
+        FROM laporan_crane
         LEFT JOIN master_status on laporan_crane.validasi = master_status.id
+        LEFT JOIN pegawai se on laporan_crane.id_se = se.id
+        LEFT JOIN pegawai spv on laporan_crane.id_spv = spv.id
+        LEFT JOIN pegawai inspektor on laporan_crane.id_inspektor = inspektor.id
+        LEFT JOIN pegawai gudang on laporan_crane.id_gudang = gudang.id
         WHERE laporan_crane.status = 'ENABLE') as tabledata";
     }
-
-
 
     private function _get_datatables_query()
     {

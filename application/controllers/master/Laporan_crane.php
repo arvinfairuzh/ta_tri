@@ -4,25 +4,15 @@ error_reporting(0);
 
 class Laporan_crane extends MY_Controller
 {
-
-
-
 	public function __construct()
-
 	{
-
 		parent::__construct();
 		$this->load->model('Report_laporan_crane', 'rLaporan_crane');
 	}
 
-
-
 	public function index()
-
 	{
-
 		$data['page_name'] = "laporan_crane";
-
 		$this->template->load('template/template', 'master/laporan_crane/all-laporan_crane', $data);
 	}
 

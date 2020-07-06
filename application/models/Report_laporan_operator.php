@@ -13,8 +13,14 @@ class Report_laporan_operator extends CI_Model
         $this->column_order = array('tanggal', 'validasi', 'id_se', 'id_spv', 'id_inspektor', 'id_gudang'); //field yang ada di table user
         $this->column_search = array('tanggal', 'validasi', 'id_se', 'id_spv', 'id_inspektor', 'id_gudang'); //field yang ada di table user
         $this->order = array('tanggal' => 'asc'); // default order 
-        $this->table = "(SELECT laporan_operator.*, master_status.nama as nama_status FROM laporan_operator
+        $this->table = "(SELECT laporan_operator.id, laporan_operator.tanggal, laporan_operator.validasi, master_status.nama as nama_status,
+        se.nama as id_se, spv.nama as id_spv, inspektor.nama as id_inspektor, gudang.nama as id_gudang
+        FROM laporan_operator
         LEFT JOIN master_status on laporan_operator.validasi = master_status.id
+        LEFT JOIN pegawai se on laporan_operator.id_se = se.id
+        LEFT JOIN pegawai spv on laporan_operator.id_spv = spv.id
+        LEFT JOIN pegawai inspektor on laporan_operator.id_inspektor = inspektor.id
+        LEFT JOIN pegawai gudang on laporan_operator.id_gudang = gudang.id
         WHERE laporan_operator.status = 'ENABLE') as tabledata";
     }
 
