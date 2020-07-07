@@ -15,82 +15,31 @@
 <!DOCTYPE html>
 
 <html>
-
 <head>
-
-  <meta charset="utf-8">
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <title><?= TITLE_LOGIN_APPLICATION ?></title>
-
-  <!-- Tell the browser to be responsive to screen width -->
-
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-  <!-- Bootstrap 3.3.7 -->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/vendor/bootstrap/css/bootstrap.min.css">
-
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="<?= base_url('assets/login/Login_v1')?>/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/fonts/iconic/css/material-design-iconic-font.min.css">
-
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/vendor/animate/animate.css">
-
-<!--===============================================================================================-->  
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/vendor/css-hamburgers/hamburgers.min.css">
-
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/vendor/animsition/css/animsition.min.css">
-
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/vendor/select2/select2.min.css">
-
-<!--===============================================================================================-->  
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/vendor/daterangepicker/daterangepicker.css">
-
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/css/util.css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/Login_v1')?>/css/main.css">
 <!--===============================================================================================-->
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/css/util.css">
-
-  <link rel="stylesheet" type="text/css" href="<?= base_url('assets/login/')?>/css/main.css">
-
-
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-  <!--[if lt IE 9]>
-
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-  <![endif]-->
-
-
-
-  <!-- Google Font -->
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
 </head>
 
 <body class="hold-transition login-page">
 
-<div class="limiter">
+<!-- <div class="limiter">
 
   <div class="container-login100" style="<?= LOGIN_BACKGROUND ?>">
 
@@ -149,39 +98,67 @@
 
   </div>
 
-</div>
+</div> -->
+
+
+<div class="limiter">
+		<div class="container-login100" style="background-color: #28b79c;background:#28b79c;">
+			<div class="wrap-login100"  style="padding: 100px 130px 100px 95px;">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="<?= base_url('assets/login/Login_v1')?>/images/img-01.png" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form" action="<?= base_url('login/act_login')?>" method="post" id="upload">
+					<span class="login100-form-title">
+						LOGIN
+					</span>
+          <div class="show_error"></div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="username" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" style="background-color: #28b79c;background:#28b79c;">
+							Login
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
 
 <!-- jQuery 3 -->
 
-<script src="<?= base_url('assets/login/')?>/vendor/jquery/jquery-3.2.1.min.js"></script>
-
+<!--===============================================================================================-->	
+<script src="<?= base_url('assets/login/Login_v1')?>/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-
-  <script src="<?= base_url('assets/login/')?>/vendor/animsition/js/animsition.min.js"></script>
-
+	<script src="<?= base_url('assets/login/Login_v1')?>/vendor/bootstrap/js/popper.js"></script>
+	<script src="<?= base_url('assets/login/Login_v1')?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-
-  <script src="<?= base_url('assets/login/')?>/vendor/bootstrap/js/popper.js"></script>
-
-  <script src="<?= base_url('assets/login/')?>/vendor/bootstrap/js/bootstrap.min.js"></script>
-
+	<script src="<?= base_url('assets/login/Login_v1')?>/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-
-  <script src="<?= base_url('assets/login/')?>/vendor/select2/select2.min.js"></script>
-
+	<script src="<?= base_url('assets/login/Login_v1')?>/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
 <!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-  <script src="<?= base_url('assets/login/')?>/vendor/daterangepicker/moment.min.js"></script>
-
-  <script src="<?= base_url('assets/login/')?>/vendor/daterangepicker/daterangepicker.js"></script>
-
-<!--===============================================================================================-->
-
-  <script src="<?= base_url('assets/login/')?>/vendor/countdowntime/countdowntime.js"></script>
-
-<!--===============================================================================================-->
-
-  <script src="<?= base_url('assets/login/')?>/js/main.js"></script>
 
 <script type="text/javascript">
 
