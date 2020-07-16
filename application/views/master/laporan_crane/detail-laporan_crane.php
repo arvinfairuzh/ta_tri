@@ -79,12 +79,18 @@
                             <div class="<?= $keterangan_tolak ?>"><b class="">Keterangan Ditolak : </b> <?= $laporan_crane['keterangan_tolak'] ?></div>
                         </div>
                         <div class="col-md-5 pull-right">
-                            <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
+                            <?php
+                            if ($_SESSION['id_role'] == 0) {
+                            ?>
+                                <button type="button" class="btn btn-sm btn-info pull-right" onclick="cetak(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-print"></i> Print</button>
+                            <?php
+                            }
+                            ?>
                             <?php
                             if ($_SESSION['id_role'] == 1) {
                                 if ($laporan_crane['validasi'] == 0 || $laporan_crane['validasi'] == 2 || $laporan_crane['validasi'] == 6) {
                             ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Periksa</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                                 <?php
                                 }
@@ -104,7 +110,7 @@
                             } else if ($_SESSION['id_role'] == 3) {
                                 if ($laporan_crane['validasi'] == 1 || $laporan_crane['validasi'] == 4 || $laporan_crane['validasi'] == 9) {
                                 ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Ajukan</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                                 <?php
                                 }
@@ -114,7 +120,7 @@
                             } else if ($_SESSION['id_role'] == 4) {
                                 if ($laporan_crane['validasi'] == 5 || $laporan_crane['validasi'] == 7) {
                                 ?>
-                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Validasi</button>
+                                    <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Ajukan</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_crane['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
                             <?php
                                 }

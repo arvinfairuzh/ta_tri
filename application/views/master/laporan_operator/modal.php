@@ -15,7 +15,7 @@ if ($_SESSION['id_role'] == 1) {
     } else {
     ?>
         <div class="form-group">
-            <label for="form-file">Validasi Laporan operator Ini ?</label>
+            <label for="form-file">Periksa Laporan operator Ini ?</label>
         </div>
         <hr>
         <a href="<?= base_url('master/laporan_operator/validasi_act/' . $id . '/terima') ?>" class="btn btn-primary btn-sm btn-send">Terima</a>
