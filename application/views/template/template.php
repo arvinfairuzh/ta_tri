@@ -163,9 +163,9 @@ if ($this->session->userdata('session_sop') == "") {
               ?>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <?php if (empty(base_url($file['dir']))) { ?>
-                  <img style='height: 20px; width: 20px; object-fit: cover; display: inline;' class='img-circle' src="https://pbs.twimg.com/profile_images/3341772292/f8ee4303c175705037fabd77ba61235f_400x400.png" class="user-image">
+                  <img style='height: 20px; width: 20px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/123.png') ?>" class="user-image">
                 <?php } else { ?>
-                  <img style='height: 20px; width: 20px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/' . $file['dir']) ?>" class="user-image">
+                  <img style='height: 20px; width: 20px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/123.png') ?>" class="user-image">
                 <?php } ?>
                 <span class="hidden-xs"><?= $this->session->userdata('name'); ?></span>
               </a>
@@ -173,9 +173,9 @@ if ($this->session->userdata('session_sop') == "") {
                 <!-- User image -->
                 <li class="user-header" style="height: 201px">
                   <?php if (empty(base_url($file['dir']))) { ?>
-                    <img style='height: 100px; width: 100px; object-fit: cover; display: inline;' class='img-circle' src="https://pbs.twimg.com/profile_images/3341772292/f8ee4303c175705037fabd77ba61235f_400x400.png" class="user-image">
+                    <img style='height: 100px; width: 100px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/123.png') ?>" class="user-image">
                   <?php } else { ?>
-                    <img style='height: 100px; width: 100px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/' . $file['dir']) ?>" class="user-image">
+                    <img style='height: 100px; width: 100px; object-fit: cover; display: inline;' class='img-circle' src="<?= base_url('webfile/user/123.png') ?>" class="user-image">
                   <?php } ?>
 
                   <p>
