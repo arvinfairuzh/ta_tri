@@ -34,26 +34,6 @@ abstract class MY_Controller extends CI_Controller{
 
 
 
-		if($this->session->userdata('session_sop')==true){
-
-		$get_link = $this->mymodel->selectDataone('access_control',array('val'=>$link));
-
-		$cek = $this->mymodel->selectWhere('access',array('access_control_id'=>$get_link['id'],'role_id'=>$role));
-
-		if($link!=""){
-
-			if(count($cek)==0){
-
-				// redirect('/');
-
-			}	
-
-		}
-
-		}
-
-
-
 		$this->konfig();
 
 
