@@ -113,6 +113,30 @@
                   </div>
                 </div>
               </div>
+              <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+                <tr>
+                  <th>
+                    REKOMENDASI
+                  </th>
+                  <th>
+                    TINDAK LANJUT
+                  </th>
+                  <th>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <textarea class="form-control" name="rekomendasi[]" rows="1"></textarea>
+                  </td>
+                  <td>
+                    <textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>
+                    <input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">
+                  </td>
+                  <td style="width:5%;">
+                    <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>
@@ -151,6 +175,30 @@
       switchStatus = $("#hasil_toggle" + id).is(':checked');
       $("#hasil" + id).val('Tidak');
     }
+  });
+
+  $(document).ready(function() {
+    var i = 1;
+    $('#addinvoice').click(function() {
+      i++;
+      $('#dynamic_fieldinvoice').append('<tr id="rowinvoice' + i + '">' +
+        '<td>' +
+        '<textarea class="form-control" name="rekomendasi[]" rows="1"></textarea>' +
+        '</td>' +
+        '<td>' +
+        '<textarea style="margin-bottom: 5px;" class="form-control" name="tindak_lanjut[]" rows="1"></textarea>' +
+        '<input type="file" class="form-control" id="form-file" placeholder="Masukan File" name="file[]">' +
+        '</td>' +
+        '<td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove pull-right"><i class="fa fa-trash"></i></button></td>' +
+        '</tr>');
+      $('.select2').select2();
+
+    });
+
+    $(document).on('click', '.btn_remove', function() {
+      var button_id = $(this).attr("id");
+      $('#rowinvoice' + button_id + '').remove();
+    });
   });
 
   $("#upload-create").submit(function() {

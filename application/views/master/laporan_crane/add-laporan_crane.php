@@ -74,7 +74,7 @@
                   </div>
                 </div>
               </div>
-              <!-- <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
+              <table class="table table-bordered" id="dynamic_fieldinvoice" style="width:100%;">
                 <tr>
                   <th>
                     REKOMENDASI
@@ -97,7 +97,7 @@
                     <button type="button" name="addinvoice" id="addinvoice" class="btn btn-primary pull-right"><i class="fa fa-plus"></i></button>
                   </td>
                 </tr>
-              </table> -->
+              </table>
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary btn-send"><i class="fa fa-save"></i> Save</button>

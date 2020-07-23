@@ -31,7 +31,7 @@
               <?php
               if ($_SESSION['id_role'] == 3) {
                 $form_atas = '';
-                $form_bawah = 'hide';
+                $form_bawah = '';
               } else {
                 $form_atas = 'hide';
                 $form_bawah = '';

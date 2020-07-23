@@ -170,6 +170,36 @@ class Laporan_operator extends MY_Controller
 			$dt['status'] = "ENABLE";
 
 			$this->mymodel->insertData('laporan_operator', $dt);
+			$id = $this->db->insert_id();
+
+			for ($i = 0; $i < count($rekomendasi); $i++) {
+
+				$upload = '';
+				if (!empty($_FILES['file']['name'][$i])) {
+					$path = $_SERVER['DOCUMENT_ROOT'] . "/ta_tri/webfile/laporan_operator/";
+					$dir  = "webfile/laporan_operator/";
+
+					$file_ext = $_FILES['file']['name'][$i];
+					$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
+					$file_name = 'ftl-' . $id . $i . '.' . $ext;
+					$file_size = $_FILES['file']['size'][$i];
+					$file_tmp = $_FILES['file']['tmp_name'][$i];
+					$file_type = $_FILES['file']['type'][$i];
+
+					move_uploaded_file($file_tmp, $path . $file_name);
+					$upload = $dir . $file_name;
+					$gambar = $upload;
+				}
+				$json_rekomendasi[$i] = array(
+					'rekomendasi' => $rekomendasi[$i],
+					'tindak_lanjut' => $tindak_lanjut[$i],
+					'gambar' => $gambar
+				);
+			}
+			// print_r($json_rekomendasi);
+			$dta['rekomendasi'] = json_encode($json_rekomendasi);
+			// die();
+			$this->db->update('laporan_operator', $dta, array('id' => $id));
 
 			$this->alert->alertsuccess('Success Send Data');
 		}
@@ -395,5 +425,3 @@ class Laporan_operator extends MY_Controller
 		redirect('master/laporan_operator');
 	}
 }
-
-?>
