@@ -70,6 +70,9 @@
                             } else if ($laporan_operator['validasi'] == 9) {
                                 $badge_color = 'bg-red';
                                 $keterangan_tolak = '';
+                            } else if ($laporan_operator['validasi'] == 11) {
+                                $badge_color = 'bg-red';
+                                $keterangan_tolak = '';
                             } else {
                                 $badge_color = 'bg-green';
                             }
@@ -108,7 +111,7 @@
                                 ?>
                                 <?php
                             } else if ($_SESSION['id_role'] == 3) {
-                                if ($laporan_operator['validasi'] == 1 || $laporan_operator['validasi'] == 4 || $laporan_operator['validasi'] == 9) {
+                                if ($laporan_operator['validasi'] == 1 || $laporan_operator['validasi'] == 4 || $laporan_operator['validasi'] == 7 || $laporan_operator['validasi'] == 9 || $laporan_operator['validasi'] == 11) {
                                 ?>
                                     <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_operator['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Ajukan</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_operator['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>
@@ -118,7 +121,7 @@
                                 <button type="button" class="btn btn-sm btn-danger pull-right" onclick="hapus(<?= $laporan_operator['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-trash"></i> Hapus</button>
                                 <?php
                             } else if ($_SESSION['id_role'] == 4) {
-                                if ($laporan_operator['validasi'] == 5 || $laporan_operator['validasi'] == 7) {
+                                if ($laporan_operator['validasi'] == 5) {
                                 ?>
                                     <button type="button" class="btn btn-sm btn-success pull-right" onclick="validasi(<?= $laporan_operator['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-refresh"></i> Ajukan</button>
                                     <button type="button" class="btn btn-sm btn-primary pull-right" onclick="edit(<?= $laporan_operator['id'] ?>)" style="margin-right: 5px;"><i class="fa fa-pencil"></i> Edit</button>

@@ -289,7 +289,7 @@ class Laporan_operator extends MY_Controller
 
 					$file_ext = $_FILES['file']['name'][$i];
 					$ext = pathinfo($file_ext, PATHINFO_EXTENSION);
-					$file_name = 'ftl-'. $id . $i . '.' . $ext;
+					$file_name = 'ftl-' . $id . $i . '.' . $ext;
 					$file_size = $_FILES['file']['size'][$i];
 					$file_tmp = $_FILES['file']['tmp_name'][$i];
 					$file_type = $_FILES['file']['type'][$i];
@@ -375,10 +375,16 @@ class Laporan_operator extends MY_Controller
 					$validasi = 10;
 				}
 			} else if ($_SESSION['id_role'] == 3) {
-				$validasi = 0;
+				if ($status_sekarang == 1) {
+					$validasi = 0;
+				} else if ($status_sekarang == 7) {
+					$validasi = 6;
+				} else if ($status_sekarang == 11) {
+					$validasi = 6;
+				}
 			} else if ($_SESSION['id_role'] == 4) {
 				$dt['id_gudang'] = $_SESSION['id'];
-				$validasi = 6;
+				$validasi = 11;
 			}
 		} else {
 			$dt['keterangan_tolak'] = $_POST['keterangan'];

@@ -10,7 +10,7 @@ if ($_SESSION['id_role'] == 1) {
         </div>
         <hr>
         <a href="<?= base_url('master/laporan_crane/validasi_act/' . $id . '/terima') ?>" class="btn btn-primary btn-sm btn-send">Ya</a>
-        <button class="btn btn-danger btn-sm btn-send" onclick="tolak(<?= $id ?>)">Tolak</button>
+        <a href="<?= base_url('master/laporan_crane/validasi_act/' . $id . '/tolak') ?>" class="btn btn-danger btn-sm btn-send">Terima</a>
     <?php
     } else {
     ?>
@@ -19,7 +19,7 @@ if ($_SESSION['id_role'] == 1) {
         </div>
         <hr>
         <a href="<?= base_url('master/laporan_crane/validasi_act/' . $id . '/terima') ?>" class="btn btn-primary btn-sm btn-send">Terima</a>
-        <a href="<?= base_url('master/laporan_crane/validasi_act/' . $id . '/tolak') ?>" class="btn btn-danger btn-sm btn-send">Tolak</a>
+        <button class="btn btn-danger btn-sm btn-send" onclick="tolak(<?= $id ?>)">Tolak</button>
     <?php
     }
     ?>

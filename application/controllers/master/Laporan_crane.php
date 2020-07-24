@@ -50,6 +50,8 @@ class Laporan_crane extends MY_Controller
 				$badge_color = 'bg-yellow';
 			} else if ($u->validasi == 9) {
 				$badge_color = 'bg-red';
+			} else if ($u->validasi == 11) {
+				$badge_color = 'bg-red';
 			} else {
 				$badge_color = 'bg-green';
 			}
@@ -366,10 +368,16 @@ class Laporan_crane extends MY_Controller
 					$validasi = 10;
 				}
 			} else if ($_SESSION['id_role'] == 3) {
-				$validasi = 0;
+				if ($status_sekarang == 1) {
+					$validasi = 0;
+				} else if ($status_sekarang == 7) {
+					$validasi = 6;
+				} else if ($status_sekarang == 11) {
+					$validasi = 6;
+				}
 			} else if ($_SESSION['id_role'] == 4) {
 				$dt['id_gudang'] = $_SESSION['id'];
-				$validasi = 6;
+				$validasi = 11;
 			}
 		} else {
 			$dt['keterangan_tolak'] = $_POST['keterangan'];
